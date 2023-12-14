@@ -1,0 +1,149 @@
+\doxysection{geometry\+\_\+convex\+\_\+polygon.\+h}
+\hypertarget{geometry__convex__polygon_8h_source}{}\label{geometry__convex__polygon_8h_source}\index{E:/External/visilib/visilib/geometry\_convex\_polygon.h@{E:/External/visilib/visilib/geometry\_convex\_polygon.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_2.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_3.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}math\_plane\_3.h"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ v0,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ v2);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}(\textcolor{keyword}{const}\ std::vector<MathVector3d>\&\ aList);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}(\textcolor{keyword}{const}\ std::vector<MathVector3f>\&\ aList);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ aPoly);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}*\ anArray,\ \textcolor{keywordtype}{size\_t}\ aNumber);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ anArray,\ \textcolor{keywordtype}{size\_t}\ numVertices);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2i}}\ getEdge(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2i}}(i,\ (i\ +\ 1)\ \%\ getVertexCount());}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2i}}\ getEdgesOfVertex(\textcolor{keywordtype}{size\_t}\ aVertexNumber)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aVertexNumber\ !=\ 0)}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2i}}(aVertexNumber,\ aVertexNumber\ -\/\ 1);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2i}}(getVertexCount()\ -\/\ 1,\ 0);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<MathVector3d>\&\ getVertices()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mVertices;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ getVertex(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ getPlane()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mPlane;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setPlane(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \&\ aPlane)}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ mPlane\ =\ aPlane;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ getVertexCount()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mVertices.size();}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ clear()}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ mVertices.clear();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ mPlane\ =\ MathPlane3d::Zero();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isValid()\textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ computePlane();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ std::vector<MathVector3d>\ mVertices;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ mPlane;}
+\DoxyCodeLine{00094\ \ \ \ \ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryConvexPolygon::GeometryConvexPolygon(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \&\ v0,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \&\ v2)}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ mVertices.push\_back(convert<MathVector3d>(v0));}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ mVertices.push\_back(convert<MathVector3d>(v1));}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ mVertices.push\_back(convert<MathVector3d>(v2));}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ computePlane();}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryConvexPolygon::GeometryConvexPolygon(\textcolor{keyword}{const}\ GeometryConvexPolygon\ \&\ other)}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ mVertices\ =\ other.mVertices;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ mPlane\ =\ other.mPlane;}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryConvexPolygon::GeometryConvexPolygon(\textcolor{keyword}{const}\ std::vector<MathVector3d>\ \&\ aList)}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ mVertices\ =\ aList;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ computePlane();}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryConvexPolygon::GeometryConvexPolygon(\textcolor{keyword}{const}\ std::vector<MathVector3f>\ \&\ aList)}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ aList.size();\ i++)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ mVertices.push\_back(convert<MathVector3d>(aList[i]));}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ computePlane();}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryConvexPolygon::GeometryConvexPolygon(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ anArray,\ \textcolor{keywordtype}{size\_t}\ numVertices)}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ numVertices;\ i++)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ mVertices.push\_back(MathVector3d(anArray[i\ *\ 3\ +\ 0],\ anArray[i\ *\ 3\ +\ 1],\ anArray[i\ *\ 3\ +\ 2]));}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ computePlane();}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ MathVector3d\&\ GeometryConvexPolygon::getVertex(\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{const}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mVertices[i];}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ GeometryConvexPolygon::isValid()\textcolor{keyword}{const}}
+\DoxyCodeLine{00142\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getVertexCount()\ >\ 0;}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,85 @@
+\doxysection{visilib.\+hpp}
+\hypertarget{visilib_8hpp_source}{}\label{visilib_8hpp_source}\index{E:/External/visilib/visilib/visilib.hpp@{E:/External/visilib/visilib/visilib.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}visilib\_core.h"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}visilib.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}visibility\_exact\_query.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}geometry\_convex\_polygon.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}geometry\_occluder\_set.h"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{using\ namespace\ }visilib;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{inline}\ VisibilityResult\ visilib::areVisible(\mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set}{GeometryOccluderSet}}*\ scene,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices0,\ \textcolor{keywordtype}{size\_t}\ numVertices0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices1,\ \textcolor{keywordtype}{size\_t}\ numVertices1,}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}\&\ configuration,\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{HelperVisualDebugger}}*\ debugger)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (vertices0\ ==\ 0\ ||\ vertices1\ ==\ 0)}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ invalid\ number\ of\ vertices"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FAILURE;}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{if}\ (scene\ ==\ \textcolor{keyword}{nullptr}\ ||\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set}{GeometryOccluderSet}}*\textcolor{keyword}{>}(scene)\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ invalid\ scene"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FAILURE;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (vertices0\ ==\ \textcolor{keyword}{nullptr}\ ||\ vertices1\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ invalid\ vertex\ array"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FAILURE;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query}{VisibilityExactQuery}}*\ query\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{switch}\ (configuration.\mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a85a72847cd60b3d5d41d0a893e439a71}{precision}})}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{case}\ VisibilityExactQueryConfiguration::EXACT:}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ query\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query__}{VisibilityExactQuery\_<MathPlucker6<exact>}},\ exact>(scene,\ configuration,\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<exact>::Tolerance}}());}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a1cd44b0dffc3d51eb0bd5af35eeb9a8bae6d683564c0978e72ac4b6be27998aa5}{VisibilityExactQueryConfiguration::DOUBLE}}:}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ query\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query__}{VisibilityExactQuery\_<MathPlucker6<double>}},\ \textcolor{keywordtype}{double}>(scene,\ configuration,\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<double>::Tolerance}}());}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ query\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query__}{VisibilityExactQuery\_<MathPlucker6<float>}},\ \textcolor{keywordtype}{float}>(scene,\ configuration,\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<float>::Tolerance}}());}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ query-\/>attachVisualisationDebugger(debugger);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ VisibilityResult\ result\ =\ query-\/>arePolygonsVisible(vertices0,\ numVertices0,\ vertices1,\ numVertices1);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (debugger)}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ query-\/>displayStatistic();}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{delete}\ query;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+
+\end{DoxyCode}

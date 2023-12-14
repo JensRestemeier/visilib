@@ -1,0 +1,326 @@
+\doxysection{demo\+\_\+viewer\+\_\+glut.\+h}
+\hypertarget{demo__viewer__glut_8h_source}{}\label{demo__viewer__glut_8h_source}\index{E:/External/visilib/demo/demo\_viewer\_glut.h@{E:/External/visilib/demo/demo\_viewer\_glut.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_left\ =\ 0.0;}
+\DoxyCodeLine{00025\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_right\ =\ 0.0;}
+\DoxyCodeLine{00026\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_bottom\ =\ 0.0;}
+\DoxyCodeLine{00027\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_top\ =\ 0.0;}
+\DoxyCodeLine{00028\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_zNear\ =\ -\/10.0;}
+\DoxyCodeLine{00029\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_zFar\ =\ 10.0;}
+\DoxyCodeLine{00030\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_scaling\ =\ 1.0;}
+\DoxyCodeLine{00031\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \ \_mouseX\ =\ 0;}
+\DoxyCodeLine{00032\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \ \_mouseY\ =\ 0;}
+\DoxyCodeLine{00033\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \_mouseLeft\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00034\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \_mouseMiddle\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00035\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \_mouseRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00036\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_dragPosX\ =\ 0.0;}
+\DoxyCodeLine{00037\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_dragPosY\ =\ 0.0;}
+\DoxyCodeLine{00038\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_dragPosZ\ =\ 0.0;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ vlen(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y,\ \textcolor{keywordtype}{double}\ z);}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifdef\ USE\_GLUT}}
+\DoxyCodeLine{00042\ GLfloat\ zprReferencePoint[4]\ =\ \{\ 0,\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_matrix[16];}
+\DoxyCodeLine{00045\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \_matrixInverse[16];}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setViewPortScaling(\textcolor{keywordtype}{double}\ s);}
+\DoxyCodeLine{00048\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ pos(\textcolor{keywordtype}{double}\ *px,\ \textcolor{keywordtype}{double}\ *py,\ \textcolor{keywordtype}{double}\ *pz,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ *viewport);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ USE\_GLUT}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00052\ invertMatrix(\textcolor{keyword}{const}\ GLdouble\ *m,\ GLdouble\ *out)}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{/*\ NB.\ OpenGL\ Matrices\ are\ COLUMN\ major.\ */}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ MAT(m,r,c)\ (m)[(c)*4+(r)]}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{/*\ Here's\ some\ shorthand\ converting\ standard\ (row,column)\ to\ index.\ */}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ m11\ MAT(m,0,0)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ m12\ MAT(m,0,1)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ m13\ MAT(m,0,2)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ m14\ MAT(m,0,3)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ m21\ MAT(m,1,0)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ m22\ MAT(m,1,1)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ m23\ MAT(m,1,2)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ m24\ MAT(m,1,3)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ m31\ MAT(m,2,0)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ m32\ MAT(m,2,1)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ m33\ MAT(m,2,2)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ m34\ MAT(m,2,3)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ m41\ MAT(m,3,0)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ m42\ MAT(m,3,1)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ m43\ MAT(m,3,2)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ m44\ MAT(m,3,3)}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ GLdouble\ det;}
+\DoxyCodeLine{00076\ \ \ \ \ GLdouble\ d12,\ d13,\ d23,\ d24,\ d34,\ d41;}
+\DoxyCodeLine{00077\ \ \ \ \ GLdouble\ tmp[16];\ \textcolor{comment}{/*\ Allow\ out\ ==\ in.\ */}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{/*\ Inverse\ =\ adjoint\ /\ det.\ (See\ linear\ algebra\ texts.)*/}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{/*\ pre-\/compute\ 2x2\ dets\ for\ last\ two\ rows\ when\ computing\ */}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*\ cofactors\ of\ first\ two\ rows.\ */}}
+\DoxyCodeLine{00083\ \ \ \ \ d12\ =\ (m31*m42\ -\/\ m41*m32);}
+\DoxyCodeLine{00084\ \ \ \ \ d13\ =\ (m31*m43\ -\/\ m41*m33);}
+\DoxyCodeLine{00085\ \ \ \ \ d23\ =\ (m32*m43\ -\/\ m42*m33);}
+\DoxyCodeLine{00086\ \ \ \ \ d24\ =\ (m32*m44\ -\/\ m42*m34);}
+\DoxyCodeLine{00087\ \ \ \ \ d34\ =\ (m33*m44\ -\/\ m43*m34);}
+\DoxyCodeLine{00088\ \ \ \ \ d41\ =\ (m34*m41\ -\/\ m44*m31);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ tmp[0]\ =\ (m22\ *\ d34\ -\/\ m23\ *\ d24\ +\ m24\ *\ d23);}
+\DoxyCodeLine{00091\ \ \ \ \ tmp[1]\ =\ -\/(m21\ *\ d34\ +\ m23\ *\ d41\ +\ m24\ *\ d13);}
+\DoxyCodeLine{00092\ \ \ \ \ tmp[2]\ =\ (m21\ *\ d24\ +\ m22\ *\ d41\ +\ m24\ *\ d12);}
+\DoxyCodeLine{00093\ \ \ \ \ tmp[3]\ =\ -\/(m21\ *\ d23\ -\/\ m22\ *\ d13\ +\ m23\ *\ d12);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{/*\ Compute\ determinant\ as\ early\ as\ possible\ using\ these\ cofactors.\ */}}
+\DoxyCodeLine{00096\ \ \ \ \ det\ =\ m11\ *\ tmp[0]\ +\ m12\ *\ tmp[1]\ +\ m13\ *\ tmp[2]\ +\ m14\ *\ tmp[3];}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{/*\ Run\ singularity\ test.\ */}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (det\ ==\ 0.0)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ printf("{}invert\_matrix:\ Warning:\ Singular\ matrix.\(\backslash\)n"{});\ */}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ \ \ \ memcpy(out,\_identity,16*sizeof(double));\ */}}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ GLdouble\ invDet\ =\ 1.0\ /\ det;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Compute\ rest\ of\ inverse.\ */}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ tmp[0]\ *=\ invDet;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ tmp[1]\ *=\ invDet;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ tmp[2]\ *=\ invDet;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ tmp[3]\ *=\ invDet;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ tmp[4]\ =\ -\/(m12\ *\ d34\ -\/\ m13\ *\ d24\ +\ m14\ *\ d23)\ *\ invDet;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ tmp[5]\ =\ (m11\ *\ d34\ +\ m13\ *\ d41\ +\ m14\ *\ d13)\ *\ invDet;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ tmp[6]\ =\ -\/(m11\ *\ d24\ +\ m12\ *\ d41\ +\ m14\ *\ d12)\ *\ invDet;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ tmp[7]\ =\ (m11\ *\ d23\ -\/\ m12\ *\ d13\ +\ m13\ *\ d12)\ *\ invDet;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Pre-\/compute\ 2x2\ dets\ for\ first\ two\ rows\ when\ computing\ */}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ cofactors\ of\ last\ two\ rows.\ */}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ d12\ =\ m11*m22\ -\/\ m21*m12;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ d13\ =\ m11*m23\ -\/\ m21*m13;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ d23\ =\ m12*m23\ -\/\ m22*m13;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ d24\ =\ m12*m24\ -\/\ m22*m14;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ d34\ =\ m13*m24\ -\/\ m23*m14;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ d41\ =\ m14*m21\ -\/\ m24*m11;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ tmp[8]\ =\ (m42\ *\ d34\ -\/\ m43\ *\ d24\ +\ m44\ *\ d23)\ *\ invDet;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ tmp[9]\ =\ -\/(m41\ *\ d34\ +\ m43\ *\ d41\ +\ m44\ *\ d13)\ *\ invDet;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ tmp[10]\ =\ (m41\ *\ d24\ +\ m42\ *\ d41\ +\ m44\ *\ d12)\ *\ invDet;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ tmp[11]\ =\ -\/(m41\ *\ d23\ -\/\ m42\ *\ d13\ +\ m43\ *\ d12)\ *\ invDet;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ tmp[12]\ =\ -\/(m32\ *\ d34\ -\/\ m33\ *\ d24\ +\ m34\ *\ d23)\ *\ invDet;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ tmp[13]\ =\ (m31\ *\ d34\ +\ m33\ *\ d41\ +\ m34\ *\ d13)\ *\ invDet;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ tmp[14]\ =\ -\/(m31\ *\ d24\ +\ m32\ *\ d41\ +\ m34\ *\ d12)\ *\ invDet;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ tmp[15]\ =\ (m31\ *\ d23\ -\/\ m32\ *\ d13\ +\ m33\ *\ d12)\ *\ invDet;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ memcpy(out,\ tmp,\ 16\ *\ \textcolor{keyword}{sizeof}(GLdouble));}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#undef\ m11}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#undef\ m12}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#undef\ m13}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#undef\ m14}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#undef\ m21}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#undef\ m22}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#undef\ m23}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#undef\ m24}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#undef\ m31}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#undef\ m32}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#undef\ m33}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#undef\ m34}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#undef\ m41}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#undef\ m42}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#undef\ m43}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#undef\ m44}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#undef\ MAT}}
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00157\ getMatrix()}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ glGetDoublev(GL\_MODELVIEW\_MATRIX,\ \_matrix);}
+\DoxyCodeLine{00160\ \ \ \ \ invertMatrix(\_matrix,\ \_matrixInverse);}
+\DoxyCodeLine{00161\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}}
+\DoxyCodeLine{00164\ vlen(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y,\ \textcolor{keywordtype}{double}\ z)}
+\DoxyCodeLine{00165\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ sqrt(x*x\ +\ y*y\ +\ z*z);}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00170\ pos(\textcolor{keywordtype}{double}\ *px,\ \textcolor{keywordtype}{double}\ *py,\ \textcolor{keywordtype}{double}\ *pz,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ *viewport)}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ \ \ \ \ \ Use\ the\ ortho\ projection\ and\ viewport\ information}}
+\DoxyCodeLine{00174\ \textcolor{comment}{\ \ \ \ \ \ to\ map\ from\ mouse\ co-\/ordinates\ back\ into\ world}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ \ \ \ \ \ co-\/ordinates}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ \ \ */}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ *px\ =\ (double)(x\ -\/\ viewport[0])\ /\ (double)(viewport[2]);}
+\DoxyCodeLine{00179\ \ \ \ \ *py\ =\ (double)(y\ -\/\ viewport[1])\ /\ (double)(viewport[3]);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ *px\ =\ \_left\ +\ (*px)*(\_right\ -\/\ \_left);}
+\DoxyCodeLine{00182\ \ \ \ \ *py\ =\ \_top\ +\ (*py)*(\_bottom\ -\/\ \_top);}
+\DoxyCodeLine{00183\ \ \ \ \ *pz\ =\ \_zNear;}
+\DoxyCodeLine{00184\ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00187\ zprMouse(\textcolor{keywordtype}{int}\ button,\ \textcolor{keywordtype}{int}\ state,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ GLint\ viewport[4];}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \_mouseX\ =\ x;}
+\DoxyCodeLine{00192\ \ \ \ \ \_mouseY\ =\ y;}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{if}\ (state\ ==\ GLUT\_UP)}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (button)}
+\DoxyCodeLine{00196\ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLUT\_LEFT\_BUTTON:\ \ \ \_mouseLeft\ =\ \textcolor{keyword}{false};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLUT\_MIDDLE\_BUTTON:\ \_mouseMiddle\ =\ \textcolor{keyword}{false};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLUT\_RIGHT\_BUTTON:\ \ \_mouseRight\ =\ \textcolor{keyword}{false};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (button)}
+\DoxyCodeLine{00203\ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLUT\_LEFT\_BUTTON:\ \ \ \_mouseLeft\ =\ \textcolor{keyword}{true};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLUT\_MIDDLE\_BUTTON:\ \_mouseMiddle\ =\ \textcolor{keyword}{true};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLUT\_RIGHT\_BUTTON:\ \ \_mouseRight\ =\ \textcolor{keyword}{true};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ glGetIntegerv(GL\_VIEWPORT,\ viewport);}
+\DoxyCodeLine{00210\ \ \ \ \ pos(\&\_dragPosX,\ \&\_dragPosY,\ \&\_dragPosZ,\ x,\ y,\ viewport);}
+\DoxyCodeLine{00211\ \ \ \ \ glutPostRedisplay();}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00215\ zprMotion(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)}
+\DoxyCodeLine{00216\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{bool}\ changed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{int}\ dx\ =\ x\ -\/\ \_mouseX;}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{int}\ dy\ =\ y\ -\/\ \_mouseY;}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ GLint\ viewport[4];}
+\DoxyCodeLine{00223\ \ \ \ \ glGetIntegerv(GL\_VIEWPORT,\ viewport);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{if}\ (dx\ ==\ 0\ \&\&\ dy\ ==\ 0)}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_mouseMiddle\ ||\ (\_mouseLeft\ \&\&\ \_mouseRight))}
+\DoxyCodeLine{00229\ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s\ =\ exp((\textcolor{keywordtype}{double})dy*0.01);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ glTranslatef(zprReferencePoint[0],\ zprReferencePoint[1],\ zprReferencePoint[2]);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ glScaled(s,\ s,\ s);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ glTranslated(-\/zprReferencePoint[0],\ -\/zprReferencePoint[1],\ -\/zprReferencePoint[2]);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ changed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00237\ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_mouseLeft)}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ax,\ ay,\ az;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ bx,\ by,\ bz;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ angle;}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ ax\ =\ dy;}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ ay\ =\ dx;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ az\ =\ 0.0;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ angle\ =\ vlen(ax,\ ay,\ az)\ /\ (double)(viewport[2]\ +\ 1)*180.0;}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Use\ inverse\ matrix\ to\ determine\ local\ axis\ of\ rotation\ */}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ bx\ =\ \_matrixInverse[0]\ *\ ax\ +\ \_matrixInverse[4]\ *\ ay\ +\ \_matrixInverse[8]\ *\ az;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ by\ =\ \_matrixInverse[1]\ *\ ax\ +\ \_matrixInverse[5]\ *\ ay\ +\ \_matrixInverse[9]\ *\ az;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ bz\ =\ \_matrixInverse[2]\ *\ ax\ +\ \_matrixInverse[6]\ *\ ay\ +\ \_matrixInverse[10]\ *\ az;}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ glTranslatef(zprReferencePoint[0],\ zprReferencePoint[1],\ zprReferencePoint[2]);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ glRotated(angle,\ bx,\ by,\ bz);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ glTranslatef(-\/zprReferencePoint[0],\ -\/zprReferencePoint[1],\ -\/zprReferencePoint[2]);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ changed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_mouseRight)}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ px,\ py,\ pz;}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos(\&px,\ \&py,\ \&pz,\ x,\ y,\ viewport);}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glLoadIdentity();}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glTranslated(px\ -\/\ \_dragPosX,\ py\ -\/\ \_dragPosY,\ pz\ -\/\ \_dragPosZ);}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glMultMatrixd(\_matrix);}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_dragPosX\ =\ px;}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_dragPosY\ =\ py;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_dragPosZ\ =\ pz;}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ changed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \_mouseX\ =\ x;}
+\DoxyCodeLine{00281\ \ \ \ \ \_mouseY\ =\ y;}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{if}\ (changed)}
+\DoxyCodeLine{00284\ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ getMatrix();}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ glutPostRedisplay();}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00291\ zprReshape(\textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h)}
+\DoxyCodeLine{00292\ \{}
+\DoxyCodeLine{00293\ \ \ \ \ glViewport(0,\ 0,\ w,\ h);}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \_top\ =\ \_scaling;}
+\DoxyCodeLine{00296\ \ \ \ \ \_bottom\ =\ -\/\_scaling;}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \_left\ =\ -\/\_scaling;}
+\DoxyCodeLine{00299\ \ \ \ \ \_right\ =\ \_scaling;}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ glMatrixMode(GL\_PROJECTION);}
+\DoxyCodeLine{00302\ \ \ \ \ glLoadIdentity();}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ glOrtho(\_left,\ \_right,\ \_bottom,\ \_top,\ -\/100*\_scaling,\ 100*\_scaling);}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ glMatrixMode(GL\_MODELVIEW);}
+\DoxyCodeLine{00307\ \}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setViewPortScaling(\textcolor{keywordtype}{double}\ s)}
+\DoxyCodeLine{00311\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \_scaling\ =\ s;}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\ \#ifdef\ USE\_GLUT}}
+\DoxyCodeLine{00314\ \ \ \ \ GLint\ viewport[4];}
+\DoxyCodeLine{00315\ \ \ \ \ glGetIntegerv(GL\_VIEWPORT,\ viewport);}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ zprReshape(viewport[2],\ viewport[3]);}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00319\ \}}
+\DoxyCodeLine{00320\ }
+
+\end{DoxyCode}

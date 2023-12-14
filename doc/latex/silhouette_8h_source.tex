@@ -1,0 +1,171 @@
+\doxysection{silhouette.\+h}
+\hypertarget{silhouette_8h_source}{}\label{silhouette_8h_source}\index{E:/External/visilib/visilib/silhouette.h@{E:/External/visilib/visilib/silhouette.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}math\_plucker\_6.h"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{class\ }HelperStatisticCollector;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{class\ }VisibilityExactQuery\_;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{class\ }GeometryConvexPolygon;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{class\ }PluckerPolytope;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{class\ }SilhouetteMeshFace;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvisilib_1_1_silhouette_edge}{SilhouetteEdge}}}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_silhouette_edge}{SilhouetteEdge}}(\mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face}{SilhouetteMeshFace}}*\ aFace,\ \textcolor{keywordtype}{size\_t}\ anEdgeIndex,\ \textcolor{keywordtype}{size\_t}\ anHyperplaneIndex)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ :\ mEdgeIndex(anEdgeIndex),}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ mFace(aFace),}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ mHyperPlaneIndex(anHyperplaneIndex),}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ mScore(-\/1.0),}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ mIsActive(\textcolor{keyword}{true})}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ mHyperPlaneIndex;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face}{SilhouetteMeshFace}}*\ mFace;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ mEdgeIndex;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ mScore;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ mIsActive;}
+\DoxyCodeLine{00058\ \ \ \ \ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}}}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvisilib_1_1_silhouette_1_1_hash}{Hash}}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ \mbox{\hyperlink{structvisilib_1_1_silhouette_1_1_hash_af79d4fadbc66f764514cfd46517f0272}{operator()}}(std::pair<SilhouetteMeshFace*,\ size\_t>\ pair)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ edgeHash\ =\ std::hash<size\_t>()((size\_t)(pair.first));}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ faceHash\ =\ std::hash<size\_t>()(pair.second);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ faceHash\ \string^\ edgeHash;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}}(\textcolor{keyword}{const}\ std::vector<SilhouetteMeshFace>\&\ aFaces,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ aGeometryId)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ :\ mMeshFaces(aFaces),}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ mGeometryId(aGeometryId),}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ mAvailableEdgeCount(0)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \string~Silhouette()}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_abf0ef623ba45072e7dfd804d481ff91e}{getAvailableEdgeCount}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mAvailableEdgeCount;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \ \ \ \textcolor{comment}{//\ \ \ \ \ bool\ hasEdge(ConnectedMeshElement*\ face,\ size\_t\ edgeIndex)\ const;}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<SilhouetteEdge>\&\ \mbox{\hyperlink{classvisilib_1_1_silhouette_aced93465449b977b9723e1ca4a48fd1c}{getEdges}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_aa22b9c394c4ba8574cc1ac963b21e7e4}{mEdges}};\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ std::vector<SilhouetteEdge>\&\ \mbox{\hyperlink{classvisilib_1_1_silhouette_aced93465449b977b9723e1ca4a48fd1c}{getEdges}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_aa22b9c394c4ba8574cc1ac963b21e7e4}{mEdges}};\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_a64735427a7ab9ae48d9d2b4f16230868}{addEdge}}(SilhouetteMeshFace*\ aFace,\ \textcolor{keywordtype}{size\_t}\ anEdgeIndex,\ \textcolor{keywordtype}{size\_t}\ anHyperplaneIndex);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ addFace(\textcolor{keyword}{const}\ SilhouetteMeshFace\&\ face)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ mSilhouetteFaces.push\_back(face.getFaceIndex());}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ SilhouetteEdge\&\ getEdge(\textcolor{keywordtype}{size\_t}\ edgeIndex)}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_aa22b9c394c4ba8574cc1ac963b21e7e4}{mEdges}}[edgeIndex];}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ getEdgesProcessed()\ \{\ \textcolor{keywordflow}{return}\ mEdgesProcessed;\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setEdgeActive(\textcolor{keywordtype}{size\_t}\ edgeIndex,\ \textcolor{keywordtype}{bool}\ isActive)}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ SilhouetteEdge\&\ edge\ =\ getEdge(edgeIndex);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(edge.mIsActive\ !=\ isActive);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ edge.mIsActive\ =\ isActive;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isActive)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAvailableEdgeCount++;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAvailableEdgeCount-\/-\/;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(mAvailableEdgeCount\ >=\ 0\ \&\&\ mAvailableEdgeCount\ <=\ \mbox{\hyperlink{classvisilib_1_1_silhouette_aa22b9c394c4ba8574cc1ac963b21e7e4}{mEdges}}.size());}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ pushEdgeProcessed(\textcolor{keywordtype}{size\_t}\ edgeIndex)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ mEdgesProcessed.push\_back(edgeIndex);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ popEdgeProcessed(\textcolor{keywordtype}{size\_t}\ edgeIndex)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(mEdgesProcessed.back()\ ==\ edgeIndex);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ mEdgesProcessed.pop\_back();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ getSilhouetteFaces()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00150\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mSilhouetteFaces;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<SilhouetteMeshFace>\&\ getMeshFaces()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00155\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mMeshFaces;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ getGeometryId()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00160\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mGeometryId;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ std::vector<SilhouetteEdge>\ \mbox{\hyperlink{classvisilib_1_1_silhouette_aa22b9c394c4ba8574cc1ac963b21e7e4}{mEdges}};\ \ \ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ mEdgesProcessed;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ mSilhouetteFaces;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<SilhouetteMeshFace>\&\ mMeshFaces;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ mGeometryId;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ mAvailableEdgeCount;}
+\DoxyCodeLine{00170\ \ \ \ \ \};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_a64735427a7ab9ae48d9d2b4f16230868}{Silhouette::addEdge}}(\mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face}{SilhouetteMeshFace}}*\ aFace,\ \textcolor{keywordtype}{size\_t}\ anEdgeIndex,\ \textcolor{keywordtype}{size\_t}\ anHyperplaneIndex)}
+\DoxyCodeLine{00174\ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette_aa22b9c394c4ba8574cc1ac963b21e7e4}{mEdges}}.push\_back(\mbox{\hyperlink{structvisilib_1_1_silhouette_edge}{SilhouetteEdge}}(aFace,\ anEdgeIndex,anHyperplaneIndex));}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ mAvailableEdgeCount++;}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \}}
+\DoxyCodeLine{00180\ }
+
+\end{DoxyCode}

@@ -1,0 +1,205 @@
+\doxysection{math\+\_\+plucker\+\_\+6.\+h}
+\hypertarget{math__plucker__6_8h_source}{}\label{math__plucker__6_8h_source}\index{E:/External/visilib/visilib/math\_plucker\_6.h@{E:/External/visilib/visilib/math\_plucker\_6.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}visilib\_core.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}math\_arithmetic.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_3.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}math\_plane\_3.h"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6}}}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6}}()}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_ac56bcce7088d86f451167cba2f07f7af}{MathPlucker6}}(S\ x0,\ S\ x1,\ S\ x2,\ S\ x3,\ S\ x4,\ S\ x5)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ :\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}(x0,\ x1,\ x2),}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}(x3,\ x4,\ x5)}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}()));}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_af88883ac46ccd0a03f65f0ada4e22317}{getLocation}}()));}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a2124f8379e533d4655656cd23786341b}{MathPlucker6}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ v)}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}\ =\ v.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}\ =\ v.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}()));}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_af88883ac46ccd0a03f65f0ada4e22317}{getLocation}}()));}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a060a09fe5b53ad953b9c32aa28d454f2}{MathPlucker6}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ anEnd)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ myBegin\ =\ convert<MathVector3\_<S>>(aBegin);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ myEnd\ =\ convert<MathVector3\_<S>>(anEnd);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}\ =\ myEnd\ -\/\ myBegin;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>::cross}}(myBegin,\ myEnd);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}()));}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_af88883ac46ccd0a03f65f0ada4e22317}{getLocation}}()));}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a1fac9d49f189d37e7069e6efc1692c48}{operator\ -\/=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ v)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}\ -\/=\ v.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}\ -\/=\ v.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a22640f3bb1a85646ce6b1535674080c9}{operator\ +=\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ v)}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}\ +=\ v.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}\ +=\ v.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a2edce13043d61904bf9477ee631b0bfc}{operator\ *=\ }}(S\ aNumber)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}\ *=\ aNumber;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}\ *=\ aNumber;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_ac3faca0390b850459cbf296a98b0ad13}{operator\ +}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ v)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ v;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a54edc9cce36a57afff8c30acbeccf382}{operator\ -\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ v)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00115\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ result\ -\/=\ v;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_ab566004bc700b596092310c10e616f90}{operator\ /\ }}(S\ aNumber)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}\ /=\ aNumber;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}\ /=\ aNumber;}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_aaed47ef334a96f82bdc656f757620e4f}{operator\ *\ }}(S\ aNumber)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00134\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}\ *=\ aNumber;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}\ *=\ aNumber;}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}()\textcolor{keyword}{const}}
+\DoxyCodeLine{00144\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_af88883ac46ccd0a03f65f0ada4e22317}{getLocation}}()\textcolor{keyword}{const}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ S\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_af687399a207b6f747277436df1e11e52}{dot}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ p2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00160\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}.dot(p2.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}})\ +\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}.dot(p2.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}});}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a079ccefd49d76c393f17b5320e4bcf08}{getNormalized}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00166\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}()));}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_af88883ac46ccd0a03f65f0ada4e22317}{getLocation}}()));}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ S\ myDiv\ =\ sqrt(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}.getSquaredNorm()\ +\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}.getSquaredNorm());}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::getAbs}}(myDiv)\ >\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::Tolerance}}());}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}\ /=\ myDiv;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}}\ /=\ myDiv;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(result.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}()));}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::isFinite}}(result.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_af88883ac46ccd0a03f65f0ada4e22317}{getLocation}}()));}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ S\ getDistance(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00185\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ S\ myDiv\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>::cross}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}(),other.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}()).getNorm();}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::getAbs}}(myDiv)\ >\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::Tolerance}}())}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<S>::getAbs}}(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_af687399a207b6f747277436df1e11e52}{dot}}(other))\ /\ myDiv;}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ parallel}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ l1l1\ =\ 1.0\ /\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}().getSquaredNorm();}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ l2\ =\ other.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}().getNorm();}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ s\ =\ l2\ *\ sqrt(l1l1);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MathVector3\_<S>\ l\ =\ other.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_af88883ac46ccd0a03f65f0ada4e22317}{getLocation}}();}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ l\ /=\ s;}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MathVector3\_<S>::cross(\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a469e41b4ee8921e1e9dadc2bde6c890d}{getDirection}}(),\mbox{\hyperlink{classvisilib_1_1_math_plucker6_af88883ac46ccd0a03f65f0ada4e22317}{getLocation}}()\ -\/\ l).getNorm()\ *\ l1l1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<S>}}\ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_ae45194cac3d9fe076f35f8b409ef05c3}{Zero}}()}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6}}(0.0,\ 0.0,\ 0.0,\ 0.0,\ 0.0,\ 0.0);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ operator<<(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6}}\&\ v)}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ v.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}}\ <<\ v.\mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a60977cb3717436917b3b45464c13af76}{mDirection}};\ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6_a8bcd727f9c21c718984f26ac1a378cdc}{mLocation}};\ \ \ \ }
+\DoxyCodeLine{00222\ \ \ \ \ \};}
+\DoxyCodeLine{00223\ \}}
+
+\end{DoxyCode}

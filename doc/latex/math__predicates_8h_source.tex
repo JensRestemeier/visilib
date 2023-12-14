@@ -1,0 +1,310 @@
+\doxysection{math\+\_\+predicates.\+h}
+\hypertarget{math__predicates_8h_source}{}\label{math__predicates_8h_source}\index{E:/External/visilib/visilib/math\_predicates.h@{E:/External/visilib/visilib/math\_predicates.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}math\_plucker\_6.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}geometry\_position\_type.h"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{class\ }GeometryConvexPolygon;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{class\ }PluckerPolytope;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{class\ }PluckerPolyhedron;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_math_predicates}{MathPredicates}}}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isZero(\textcolor{keyword}{const}\ P\&\ point,\ S\ epsilon);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isZero(\textcolor{keyword}{const}\ P\&\ point);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ S>\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isZero(S\ scalar,\ S\ epsilon);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isPointOnQuadric(\textcolor{keyword}{const}\ P\&\ point);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isEdgeCollapsed(\textcolor{keyword}{const}\ P\&\ a,\ \textcolor{keyword}{const}\ P\&\ b,\ S\ tolerance);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isNormalized(\textcolor{keyword}{const}\ P\&\ point,\ S\ tolerance);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ S>\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ GeometryPositionType\ getRelativePosition(S\ dot,\ S\ epsilon);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ GeometryPositionType\ getVertexPlaneRelativePosition(\textcolor{keyword}{const}\ P\&\ plane,\ \textcolor{keyword}{const}\ P\&\ point,\ S\ epsilon);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ GeometryPositionType\ getQuadricRelativePosition(\textcolor{keyword}{const}\ P\&\ point,\ S\ epsilon);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPluckerPolytopeIntersectionWithQuadric(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ GeometryPositionType\ getRelativePosition(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron,\ \textcolor{keyword}{const}\ P\&\ aPlane0,\ \textcolor{keyword}{const}\ P\&\ aPlane1,\ \textcolor{keyword}{const}\ P\&\ aPlane2);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ GeometryPositionType\ getRelativePosition(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron,\ \textcolor{keyword}{const}\ P\&\ aPlane);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ GeometryPositionType\ getRelativePosition(\textcolor{keyword}{const}\ std::vector<MathVector3d>\&\ points,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ aPlane);}
+\DoxyCodeLine{00054\ \ \ \ \ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isPointOnQuadric(\textcolor{keyword}{const}\ P\&\ a)}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getRelativePosition(a,\ a)\ ==\ ON\_BOUNDARY;}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isEdgeCollapsed(\textcolor{keyword}{const}\ P\&\ a,\ \textcolor{keyword}{const}\ P\&\ b,\ S\ tolerance)}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isZero(a\ -\/\ b,\ tolerance);}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryPositionType\ MathPredicates::getVertexPlaneRelativePosition(\textcolor{keyword}{const}\ P\&\ plane,\ \textcolor{keyword}{const}\ P\&\ point,\ S\ tolerance)}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ plane.dot(point);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getRelativePosition(result,\ tolerance);}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryPositionType\ MathPredicates::getRelativePosition(S\ dot,\ S\ epsilon)}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dot\ <\ -\/epsilon)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_NEGATIVE\_SIDE;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (dot\ >\ epsilon)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_POSITIVE\_SIDE;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_BOUNDARY;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryPositionType\ MathPredicates::getQuadricRelativePosition(\textcolor{keyword}{const}\ P\&\ a,\ S\ tolerance)}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getVertexPlaneRelativePosition(a,\ a,\ tolerance);}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::hasPluckerPolytopeIntersectionWithQuadric(PluckerPolytope<P>*\ polytope,\ PluckerPolyhedron<P>*\ polyhedron)}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasPointOnTheLeft\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasPointOnTheRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ myVertices\ =\ polytope-\/>getVertices();}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ myVertices.begin();\ iter\ !=\ myVertices.end();\ iter++)}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ v\ =\ *iter;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ GeometryPositionType\ position\ =\ polyhedron-\/>getQuadricRelativePosition(v);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position\ ==\ ON\_BOUNDARY)}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (position\ ==\ ON\_NEGATIVE\_SIDE)}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPointOnTheLeft\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(position\ ==\ ON\_POSITIVE\_SIDE);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPointOnTheRight\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hasPointOnTheLeft\ \&\&\ hasPointOnTheRight)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ V\_ASSERT(!hasPointOnTheLeft\ ||\ !hasPointOnTheRight);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hasPointOnTheLeft)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (hasPointOnTheRight)}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \ \textcolor{keyword}{false};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isZero(\textcolor{keyword}{const}\ MathPlucker6<double>\ \&\ a,\ \textcolor{keywordtype}{double}\ epsilon)}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a.getDirection().isZero(epsilon)\ \&\&\ a.getLocation().isZero(epsilon);}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isZero(\textcolor{keyword}{const}\ MathPlucker6<float>\ \&\ a,\ \textcolor{keywordtype}{float}\ epsilon)}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a.getDirection().isZero(epsilon)\ \&\&\ a.getLocation().isZero(epsilon);}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isZero(\textcolor{keyword}{const}\ MathPlucker2<double>\ \&\ a,\ \textcolor{keywordtype}{double}\ epsilon)}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a.getDirection().isZero(epsilon)\ \&\&\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<double>::getAbs}}(a.getLocation())\ <=\ epsilon;}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isZero(\textcolor{keyword}{const}\ P\ \&\ a)}
+\DoxyCodeLine{00162\ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a.getDirection().isZero()\ \&\&\ a.getLocation().isZero();}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isZero(\textcolor{keyword}{const}\ MathPlucker6<exact>\ \&\ a,\ exact\ epsilon)}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a.getDirection().isZero(epsilon)\ \&\&\ a.getLocation().isZero(epsilon);}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isZero(\textcolor{keywordtype}{double}\ scalar,\ \textcolor{keywordtype}{double}\ tolerance)}
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<double>::getAbs}}(scalar)\ <=\ tolerance;}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isZero(\textcolor{keywordtype}{float}\ scalar,\ \textcolor{keywordtype}{float}\ tolerance)}
+\DoxyCodeLine{00182\ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<float>::getAbs}}(scalar)\ <=\ tolerance;}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isZero(exact\ scalar,\ exact\ tolerance)}
+\DoxyCodeLine{00189\ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CGAL::is\_zero(scalar);}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathPredicates::isNormalized(\textcolor{keyword}{const}\ P\ \&\ a,\ S\ tolerance)}
+\DoxyCodeLine{00196\ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{comment}{//P\ norm\ =\ a.R6DotProduct(a);}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ norm\ =\ a.getLocation().getSquaredNorm()+a.getDirection().getSquaredNorm();}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<S>::getAbs}}(norm\ -\/\ (S)1.0)\ <=\ tolerance);}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryPositionType\ MathPredicates::getRelativePosition(\textcolor{keyword}{const}\ std::vector<MathVector3d>\ \&\ points,\ \textcolor{keyword}{const}\ MathPlane3d\ \&\ aPlane)}
+\DoxyCodeLine{00203\ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ myRight\ =\ 0;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ myLeft\ =\ 0;}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ points.size();\ i++)}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\ =\ aPlane.dot(points[i]);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d\ >\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<double>::Tolerance}}())}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myRight++;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (d\ <\ -\/\mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<double>::Tolerance}}())}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myLeft++;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myRight\ >\ 0\ \&\&\ myLeft\ >\ 0)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_BOUNDARY;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myRight\ ==\ 0)}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(myLeft\ >\ 0);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_NEGATIVE\_SIDE;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (myLeft\ ==\ 0)}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(myRight\ >\ 0);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_POSITIVE\_SIDE;}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ V\_ASSERT(0);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_BOUNDARY;}
+\DoxyCodeLine{00237\ \ \ \ \ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryPositionType\ MathPredicates::getRelativePosition(PluckerPolytope<P>\ *\ polytope,\ PluckerPolyhedron<P>\ *\ polyhedron,\ \textcolor{keyword}{const}\ P\ \&\ aPlane0,\ \textcolor{keyword}{const}\ P\ \&\ aPlane1,\ \textcolor{keyword}{const}\ P\ \&\ aPlane2)}
+\DoxyCodeLine{00241\ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ GeometryPositionType\ position0\ =\ getRelativePosition(polytope,\ polyhedron,\ aPlane0);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position0\ ==\ ON\_POSITIVE\_SIDE)}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_POSITIVE\_SIDE;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ GeometryPositionType\ position1\ =\ getRelativePosition(polytope,\ polyhedron,\ aPlane1);}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position1\ ==\ ON\_POSITIVE\_SIDE)}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_POSITIVE\_SIDE;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ GeometryPositionType\ position2\ =\ getRelativePosition(polytope,\ polyhedron,\ aPlane2);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position2\ ==\ ON\_POSITIVE\_SIDE)}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_POSITIVE\_SIDE;}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position0\ ==\ ON\_NEGATIVE\_SIDE\ \&\&\ position1\ ==\ ON\_NEGATIVE\_SIDE\ \&\&\ position2\ ==\ ON\_NEGATIVE\_SIDE)}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_NEGATIVE\_SIDE;}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_BOUNDARY;}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryPositionType\ MathPredicates::getRelativePosition(PluckerPolytope<P>\ *\ polytope,\ PluckerPolyhedron<P>\ *\ polyhedron,\ \textcolor{keyword}{const}\ P\ \&\ aPlane)}
+\DoxyCodeLine{00260\ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasPointOnTheLeft\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasPointOnTheRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ myVertices\ =\ polytope-\/>getVertices();}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ myVertices.begin();\ iter\ !=\ myVertices.end();\ iter++)}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ v\ =\ *iter;}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ GeometryPositionType\ position\ =\ getRelativePosition(aPlane,\ polyhedron-\/>get(v));}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position\ ==\ ON\_BOUNDARY)}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_BOUNDARY;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (position\ ==\ ON\_NEGATIVE\_SIDE)}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPointOnTheLeft\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(position\ ==\ ON\_POSITIVE\_SIDE);}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPointOnTheRight\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hasPointOnTheLeft\ \&\&\ hasPointOnTheRight)}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_BOUNDARY;}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ V\_ASSERT(!hasPointOnTheLeft\ ||\ !hasPointOnTheRight);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hasPointOnTheLeft)}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_NEGATIVE\_SIDE;}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (hasPointOnTheRight)}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \ ON\_POSITIVE\_SIDE;}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ V\_ASSERT(0);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_BOUNDARY;}
+\DoxyCodeLine{00305\ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \}}
+
+\end{DoxyCode}

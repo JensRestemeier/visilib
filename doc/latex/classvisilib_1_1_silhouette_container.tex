@@ -1,5 +1,5 @@
-\hypertarget{classvisilib_1_1_silhouette_container}{}\section{visilib\+::Silhouette\+Container Class Reference}
-\label{classvisilib_1_1_silhouette_container}\index{visilib::SilhouetteContainer@{visilib::SilhouetteContainer}}
+\doxysection{visilib\+::Silhouette\+Container Class Reference}
+\hypertarget{classvisilib_1_1_silhouette_container}{}\label{classvisilib_1_1_silhouette_container}\index{visilib::SilhouetteContainer@{visilib::SilhouetteContainer}}
 
 
 Store a set of silhouettes, representing occluder surfaces as seen from the sources. The silhouettes are used to compute ray intersection during visibility computation.  
@@ -15,38 +15,59 @@ Inheritance diagram for visilib\+::Silhouette\+Container\+:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{classvisilib_1_1_silhouette_container}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_a7c42eff193b69bd62532c1b723700901}\label{classvisilib_1_1_silhouette_container_a7c42eff193b69bd62532c1b723700901}} 
-const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} $\ast$ $>$ \& {\bfseries get\+Silhouettes} ()
+\Hypertarget{classvisilib_1_1_silhouette_container_a2d56377df15fc05dc47f343d5d9f927d}\label{classvisilib_1_1_silhouette_container_a2d56377df15fc05dc47f343d5d9f927d} 
+const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} \texorpdfstring{$\ast$}{*} $>$ \& {\bfseries get\+Silhouettes} ()
 \item 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_a5a9047d08292878caf0d4cea6107122f}\label{classvisilib_1_1_silhouette_container_a5a9047d08292878caf0d4cea6107122f}} 
-void {\bfseries add\+Silhouette} (\mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} $\ast$a\+Silhouette)
+\Hypertarget{classvisilib_1_1_silhouette_container_a5a9047d08292878caf0d4cea6107122f}\label{classvisilib_1_1_silhouette_container_a5a9047d08292878caf0d4cea6107122f} 
+void {\bfseries add\+Silhouette} (\mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} \texorpdfstring{$\ast$}{*}a\+Silhouette)
 \item 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_a680d7185898724a3dbebcc8268a51b80}\label{classvisilib_1_1_silhouette_container_a680d7185898724a3dbebcc8268a51b80}} 
-virtual bool {\bfseries intersect} (\mbox{\hyperlink{structvisilib_1_1_visibility_ray}{Visibility\+Ray}} $\ast$a\+Ray)
+virtual bool \mbox{\hyperlink{classvisilib_1_1_silhouette_container_a680d7185898724a3dbebcc8268a51b80}{intersect}} (\mbox{\hyperlink{structvisilib_1_1_visibility_ray}{Visibility\+Ray}} \texorpdfstring{$\ast$}{*}a\+Ray)
 \item 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_a83c0a6a3517e09446d8f145a3f58eda7}\label{classvisilib_1_1_silhouette_container_a83c0a6a3517e09446d8f145a3f58eda7}} 
-virtual void {\bfseries prepare} ()
+virtual void \mbox{\hyperlink{classvisilib_1_1_silhouette_container_a83c0a6a3517e09446d8f145a3f58eda7}{prepare}} ()
 \end{DoxyCompactItemize}
-\subsection*{Static Public Member Functions}
+\doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_a84194087a8fd4c5d1dfa04067efa3b72}\label{classvisilib_1_1_silhouette_container_a84194087a8fd4c5d1dfa04067efa3b72}} 
-{\footnotesize template$<$class P , class S $>$ }\\static bool {\bfseries is\+Occluded} (\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{Plucker\+Polytope}}$<$ P $>$ $\ast$polytope, \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{Plucker\+Polyhedron}}$<$ P $>$ $\ast$polyhedron, const std\+::vector$<$ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} $\ast$ $>$ \&a\+Silhouettes, const std\+::vector$<$ P $>$ \&polytope\+Lines, S my\+Tolerance)
+\Hypertarget{classvisilib_1_1_silhouette_container_a84194087a8fd4c5d1dfa04067efa3b72}\label{classvisilib_1_1_silhouette_container_a84194087a8fd4c5d1dfa04067efa3b72} 
+{\footnotesize template$<$class P , class S $>$ }\\static bool {\bfseries is\+Occluded} (\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{Plucker\+Polytope}}$<$ P $>$ \texorpdfstring{$\ast$}{*}polytope, \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{Plucker\+Polyhedron}}$<$ P $>$ \texorpdfstring{$\ast$}{*}polyhedron, const std\+::vector$<$ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} \texorpdfstring{$\ast$}{*} $>$ \&a\+Silhouettes, const std\+::vector$<$ P $>$ \&polytope\+Lines, S my\+Tolerance)
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_a5a230bee3e0736d3c21080a632989d52}\label{classvisilib_1_1_silhouette_container_a5a230bee3e0736d3c21080a632989d52}} 
-std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} $\ast$ $>$ {\bfseries m\+Silhouettes}
+\Hypertarget{classvisilib_1_1_silhouette_container_a5a230bee3e0736d3c21080a632989d52}\label{classvisilib_1_1_silhouette_container_a5a230bee3e0736d3c21080a632989d52} 
+std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries m\+Silhouettes}
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Store a set of silhouettes, representing occluder surfaces as seen from the sources. The silhouettes are used to compute ray intersection during visibility computation. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classvisilib_1_1_silhouette_container_a680d7185898724a3dbebcc8268a51b80}\label{classvisilib_1_1_silhouette_container_a680d7185898724a3dbebcc8268a51b80} 
+\index{visilib::SilhouetteContainer@{visilib::SilhouetteContainer}!intersect@{intersect}}
+\index{intersect@{intersect}!visilib::SilhouetteContainer@{visilib::SilhouetteContainer}}
+\doxysubsubsection{\texorpdfstring{intersect()}{intersect()}}
+{\footnotesize\ttfamily virtual bool visilib\+::\+Silhouette\+Container\+::intersect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structvisilib_1_1_visibility_ray}{Visibility\+Ray}} \texorpdfstring{$\ast$}{*}}]{a\+Ray }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a3cc23503bfa6f2db55762cf0851d6c69}{visilib\+::\+Silhouette\+Container\+Embree}}.
+
+\Hypertarget{classvisilib_1_1_silhouette_container_a83c0a6a3517e09446d8f145a3f58eda7}\label{classvisilib_1_1_silhouette_container_a83c0a6a3517e09446d8f145a3f58eda7} 
+\index{visilib::SilhouetteContainer@{visilib::SilhouetteContainer}!prepare@{prepare}}
+\index{prepare@{prepare}!visilib::SilhouetteContainer@{visilib::SilhouetteContainer}}
+\doxysubsubsection{\texorpdfstring{prepare()}{prepare()}}
+{\footnotesize\ttfamily virtual void visilib\+::\+Silhouette\+Container\+::prepare (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_ad3d6193f5484b3fb56096efd8a1230a8}{visilib\+::\+Silhouette\+Container\+Embree}}.
+
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/code/github/visilib/visilib/silhouette\+\_\+container.\+h\end{DoxyCompactItemize}
+E\+:/\+External/visilib/visilib/silhouette\+\_\+container.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,201 @@
+\doxysection{helper\+\_\+visual\+\_\+debugger.\+h}
+\hypertarget{helper__visual__debugger_8h_source}{}\label{helper__visual__debugger_8h_source}\index{E:/External/visilib/visilib/helper\_visual\_debugger.h@{E:/External/visilib/visilib/helper\_visual\_debugger.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_3.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}visilib.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{HelperVisualDebugger}}}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{HelperVisualDebugger}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{\string~HelperVisualDebugger}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a1e1fdc98ebf978b83785e508ddaed3f4}{clear}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_aff3c8cf06f92da983c9de380e58817c4}{addRemovedEdge}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ anEnd);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a60c0d6368a506b0a352b0ca5bc2e1255}{addStabbingLine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ anEnd);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a829462582410bd53ecebfa0ee7bc609a}{addSamplingLine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ anEnd);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_accd7a72ba6f9efc0078f22ec9eb53312}{addExtremalStabbingLine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ anEnd);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a69bc1d302d408341e1443acd0655f939}{addRemovedTriangle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ a1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ a2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ a3);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a93e8bb815b4b7cc2e6816c26664d431a}{getRemovedTriangles}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a0c7ea51d50ca6a422326def264f97407}{getStabbingLines}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a03fadbe9593e26b7db63ceb31ed333cc}{getExtremalStabbingLines}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ae245f0ee5073f39aeab7c3d1fe2c641d}{getSamplingLines}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a40f4cad545c59df00d0ad3c7e4ad5565}{getRemovedEdges}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#ifdef\ OUTPUT\_DEBUG\_FILE}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ std::ofstream\&\ getDebugOutput()\ \{\ \textcolor{keywordflow}{return}\ mDebugOutput;\ \};}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ mSplittingEdgeArray;\ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7b0b03408531be35d083c6150c8e3d63}{mRemovedTriangleArray}};\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a642e381b6e255a1ca570114fc4433a95}{mStabbingLineArray}};\ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a9a39394f148771bb6aa197efceef971d}{mSamplingLineArray}};\ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ab2d63d17fe8ef31d0798c2a42551a672}{mExtremalStabbingLineArray}};\ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad728baaee2934cbade4b9f987a19de36}{mSplittingEdgeInformation}};\ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac9be4c9101138a3133835729a7226428}{mRemovedTriangleInformation}};\ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac5bc178cf799f6b894b26fe2cc9e20a2}{mStabbingLineInformation}};\ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad4d6c94e916f2cceb8fb0534dad8b07f}{mSamplingLineInformation}};\ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7bc0c408a8a6da48b78bb203c1f0bb27}{mExtremalStabbingLineInformation}};\ \ \ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifdef\ OUTPUT\_DEBUG\_FILE}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ std::ofstream\ mDebugOutput;}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00096\ \ \ \ \ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{inline}\ HelperVisualDebugger::HelperVisualDebugger()}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#ifdef\ OUTPUT\_DEBUG\_FILE}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ mDebugOutput.open(\textcolor{stringliteral}{"{}debug.txt"{}});}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a1e1fdc98ebf978b83785e508ddaed3f4}{clear}}();}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{inline}\ HelperVisualDebugger::\string~HelperVisualDebugger()}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#ifdef\ OUTPUT\_DEBUG\_FILE}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ mDebugOutput.close();}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_aff3c8cf06f92da983c9de380e58817c4}{HelperVisualDebugger::addRemovedEdge}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ anEnd)}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ mSplittingEdgeArray.push\_back(aBegin);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ mSplittingEdgeArray.push\_back(anEnd);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad728baaee2934cbade4b9f987a19de36}{mSplittingEdgeInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ mSplittingEdgeArray.size();}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad728baaee2934cbade4b9f987a19de36}{mSplittingEdgeInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \&mSplittingEdgeArray[0];}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a60c0d6368a506b0a352b0ca5bc2e1255}{HelperVisualDebugger::addStabbingLine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ anEnd)}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a642e381b6e255a1ca570114fc4433a95}{mStabbingLineArray}}.push\_back(aBegin);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a642e381b6e255a1ca570114fc4433a95}{mStabbingLineArray}}.push\_back(anEnd);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac5bc178cf799f6b894b26fe2cc9e20a2}{mStabbingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a642e381b6e255a1ca570114fc4433a95}{mStabbingLineArray}}.size();}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac5bc178cf799f6b894b26fe2cc9e20a2}{mStabbingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \&\mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a642e381b6e255a1ca570114fc4433a95}{mStabbingLineArray}}[0];}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a829462582410bd53ecebfa0ee7bc609a}{HelperVisualDebugger::addSamplingLine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ anEnd)}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a9a39394f148771bb6aa197efceef971d}{mSamplingLineArray}}.push\_back(aBegin);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a9a39394f148771bb6aa197efceef971d}{mSamplingLineArray}}.push\_back(anEnd);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad4d6c94e916f2cceb8fb0534dad8b07f}{mSamplingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a9a39394f148771bb6aa197efceef971d}{mSamplingLineArray}}.size();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad4d6c94e916f2cceb8fb0534dad8b07f}{mSamplingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \&\mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a9a39394f148771bb6aa197efceef971d}{mSamplingLineArray}}[0];}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_accd7a72ba6f9efc0078f22ec9eb53312}{HelperVisualDebugger::addExtremalStabbingLine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ anEnd)}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ab2d63d17fe8ef31d0798c2a42551a672}{mExtremalStabbingLineArray}}.push\_back(aBegin);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ab2d63d17fe8ef31d0798c2a42551a672}{mExtremalStabbingLineArray}}.push\_back(anEnd);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7bc0c408a8a6da48b78bb203c1f0bb27}{mExtremalStabbingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ab2d63d17fe8ef31d0798c2a42551a672}{mExtremalStabbingLineArray}}.size();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7bc0c408a8a6da48b78bb203c1f0bb27}{mExtremalStabbingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \&\mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ab2d63d17fe8ef31d0798c2a42551a672}{mExtremalStabbingLineArray}}[0];}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a69bc1d302d408341e1443acd0655f939}{HelperVisualDebugger::addRemovedTriangle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ a1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ a2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ a3)}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7b0b03408531be35d083c6150c8e3d63}{mRemovedTriangleArray}}.push\_back(a1);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7b0b03408531be35d083c6150c8e3d63}{mRemovedTriangleArray}}.push\_back(a2);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7b0b03408531be35d083c6150c8e3d63}{mRemovedTriangleArray}}.push\_back(a3);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac9be4c9101138a3133835729a7226428}{mRemovedTriangleInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7b0b03408531be35d083c6150c8e3d63}{mRemovedTriangleArray}}.size();}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac9be4c9101138a3133835729a7226428}{mRemovedTriangleInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \&\mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7b0b03408531be35d083c6150c8e3d63}{mRemovedTriangleArray}}[0];}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a1e1fdc98ebf978b83785e508ddaed3f4}{HelperVisualDebugger::clear}}()}
+\DoxyCodeLine{00160\ \ \ \ \ \{}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#ifdef\ OUTPUT\_DEBUG\_FILE}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ mDebugOutput.close();}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ mDebugOutput.open(\textcolor{stringliteral}{"{}debug.txt"{}});}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ mDebugOutput.clear();}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ mSplittingEdgeArray.clear();}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7b0b03408531be35d083c6150c8e3d63}{mRemovedTriangleArray}}.clear();}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a642e381b6e255a1ca570114fc4433a95}{mStabbingLineArray}}.clear();}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a9a39394f148771bb6aa197efceef971d}{mSamplingLineArray}}.clear();}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ab2d63d17fe8ef31d0798c2a42551a672}{mExtremalStabbingLineArray}}.clear();}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad728baaee2934cbade4b9f987a19de36}{mSplittingEdgeInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ 0;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad728baaee2934cbade4b9f987a19de36}{mSplittingEdgeInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad4d6c94e916f2cceb8fb0534dad8b07f}{mSamplingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ 0;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad4d6c94e916f2cceb8fb0534dad8b07f}{mSamplingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac5bc178cf799f6b894b26fe2cc9e20a2}{mStabbingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ 0;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac5bc178cf799f6b894b26fe2cc9e20a2}{mStabbingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac9be4c9101138a3133835729a7226428}{mRemovedTriangleInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ 0;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac9be4c9101138a3133835729a7226428}{mRemovedTriangleInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7bc0c408a8a6da48b78bb203c1f0bb27}{mExtremalStabbingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}}\ =\ 0;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7bc0c408a8a6da48b78bb203c1f0bb27}{mExtremalStabbingLineInformation}}.\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a93e8bb815b4b7cc2e6816c26664d431a}{HelperVisualDebugger::getRemovedTriangles}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00191\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac9be4c9101138a3133835729a7226428}{mRemovedTriangleInformation}};}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a0c7ea51d50ca6a422326def264f97407}{HelperVisualDebugger::getStabbingLines}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00196\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ac5bc178cf799f6b894b26fe2cc9e20a2}{mStabbingLineInformation}};}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a03fadbe9593e26b7db63ceb31ed333cc}{HelperVisualDebugger::getExtremalStabbingLines}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00201\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a7bc0c408a8a6da48b78bb203c1f0bb27}{mExtremalStabbingLineInformation}};}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ae245f0ee5073f39aeab7c3d1fe2c641d}{HelperVisualDebugger::getSamplingLines}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00206\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad4d6c94e916f2cceb8fb0534dad8b07f}{mSamplingLineInformation}};}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\&\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_a40f4cad545c59df00d0ad3c7e4ad5565}{HelperVisualDebugger::getRemovedEdges}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00211\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger_ad728baaee2934cbade4b9f987a19de36}{mSplittingEdgeInformation}};}
+\DoxyCodeLine{00213\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \}}
+
+\end{DoxyCode}

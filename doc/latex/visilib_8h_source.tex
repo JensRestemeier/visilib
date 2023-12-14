@@ -1,0 +1,95 @@
+\doxysection{visilib.\+h}
+\hypertarget{visilib_8h_source}{}\label{visilib_8h_source}\index{E:/External/visilib/visilib/visilib.h@{E:/External/visilib/visilib/visilib.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and\ /\ or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}geometry\_mesh\_description.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}geometry\_occluder\_set.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}helper\_visual\_debugger.h"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00031\ \{\ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a1cd44b0dffc3d51eb0bd5af35eeb9a8b}{PrecisionType}}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a1cd44b0dffc3d51eb0bd5af35eeb9a8ba804621a91ffab216263ead381509cbb9}{FLOAT}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a1cd44b0dffc3d51eb0bd5af35eeb9a8bae6d683564c0978e72ac4b6be27998aa5}{DOUBLE}}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC\ \ }}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ EXACT\ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}()}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a9c7e192417bf965199370bc13fe4d572}{silhouetteOptimization}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_ae3f308c718e6e7051c9d8a1d08065def}{hyperSphereNormalization}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_adadc6d7391bfcfdd0b8f20efe79c81cf}{representativeLineSampling}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a85a72847cd60b3d5d41d0a893e439a71}{precision}}\ =\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a1cd44b0dffc3d51eb0bd5af35eeb9a8bae6d683564c0978e72ac4b6be27998aa5}{DOUBLE}};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_aea2fdde8a10663bb824ac5308a42b991}{detectApertureOnly}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ useEmbree\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}\&\ other)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a9c7e192417bf965199370bc13fe4d572}{silhouetteOptimization}}\ =\ other.\mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a9c7e192417bf965199370bc13fe4d572}{silhouetteOptimization}};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_ae3f308c718e6e7051c9d8a1d08065def}{hyperSphereNormalization}}\ =\ other.\mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_ae3f308c718e6e7051c9d8a1d08065def}{hyperSphereNormalization}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a85a72847cd60b3d5d41d0a893e439a71}{precision}}\ =\ other.\mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a85a72847cd60b3d5d41d0a893e439a71}{precision}};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_adadc6d7391bfcfdd0b8f20efe79c81cf}{representativeLineSampling}}\ =\ other.\mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_adadc6d7391bfcfdd0b8f20efe79c81cf}{representativeLineSampling}};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_aea2fdde8a10663bb824ac5308a42b991}{detectApertureOnly}}\ =\ other.\mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_aea2fdde8a10663bb824ac5308a42b991}{detectApertureOnly}};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ useEmbree\ =\ other.useEmbree;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a9c7e192417bf965199370bc13fe4d572}{silhouetteOptimization}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_ae3f308c718e6e7051c9d8a1d08065def}{hyperSphereNormalization}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_adadc6d7391bfcfdd0b8f20efe79c81cf}{representativeLineSampling}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a1cd44b0dffc3d51eb0bd5af35eeb9a8b}{PrecisionType}}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_a85a72847cd60b3d5d41d0a893e439a71}{precision}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration_aea2fdde8a10663bb824ac5308a42b991}{detectApertureOnly}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ useEmbree;}
+\DoxyCodeLine{00072\ \ \ \ \ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{enum}\ VisibilityResult}
+\DoxyCodeLine{00078\ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ VISIBLE,\ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ HIDDEN,\ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ UNKNOWN,\ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ FAILURE\ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00096\ \ \ \ \ VisibilityResult\ areVisible(\mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set}{GeometryOccluderSet}}*\ scene,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices0,\ \textcolor{keywordtype}{size\_t}\ numVertices0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices1,\ \textcolor{keywordtype}{size\_t}\ numVertices1,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}\&\ configuration\ =\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}(),\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{HelperVisualDebugger}}*\ debugger\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#include\ "{}visilib.hpp"{}}}
+\DoxyCodeLine{00104\ }
+
+\end{DoxyCode}

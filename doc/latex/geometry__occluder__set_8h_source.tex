@@ -1,0 +1,185 @@
+\doxysection{geometry\+\_\+occluder\+\_\+set.\+h}
+\hypertarget{geometry__occluder__set_8h_source}{}\label{geometry__occluder__set_8h_source}\index{E:/External/visilib/visilib/geometry\_occluder\_set.h@{E:/External/visilib/visilib/geometry\_occluder\_set.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <stack>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}silhouette\_mesh\_face.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}geometry\_ray.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}math\_geometry.h"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }GeometryDiscreteMeshDescription;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{class\ }SilhouetteMeshFace;}
+\DoxyCodeLine{00036\ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set}{GeometryOccluderSet}}}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ addOccluder(\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}*\ info);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a9ad0f12014c07ed08cdd6be981faf704}{prepare}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ getOccluderCount()\textcolor{keyword}{const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mOccluders.size();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::vector<SilhouetteMeshFace>*\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a48bcbc4a98511777faf8fa006343d6a3}{getOccluderConnectedFaces}}(\textcolor{keywordtype}{size\_t}\ geometryId);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a01d2de1cfec62e4000ca3b5b262ae4bb}{restoreOccluderConnectedFaces}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a64be17502b1343e735a4385edeaf223f}{setOccluderConnectedFaces}}(\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}*\ mesh,\ std::vector<SilhouetteMeshFace>\&\ aFaces);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set}{\string~GeometryOccluderSet}}()}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ :\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a96611893ad5c36867c415cf68cd320c4}{mConnectedFacesCache}})}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ iter;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ :\ mOccluders)}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ iter;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_aadda8bb194352673b9fac4750655d786}{getKey}}(\textcolor{keywordtype}{size\_t}\ v0,\ \textcolor{keywordtype}{size\_t}\ v1,\ \textcolor{keywordtype}{size\_t}\ myFaceNumber)}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v0\ <\ v1\ ?\ v0\ *\ myFaceNumber\ +\ v1\ :\ v1\ *\ myFaceNumber\ +\ v0;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_af27ea9d9989db7c759054b8024317d58}{extractConnectedMeshFaces}}(\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}*\ mesh,\ std::vector<SilhouetteMeshFace>\&\ aFaces);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ std::vector<std::vector<SilhouetteMeshFace>*>\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a96611893ad5c36867c415cf68cd320c4}{mConnectedFacesCache}};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ std::unordered\_map<size\_t,\ size\_t>\ mLastHit;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ std::vector<GeometryDiscreteMeshDescription*>\ mOccluders;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ std::vector<GeometryAABB>\ mBoundingBoxes;}
+\DoxyCodeLine{00113\ \ \ \ \ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{inline}\ std::vector<SilhouetteMeshFace>*\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a48bcbc4a98511777faf8fa006343d6a3}{GeometryOccluderSet::getOccluderConnectedFaces}}(\textcolor{keywordtype}{size\_t}\ geometryId)}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ std::vector<SilhouetteMeshFace>*\ myFaces;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a96611893ad5c36867c415cf68cd320c4}{mConnectedFacesCache}}[geometryId]\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \{\ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}*\ mesh\ =\ mOccluders[geometryId];}
+\DoxyCodeLine{00122\ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ myFaces\ =\ \textcolor{keyword}{new}\ std::vector<SilhouetteMeshFace>();}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_af27ea9d9989db7c759054b8024317d58}{extractConnectedMeshFaces}}(mesh,\ *myFaces);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a96611893ad5c36867c415cf68cd320c4}{mConnectedFacesCache}}[geometryId]\ =\ myFaces;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a96611893ad5c36867c415cf68cd320c4}{mConnectedFacesCache}}[geometryId];}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a01d2de1cfec62e4000ca3b5b262ae4bb}{GeometryOccluderSet::restoreOccluderConnectedFaces}}()}
+\DoxyCodeLine{00131\ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//remove\ the\ clipping\ performed\ if\ any}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ geometryId\ =\ 0;\ geometryId\ <\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a96611893ad5c36867c415cf68cd320c4}{mConnectedFacesCache}}.size();\ geometryId++)}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}*\ mesh\ =\ mOccluders[geometryId];}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a64be17502b1343e735a4385edeaf223f}{setOccluderConnectedFaces}}(mesh,\ *\mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a96611893ad5c36867c415cf68cd320c4}{mConnectedFacesCache}}[geometryId]);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_af27ea9d9989db7c759054b8024317d58}{GeometryOccluderSet::extractConnectedMeshFaces}}(\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}*\ mesh,\ std::vector<SilhouetteMeshFace>\&\ aFaces)}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myFaceNumber\ =\ mesh-\/>\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a62095a1d44914be5e4876494c3301f1e}{faceCount}};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ aFaces.clear();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ aFaces.resize(myFaceNumber);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ myFaceNumber;\ i++)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ aFaces[i].setGeometry(mesh,\ i);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ std::unordered\_map<size\_t,\ MathVector2i>\ myEdgesMap;}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ myTriangle\ =\ 0;\ myTriangle\ <\ myFaceNumber;\ myTriangle++)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<int>\ myIndices\ =\ mesh-\/>getIndices(myTriangle);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ myEdge\ =\ 0;\ myEdge\ <\ 3;\ myEdge++)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myBegin\ =\ myIndices[myEdge];}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myEnd\ =\ myIndices[(myEdge\ +\ 1)\ \%\ myIndices.size()];}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ key\ =\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_aadda8bb194352673b9fac4750655d786}{getKey}}(myBegin,\ myEnd,\ mesh-\/>\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a62095a1d44914be5e4876494c3301f1e}{faceCount}}*3);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ myEdgesMap.find(key);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iter\ ==\ myEdgesMap.end())}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aFaces[myTriangle].setNeighbour(myEdge,\ -\/1);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myEdgesMap.insert(std::pair<size\_t,\ MathVector2i>(key,\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2i}}(myTriangle,\ myEdge)));}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myNeighborTriangle\ =\ iter-\/>second.x;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myNeighborEdge\ =\ iter-\/>second.y;}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myEdgesMap.erase(iter);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aFaces[myTriangle].setNeighbour(myEdge,\ (\textcolor{keywordtype}{int})myNeighborTriangle);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aFaces[myNeighborTriangle].setNeighbour(myNeighborEdge,\ (\textcolor{keywordtype}{int})myTriangle);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a64be17502b1343e735a4385edeaf223f}{GeometryOccluderSet::setOccluderConnectedFaces}}(\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}*\ mesh,\ std::vector<SilhouetteMeshFace>\ \&\ aFaces)}
+\DoxyCodeLine{00185\ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myFaceNumber\ =\ mesh-\/>\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a62095a1d44914be5e4876494c3301f1e}{faceCount}};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ myFaceNumber;\ i++)}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ aFaces[i].setGeometry(mesh,\ i);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ GeometryOccluderSet::addOccluder(\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}*\ info)}
+\DoxyCodeLine{00195\ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ mOccluders.push\_back(info);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a96611893ad5c36867c415cf68cd320c4}{mConnectedFacesCache}}.push\_back(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set_a9ad0f12014c07ed08cdd6be981faf704}{GeometryOccluderSet::prepare}}()}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ mOccluders.size();\ i++)}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}*\ myTriangleMesh\ =\ mOccluders[i];}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ myMin,\ myMax;}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a7087aa7f19e17f00a30f3d22562e5cb5}{MathArithmetic<float>::getMinMax}}(myTriangleMesh-\/>\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}},\ myTriangleMesh-\/>\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}},\ myMin,\ myMax);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ mBoundingBoxes.push\_back(\mbox{\hyperlink{classvisilib_1_1_geometry_a_a_b_b}{GeometryAABB}}(myMin,\ myMax));}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \}}
+
+\end{DoxyCode}

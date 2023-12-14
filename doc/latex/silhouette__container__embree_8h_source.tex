@@ -1,0 +1,221 @@
+\doxysection{silhouette\+\_\+container\+\_\+embree.\+h}
+\hypertarget{silhouette__container__embree_8h_source}{}\label{silhouette__container__embree_8h_source}\index{E:/External/visilib/visilib/silhouette\_container\_embree.h@{E:/External/visilib/visilib/silhouette\_container\_embree.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ EMBREE}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}embree3/rtcore.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}embree3/rtcore\_ray.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}helper\_triangle\_mesh\_container.h"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree}{SilhouetteContainerEmbree}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_container}{SilhouetteContainer}}}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree}{SilhouetteContainerEmbree}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree}{\string~SilhouetteContainerEmbree}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a3cc23503bfa6f2db55762cf0851d6c69}{intersect}}(\mbox{\hyperlink{structvisilib_1_1_visibility_ray}{VisibilityRay}}*\ aRay)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_ad3d6193f5484b3fb56096efd8a1230a8}{prepare}}();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ RTCScene\ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}{mScene}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ RTCDevice\ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072}{mDevice}};\ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::unordered\_map<unsigned\ int,\ std::pair<size\_t,\ size\_t>>\ ids;\ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{inline}\ SilhouetteContainerEmbree::SilhouetteContainerEmbree()}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ :\mbox{\hyperlink{classvisilib_1_1_silhouette_container}{SilhouetteContainer}}()}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072}{mDevice}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072}{mDevice}}\ =\ rtcNewDevice(\textcolor{stringliteral}{"{}verbose=1"{}});}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ rtcSetDeviceProperty(mDevice,\ RTC\_DEVICE\_PROPERTY\_BACKFACE\_CULLING\_ENABLED,\ 1);}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//error\_handler(rtcDeviceGetError(mDevice));}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ set\ error\ handler\ */}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ rtcDeviceSetErrorFunction(mDevice,\ error\_handler);}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}{mScene}}\ =\ rtcNewScene(\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072}{mDevice}});}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ \ \ \ rtcSetSceneFlags(mScene,\ RTC\_SCENE\_FLAG\_ROBUST);}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//rtcSetSceneFlags(mScene,\ RTC\_CONFIG\_BACKFACE\_CULLING);}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ rtcSetSceneFlags(\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}{mScene}},\ RTC\_SCENE\_FLAG\_ROBUST);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ rtcSetSceneFlags(\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}{mScene}},\ RTC\_SCENE\_FLAG\_CONTEXT\_FILTER\_FUNCTION);\ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{inline}\ SilhouetteContainerEmbree::\string~SilhouetteContainerEmbree()}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ rtcReleaseScene(\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}{mScene}});\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ HIT\_LIST\_LENGTH\ 16}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvisilib_1_1_geometry_ray_multi_hit}{GeometryRayMultiHit}}}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ RTCRayHit\ rayHit;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ remember\ up\ to\ 16\ hits\ to\ ignore\ duplicate\ hits}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ firstHit,\ lastHit;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ hit\_geomIDs[HIT\_LIST\_LENGTH];\ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvisilib_1_1_geometry_intersect_context_multi_hit}{GeometryIntersectContextMultiHit}}}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ RTCIntersectContext\ context;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_ray_multi_hit}{GeometryRayMultiHit}}*\ ray;}
+\DoxyCodeLine{00104\ \ \ \ \ \};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{inline}\ RTCRayHit*\ RTCRayHit\_(\mbox{\hyperlink{structvisilib_1_1_geometry_ray_multi_hit}{GeometryRayMultiHit}}\&\ ray)}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ RTCRayHit*\ ray\_ptr\ =\ (RTCRayHit*)\&\ ray;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ray\_ptr;}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{inline}\ RTCRay*\ RTCRay\_(GeometryRayMultiHit\&\ ray)}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ RTCRay*\ ray\_ptr\ =\ (RTCRay*)\&\ ray;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ray\_ptr;}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ occlusionFilter(\textcolor{keyword}{const}\ RTCFilterFunctionNArguments*\ args)}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ avoid\ crashing\ when\ debug\ visualizations\ are\ used\ */}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args-\/>context\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ assert(args-\/>N\ ==\ 1);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ valid\ =\ args-\/>valid;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ RTCHit\ *\ hit\ =\ (RTCHit*)args-\/>hit;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ignore\ inactive\ rays\ */}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (valid[0]\ !=\ -\/1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ GeometryIntersectContextMultiHit*\ context\ =\ (GeometryIntersectContextMultiHit*)args-\/>context;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ GeometryRayMultiHit*\ ray\ =\ context-\/>ray;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ ray-\/>firstHit;\ i\ <\ ray-\/>lastHit;\ i++)}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ slot\ =\ i\ \%\ HIT\_LIST\_LENGTH;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ray-\/>hit\_geomIDs[slot]\ ==\ hit-\/>geomID)\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valid[0]\ =\ 0;\ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ ignore\ duplicate\ intersections}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ store\ hit\ in\ hit\ list\ */}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ slot\ =\ ray-\/>lastHit\ \%\ HIT\_LIST\_LENGTH;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ ray-\/>hit\_geomIDs[slot]\ =\ hit-\/>geomID;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ ray-\/>lastHit++;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ray-\/>lastHit\ -\/\ ray-\/>firstHit\ >=\ HIT\_LIST\_LENGTH)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ ray-\/>firstHit++;}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ valid[0]\ =\ 0;}
+\DoxyCodeLine{00149\ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a3cc23503bfa6f2db55762cf0851d6c69}{SilhouetteContainerEmbree::intersect}}(\mbox{\hyperlink{structvisilib_1_1_visibility_ray}{VisibilityRay}}*\ aRay)}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_ray_multi_hit}{GeometryRayMultiHit}}\ ray;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ ray.firstHit\ =\ 0;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ ray.lastHit\ =\ 0;\ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ ray.rayHit.ray.org\_x\ =\ aRay-\/>\mbox{\hyperlink{structvisilib_1_1_visibility_ray_a8c78b0461d9f6e5425c5e14fcd24a9d1}{org}}[0];\ \ ray.rayHit.ray.org\_y\ =\ aRay-\/>\mbox{\hyperlink{structvisilib_1_1_visibility_ray_a8c78b0461d9f6e5425c5e14fcd24a9d1}{org}}[1];\ ray.rayHit.ray.org\_z\ =\ aRay-\/>\mbox{\hyperlink{structvisilib_1_1_visibility_ray_a8c78b0461d9f6e5425c5e14fcd24a9d1}{org}}[2];}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ ray.rayHit.ray.dir\_x\ =\ aRay-\/>\mbox{\hyperlink{structvisilib_1_1_visibility_ray_ad3c5fe1430162ea249feb953f6a5a347}{dir}}[0];\ \ ray.rayHit.ray.dir\_y\ =\ aRay-\/>\mbox{\hyperlink{structvisilib_1_1_visibility_ray_ad3c5fe1430162ea249feb953f6a5a347}{dir}}[1];\ ray.rayHit.ray.dir\_z\ =\ aRay-\/>\mbox{\hyperlink{structvisilib_1_1_visibility_ray_ad3c5fe1430162ea249feb953f6a5a347}{dir}}[2];}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ ray.rayHit.ray.tnear\ =\ aRay-\/>\mbox{\hyperlink{structvisilib_1_1_visibility_ray_afcf9585cadf9308044ff540f2206a890}{tnear}};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ ray.rayHit.ray.tfar\ =\ aRay-\/>\mbox{\hyperlink{structvisilib_1_1_visibility_ray_ad086e44a14588e12ebfb760803a07b47}{tfar}};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ ray.rayHit.ray.mask\ =\ -\/1;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ ray.rayHit.ray.time\ =\ 0;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ ray.rayHit.ray.id\ =\ 0;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ ray.rayHit.hit.geomID\ =\ RTC\_INVALID\_GEOMETRY\_ID;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_intersect_context_multi_hit}{GeometryIntersectContextMultiHit}}\ context;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ rtcInitIntersectContext(\&context.context);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ context.ray\ =\ \&ray;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ rtcIntersect1(\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}{mScene}},\ \&context.context,\ RTCRayHit\_(ray));}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ray.rayHit.hit.geomID\ ==\ RTC\_INVALID\_GEOMETRY\_ID)}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ ray.firstHit;\ i\ <\ ray.lastHit;\ i++)}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ h\ =\ ids[ray.hit\_geomIDs[i]];}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ aRay-\/>addIntersection(h.first,\ h.second,\ 0.0);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ray.lastHit\ >\ ray.firstHit;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_ad3d6193f5484b3fb56096efd8a1230a8}{SilhouetteContainerEmbree::prepare}}()}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ s:getSilhouettes())}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \textcolor{keywordtype}{id}\ =\ s-\/>getGeometryId();}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ myMeshFaces\ =\ s-\/>getMeshFaces();}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ faceIndex\ :\ s-\/>getSilhouetteFaces())}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RTCGeometry\ mesh\ =\ rtcNewGeometry(\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072}{mDevice}},\ RTC\_GEOMETRY\_TYPE\_TRIANGLE);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}*\ vertices\ =\ (\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}*)rtcSetNewGeometryBuffer(mesh,\ RTC\_BUFFER\_TYPE\_VERTEX,\ 0,\ RTC\_FORMAT\_FLOAT3,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}),\ 3);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ i++)}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vertices[i]\ =\ myMeshFaces[faceIndex].getVertex(i);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#if\ 0}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ center(vertices[0]);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ center\ +=\ vertices[1];}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ center\ +=\ vertices[2];}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ center\ /=\ 3.0;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ 0.01;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;i++)}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ dx(vertices[i]);\ dx\ -\/=\ center;\ dx.normalize();\ dx\ *=\ s;\ vertices[i]\ -\/=\ dx;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ triangles\ =\ (\textcolor{keywordtype}{int}*)rtcSetNewGeometryBuffer(mesh,\ RTC\_BUFFER\_TYPE\_INDEX,\ 0,\ RTC\_FORMAT\_UINT3,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int})*3,\ 1);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ triangles[0]\ =\ 0;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ triangles[1]\ =\ 1;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ triangles[2]\ =\ 2;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ triangles[3]\ =\ 0;}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ triangles[4]\ =\ 2;}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ triangles[5]\ =\ 1;}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rtcSetGeometryIntersectFilterFunction(mesh,\ occlusionFilter);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rtcCommitGeometry(mesh);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ geomID\ =\ rtcAttachGeometry(\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}{mScene}},\ mesh);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ids[geomID]\ =\ std::pair<size\_t,\ size\_t>(\textcolor{keywordtype}{id},\ faceIndex);\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rtcReleaseGeometry(mesh);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ rtcCommitScene(\mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}{mScene}});}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \}}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

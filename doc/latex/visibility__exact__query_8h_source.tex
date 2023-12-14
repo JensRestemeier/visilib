@@ -1,0 +1,540 @@
+\doxysection{visibility\+\_\+exact\+\_\+query.\+h}
+\hypertarget{visibility__exact__query_8h_source}{}\label{visibility__exact__query_8h_source}\index{E:/External/visilib/visilib/visibility\_exact\_query.h@{E:/External/visilib/visilib/visibility\_exact\_query.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}geometry\_convex\_polygon.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}silhouette\_mesh\_face.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}geometry\_occluder\_set.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}helper\_statistic\_collector.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}math\_geometry.h"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}math\_predicates.h"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}math\_plucker\_2.h"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_3.h"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}plucker\_polytope.h"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}plucker\_polytope\_builder.h"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}plucker\_polytope\_complex.h"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}visibility\_aperture\_finder.h"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}silhouette\_container.h"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}silhouette\_processor.h"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ "{}visilib.h"{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}visilib\_core.h"{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}silhouette\_container\_embree.h"{}}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{class\ }HelperDebugVisualisation;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{class\ }HelperStatisticCollector;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{class\ }GeometryConvexPolygon;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{class\ }SilhouetteMeshFace;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{class\ }GeometryOccluderSet;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{struct\ }VisibilityRay;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{class\ }Silhouette;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{class\ }SilhouetteProcessor;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{class\ }PluckerPolytope;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_visibility_exact_query}{VisibilityExactQuery}}}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query}{\string~VisibilityExactQuery}}()\ \{\};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ attachVisualisationDebugger(\mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{HelperVisualDebugger}}*\ aDebugger)\ =\ 0;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ VisibilityResult\ arePolygonsVisible(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices0,\ \textcolor{keywordtype}{size\_t}\ numVertices0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices1,\ \textcolor{keywordtype}{size\_t}\ numVertices1)\ =\ 0;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ displayStatistic()\ =\ 0;}
+\DoxyCodeLine{00071\ \ \ \ \ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_visibility_exact_query__}{VisibilityExactQuery\_}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query}{VisibilityExactQuery}}}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query__}{VisibilityExactQuery\_}}(\mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set}{GeometryOccluderSet}}*\ aScene,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}\&\ aConfiguration,\ S\ tolerance);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query__}{\string~VisibilityExactQuery\_}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}*\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a88ec13a3a6dd53eeade997c561e619d1}{getQueryPolygon}}(\textcolor{keywordtype}{size\_t}\ i)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___ae62060326802720d6dc05353f569f798}{mQueryPolygon}}[i];}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_complex}{PluckerPolytopeComplex<P>}}*\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a2e1ece8c567ecdf40ae879b1e63faeff}{getComplex}}()}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___aa92d80cbe419dfb11e4bec7943a4979a}{mComplex}};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a9aecc3e02e9f23bfd1911f67833db419}{findSceneIntersection}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ anEnd,\ std::set<SilhouetteMeshFace*>\&\ intersectedFaces,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ aPolytope\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ extractAllSilhouettes();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a37d430f305c3024cc8ab9efb7dbaf534}{collectAllOccluders}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron,\ std::vector<Silhouette*>\&\ occluders,\ std::vector<P>\&\ polytopeLines);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___aaf24602cc5844a5ef5f7ae6fe3df0f56}{attachVisualisationDebugger}}(\mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{HelperVisualDebugger}}*\ aDebugger);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ VisibilityResult\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a615c47cec68794e091d30852e959dbb9}{arePolygonsVisible}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices0,\ \textcolor{keywordtype}{size\_t}\ numVertices0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices1,\ \textcolor{keywordtype}{size\_t}\ numVertices1);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ \ \ \ \ \ const\ std::unordered\_set<PluckerPolytope<P>*>\&\ getPolytopes(VisibilitySilhouette*\ silhouette)}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ return\ mSilhouetteToPolytopeDictionary.find(silhouette)-\/>second;}}
+\DoxyCodeLine{00124\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00125\ \textcolor{comment}{}}
+\DoxyCodeLine{00126\ \textcolor{comment}{\ \ \ \ \ \ \ \ bool\ hasSilhouette(PluckerPolytope<P>*\ polytope)}}
+\DoxyCodeLine{00127\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00128\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ return\ mPolytopeToSilhouetteDictionary.find(polytope)\ !=\ mPolytopeToSilhouetteDictionary.end();}}
+\DoxyCodeLine{00129\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00130\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___ae0bb735eb2795124dee5cc542f754128}{findNextEdge}}(\textcolor{keywordtype}{size\_t}\&\ aSilhouetteEdgeIndex,\ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}}\ *\ \&aSilhouette,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}\ *\ polytope,\ \textcolor{keyword}{const}\ std::string\ \&\ occlusionTreeNodeSymbol);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setApproximateNormal(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \&\ a)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ mApproximateNormal\ =\ a;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ MathVector3d\&\ getApproximateNormal()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00144\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mApproximateNormal;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isOccluded(PluckerPolytope<P>\ *\ polytope,\ PluckerPolyhedron<P>*\ polyhedron,\ \textcolor{keyword}{const}\ std::vector\ <Silhouette*>\ \&\ silhouettes,\ \textcolor{keyword}{const}\ std::vector<P>\ \&\ polytopeLines);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_statistic_collector}{HelperStatisticCollector}}*\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___acee00174491a4475b8cfe5de08ddd301}{getStatistic}}()}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&\mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___aff46f0c6ba47127e6cdac7f134a237cf}{mStatistic}};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a7134e18dd518e8accb0f08e523149e6b}{displayStatistic}}()}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___acee00174491a4475b8cfe5de08ddd301}{getStatistic}}()-\/>display();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a8f1759e155f8d6e1880d725ecc74bde3}{createInitialPolygons}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices0,\ \textcolor{keywordtype}{size\_t}\ numVertices0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices1,\ \textcolor{keywordtype}{size\_t}\ numVertices1,\ \textcolor{keywordtype}{bool}\ normalization);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a37e25de9998f18a338f6317055927daf}{mConfiguration}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_complex}{PluckerPolytopeComplex<P>}}*\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___aa92d80cbe419dfb11e4bec7943a4979a}{mComplex}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set}{GeometryOccluderSet}}*\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___af38d44a1f04a2c2f181e7c90042dbecc}{mScene}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}*\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___ae62060326802720d6dc05353f569f798}{mQueryPolygon}}[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{HelperVisualDebugger}}*\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a49f12637fa2d9372e87066476cbea3b1}{mDebugger}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_statistic_collector}{HelperStatisticCollector}}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___aff46f0c6ba47127e6cdac7f134a237cf}{mStatistic}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette_processor}{SilhouetteProcessor}}*\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a60724cc0a8bda41cbcf21fa044c76f42}{mSilhouetteProcessor}};\ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ S\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___afdcd18d5e821195c31a7af89a7101b47}{mTolerance}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ mApproximateNormal;}
+\DoxyCodeLine{00180\ \ \textcolor{comment}{//\ \ \ \ \ \ std::unordered\_map<VisibilitySilhouette*,\ std::unordered\_set<PluckerPolytope<P>*>>\ mSilhouetteToPolytopeDictionary;}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette_container}{SilhouetteContainer}}*\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a4a90222924ec37ee6523ae2152bead1a}{mSilhouetteContainer}};}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ \ \ \ std::unordered\_map<PluckerPolytope<P>*,\ std::unordered\_set<VisibilitySilhouette*>>\ mPolytopeToSilhouetteDictionary;}}
+\DoxyCodeLine{00185\ \ \ \ \ \};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query__}{VisibilityExactQuery\_<P,\ S>::VisibilityExactQuery\_}}(\mbox{\hyperlink{classvisilib_1_1_geometry_occluder_set}{GeometryOccluderSet}}\ *\ aScene,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_visibility_exact_query_configuration}{VisibilityExactQueryConfiguration}}\ \&\ aConfiguration,\ S\ aTolerance)}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ :\ mScene(aScene),}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ mConfiguration(aConfiguration),}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ mDebugger(nullptr)}
+\DoxyCodeLine{00192\ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___aa92d80cbe419dfb11e4bec7943a4979a}{mComplex}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_complex}{PluckerPolytopeComplex<P>}}();}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timer(\mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___acee00174491a4475b8cfe5de08ddd301}{getStatistic}}(),\ SILHOUETTE\_PROCESSING);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a60724cc0a8bda41cbcf21fa044c76f42}{mSilhouetteProcessor}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_silhouette_processor}{SilhouetteProcessor}}(\&\mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___aff46f0c6ba47127e6cdac7f134a237cf}{mStatistic}});}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___ae62060326802720d6dc05353f569f798}{mQueryPolygon}}[0]\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___ae62060326802720d6dc05353f569f798}{mQueryPolygon}}[1]\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___afdcd18d5e821195c31a7af89a7101b47}{mTolerance}}\ =\ aTolerance;}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\ \#if\ EMBREE\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aConfiguration.useEmbree)}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a4a90222924ec37ee6523ae2152bead1a}{mSilhouetteContainer}}\ =\ \textcolor{keyword}{new}\ SilhouetteContainerEmbree();}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a4a90222924ec37ee6523ae2152bead1a}{mSilhouetteContainer}}\ =\ \textcolor{keyword}{new}\ SilhouetteContainer();}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00216\ \ \ \ \ VisibilityExactQuery\_<P,\ S>::\string~VisibilityExactQuery\_()}
+\DoxyCodeLine{00217\ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mComplex;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mSilhouetteProcessor;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mQueryPolygon[0];}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mQueryPolygon[1];}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mSilhouetteContainer;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a8f1759e155f8d6e1880d725ecc74bde3}{VisibilityExactQuery\_<P,\ S>::createInitialPolygons}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices0,\ \textcolor{keywordtype}{size\_t}\ numVertices0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices1,\ \textcolor{keywordtype}{size\_t}\ numVertices1,\ \textcolor{keywordtype}{bool})}
+\DoxyCodeLine{00227\ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ myQuery0(vertices0,\ numVertices0);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ myQuery1(vertices1,\ numVertices1);}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ g1\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7ae619c8f6cea8df0ee3216ca2be3cea}{MathGeometry::getGravityCenter}}(myQuery0);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ g2\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7ae619c8f6cea8df0ee3216ca2be3cea}{MathGeometry::getGravityCenter}}(myQuery1);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myN\ =\ g2\ -\/\ g1;}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myQuery0.getVertexCount()\ <\ 3\ ||\ myQuery1.getVertexCount()\ <\ 3)}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myQuery0.getVertexCount()\ ==\ 2)}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myQuery0.setPlane(\mbox{\hyperlink{classvisilib_1_1_math_geometry_af1319565cb7ce7ab64ffc79a2c60a35b}{MathGeometry::computePlaneFromApproximateNormal}}(myQuery0,\ myN));}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (myQuery0.getVertexCount()\ ==\ 1)}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myNormal\ =\ myN;}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myNormal.normalize();}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myQuery0.setPlane(\mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}(myNormal.x,\ myNormal.y,\ myNormal.z,\ -\/myNormal.dot(myQuery0.getVertex(0))));}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myQuery1.getVertexCount()\ ==\ 2)}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myN.x\ =\ -\/myN.x;\ myN.y\ =\ -\/myN.y;\ myN.z\ =\ -\/myN.z;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myQuery1.setPlane(\mbox{\hyperlink{classvisilib_1_1_math_geometry_af1319565cb7ce7ab64ffc79a2c60a35b}{MathGeometry::computePlaneFromApproximateNormal}}(myQuery1,\ myN));}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (myQuery1.getVertexCount()\ ==\ 1)}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myN.x\ =\ -\/myN.x;\ myN.y\ =\ -\/myN.y;\ myN.z\ =\ -\/myN.z;}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myNormal\ =\ myN;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myNormal.normalize();}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myQuery1.setPlane(\mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}(myNormal.x,\ myNormal.y,\ myNormal.z,\ -\/myNormal.dot(myQuery1.getVertex(0))));}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ setApproximateNormal(myN);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classvisilib_1_1_math_geometry_a6b3430d7013a6d749d613c4b95bd071c}{MathGeometry::clipWithGardBand}}(myQuery0,\ myQuery1.getPlane(),\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::GuardBandClipping}}()))}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Clipping\ failure"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ V\_ASSERT(myQuery0.isValid());}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classvisilib_1_1_math_geometry_a6b3430d7013a6d749d613c4b95bd071c}{MathGeometry::clipWithGardBand}}(myQuery1,\ myQuery0.getPlane(),\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::GuardBandClipping}}()))}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Clipping\ failure"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ V\_ASSERT(myQuery1.isValid());}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ V\_ASSERT(MathPredicates::getRelativePosition(myQuery0.getVertices(),\ myQuery1.getPlane())\ ==\ ON\_POSITIVE\_SIDE);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ V\_ASSERT(MathPredicates::getRelativePosition(myQuery1.getVertices(),\ myQuery0.getPlane())\ ==\ ON\_POSITIVE\_SIDE);}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ mQueryPolygon[0]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}(myQuery0);}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ mQueryPolygon[1]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}(myQuery1);}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00286\ \ \ \ \ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00289\ \ \ \ \ VisibilityResult\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a615c47cec68794e091d30852e959dbb9}{VisibilityExactQuery\_<P,\ S>::arePolygonsVisible}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices0,\ \textcolor{keywordtype}{size\_t}\ numVertices0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ vertices1,\ \textcolor{keywordtype}{size\_t}\ numVertices1)}
+\DoxyCodeLine{00290\ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ VisibilityResult\ result;}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timer(\&mStatistic,\ VISIBILITY\_QUERY);}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mDebugger\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ mDebugger-\/>clear();}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ mSilhouetteProcessor-\/>attachVisualisationDebugger(mDebugger);}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timerBuild(\&mStatistic,\ POLYTOPE\_BUILD);}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!createInitialPolygons(vertices0,\ numVertices0,\ vertices1,\ numVertices1,\ mConfiguration.hyperSphereNormalization))}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Polygon\ initialization\ error"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FAILURE;}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mQueryPolygon[0]-\/>getVertexCount()\ ==\ 1\ \&\&\ mQueryPolygon[1]-\/>getVertexCount()\ ==\ 1)}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ std::set<SilhouetteMeshFace*>\ intersectedFaces;}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ findSceneIntersection(mQueryPolygon[0]-\/>getVertex(0),\ mQueryPolygon[1]-\/>getVertex(0),\ intersectedFaces)\ ?\ HIDDEN\ :\ VISIBLE;}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timer(getStatistic(),\ SILHOUETTE\_PROCESSING);}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mScene-\/>get()-\/>restoreFacesGeometry(mScene);}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSilhouetteProcessor-\/>init(*mQueryPolygon[0],\ *mQueryPolygon[1]);}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ extractAllSilhouettes();}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timer(getStatistic(),\ RAY\_INTERSECTION);}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSilhouetteContainer-\/>prepare();}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timerBuild(\&mStatistic,\ POLYTOPE\_BUILD);}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder}{PluckerPolytopeBuilder<P,\ S>}}\ builder(mConfiguration.hyperSphereNormalization,\ mTolerance);}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ myPolytope\ =\ builder.\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_a408e2ce76e25ae9545abeb7babc51713}{build}}(*mQueryPolygon[0],\ *mQueryPolygon[1],\ getComplex()-\/>getPolyhedron());}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getComplex()-\/>setRoot(myPolytope);}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_visibility_solver}{VisibilitySolver<P,\ S>}}*\ solver;}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ solver\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_visibility_aperture_finder}{VisibilityApertureFinder<P,\ S>}}(\textcolor{keyword}{this},\ mConfiguration.hyperSphereNormalization,\ mTolerance,\ mConfiguration.detectApertureOnly);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mDebugger\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ solver-\/>attachVisualisationDebugger(mDebugger);}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ solver-\/>resolve();}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ solver;}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00350\ \ \ \ \ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___aaf24602cc5844a5ef5f7ae6fe3df0f56}{VisibilityExactQuery\_<P,\ S>::attachVisualisationDebugger}}(\mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{HelperVisualDebugger}}\ *\ aDebugger)}
+\DoxyCodeLine{00354\ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ mDebugger\ =\ aDebugger;}
+\DoxyCodeLine{00356\ \ \ \ \ \}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___ae0bb735eb2795124dee5cc542f754128}{VisibilityExactQuery\_<P,\ S>::findNextEdge}}(\textcolor{keywordtype}{size\_t}\&\ aSilhouetteEdgeIndex,\ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}}\ *\ \&aSilhouette,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}\ *\ aPolytope,\ \textcolor{keyword}{const}\ std::string\ \&\ occlusionTreeNodeSymbol)}
+\DoxyCodeLine{00360\ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timer(getStatistic(),\ OCCLUDER\_TREATMENT);}
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\#ifdef\ OUTPUT\_DEBUG\_FILE}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ std::ofstream\&\ debugOutput\ =\ mDebugger-\/>getDebugOutput();}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ V\_LOG(debugOutput,\ \textcolor{stringliteral}{"{}VisibilityExactQuery<P,\ S>::findTheBestValidEdge\ BEGIN"{}},\ occlusionTreeNodeSymbol);}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::unordered\_set<Silhouette*>\&\ mySilhouettes\ =\ mSilhouetteContainer-\/>getSilhouettes();}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ myScore\ =\ 1e32;}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}}*\ mySilhouette\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ aPlane0\ =\ getQueryPolygon(0)-\/>getPlane();}
+\DoxyCodeLine{00375\ \ \ \ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ myPlane\ =\ getQueryPolygon(0)-\/>getPlane();}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ mySilhouettes.begin();\ iter\ !=\ mySilhouettes.end();\ iter++)}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}}*\ s\ =\ (*iter);}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ edges\ =\ s-\/>\mbox{\hyperlink{classvisilib_1_1_silhouette_aced93465449b977b9723e1ca4a48fd1c}{getEdges}}();}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ silhouetteEdgeIndex\ =\ 0;\ silhouetteEdgeIndex\ <\ edges.size();\ silhouetteEdgeIndex++)}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_silhouette_edge}{SilhouetteEdge}}\&\ edge\ =\ edges[silhouetteEdgeIndex];}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (edge.mIsActive)}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00389\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (edge.mScore\ <\ 0.0)}}
+\DoxyCodeLine{00390\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00391\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ConnectedMeshElement*\ f\ =\ edge.mFace;}}
+\DoxyCodeLine{00392\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ size\_t\ edgeIndex\ =\ edge.mEdgeIndex;}}
+\DoxyCodeLine{00393\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MathVector2i\ ei\ =\ f-\/>getEdge(edgeIndex);}}
+\DoxyCodeLine{00394\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edge.mScore\ =\ aPlane0.dot(convert<MathVector3d>(f-\/>getVertex(ei.x)));}}
+\DoxyCodeLine{00395\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00396\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (edge.mScore\ <\ myScore)}}
+\DoxyCodeLine{00397\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ found\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myScore\ =\ edge.mScore;}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aSilhouetteEdgeIndex\ =\ silhouetteEdgeIndex;}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mySilhouette\ =\ s;}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (found)}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (found)}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (found)}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \textcolor{preprocessor}{\#ifdef\ OUTPUT\_DEBUG\_FILE}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ \textcolor{stringliteral}{"{}VisibilityExactQuery<P,\ S>::findTheBestValidEdge\ END\ return\ True\ (Edge\ found)"{}};}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ V\_LOG(debugOutput,\ ss.str(),\ occlusionTreeNodeSymbol);}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ aSilhouette\ =\ mySilhouette;}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00425\ \textcolor{preprocessor}{\#ifdef\ OUTPUT\_DEBUG\_FILE}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ V\_LOG(debugOutput,\ \textcolor{stringliteral}{"{}VisibilityExactQuery<P,\ S>::findTheBestValidEdge\ END\ return\ False\ (No\ edge\ found)"{}},\ occlusionTreeNodeSymbol);}
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\#endif\ \ }}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ found;}
+\DoxyCodeLine{00430\ \ \ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query__}{VisibilityExactQuery\_<P,\ S>::isOccluded}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron,\ \textcolor{keyword}{const}\ std::vector\ <Silhouette*>\ \&\ aSilhouettes,\ \textcolor{keyword}{const}\ std::vector<P>\ \&\ polytopeLines)}
+\DoxyCodeLine{00434\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ SilhouetteContainer::isOccluded(polytope,\ polyhedron,\ aSilhouettes,polytopeLines,mTolerance);}
+\DoxyCodeLine{00436\ \ \ \ \ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a9aecc3e02e9f23bfd1911f67833db419}{VisibilityExactQuery\_<P,\ S>::findSceneIntersection}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \&\ anEnd,\ std::set<SilhouetteMeshFace*>\ \&\ anIntersectedFaces,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}\ *\ aPolytope)}
+\DoxyCodeLine{00440\ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myBegin\ =\ aBegin;}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myDir\ =\ anEnd\ -\/\ aBegin;}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ myMax\ =\ myDir.normalize();}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_visibility_ray}{VisibilityRay}}\ myRay;}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_a8c78b0461d9f6e5425c5e14fcd24a9d1}{org}}[0]\ =\ (float)myBegin.x;}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_a8c78b0461d9f6e5425c5e14fcd24a9d1}{org}}[1]\ =\ (float)myBegin.y;}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_a8c78b0461d9f6e5425c5e14fcd24a9d1}{org}}[2]\ =\ (float)myBegin.z;}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_ad3c5fe1430162ea249feb953f6a5a347}{dir}}[0]\ =\ (float)myDir.x;}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_ad3c5fe1430162ea249feb953f6a5a347}{dir}}[1]\ =\ (float)myDir.y;}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_ad3c5fe1430162ea249feb953f6a5a347}{dir}}[2]\ =\ (float)myDir.z;}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_ad086e44a14588e12ebfb760803a07b47}{tfar}}\ =\ (float)myMax;}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_afcf9585cadf9308044ff540f2206a890}{tnear}}\ =\ 0;}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mDebugger\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ mDebugger-\/>addSamplingLine(convert<MathVector3f>(aBegin),\ convert<MathVector3f>(anEnd));}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ intersect\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timer(getStatistic(),\ RAY\_INTERSECTION);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ getStatistic()-\/>inc(RAY\_COUNT);}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ intersect\ =\ mSilhouetteContainer-\/>intersect(\&myRay);}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (intersect)}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_a544abf65e84c6ab85ba8b919b773b768}{mPrimitiveIds}}.size();\ i++)}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//:TODO:\ replace\ wihth\ accessors}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myPrimitive\ =\ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_a544abf65e84c6ab85ba8b919b773b768}{mPrimitiveIds}}[i];}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ geometryId\ =\ myRay.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_afcabcbc095ab51fd144519eb568f128b}{mGeometryIds}}[i];}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<SilhouetteMeshFace>*\ myFaces\ =\ mScene-\/>getOccluderConnectedFaces(geometryId);}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face}{SilhouetteMeshFace}}*\ myFace\ =\ \&(*myFaces)[myPrimitive];}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ anIntersectedFaces.insert(myFace);}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mDebugger\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ mDebugger-\/>addStabbingLine(convert<MathVector3f>(aBegin),\ convert<MathVector3f>(anEnd));}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00490\ \ \ \ \ \}}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00493\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query__}{VisibilityExactQuery\_<P,\ S>::extractAllSilhouettes}}()}
+\DoxyCodeLine{00494\ \ \ \ \ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ geometryId\ =\ 0;\ geometryId\ <\ mScene-\/>getOccluderCount();\ geometryId++)}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Silhouette*>\ silhouettes;}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<SilhouetteMeshFace>*\ myFaces\ =\ mScene-\/>getOccluderConnectedFaces(geometryId);}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ mSilhouetteProcessor-\/>extractSilhouette(geometryId,\ *myFaces,\ mConfiguration.silhouetteOptimization,\ silhouettes);}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ s:silhouettes)}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSilhouetteContainer-\/>addSilhouette(s);}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00508\ \ \ \ \ \}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_visibility_exact_query___a37d430f305c3024cc8ab9efb7dbaf534}{VisibilityExactQuery\_<P,\ S>::collectAllOccluders}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}\ *\ aPolytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}\ *\ polyhedron,\ std::vector<Silhouette*>\ \&\ occluders,\ std::vector<P>\ \&\ polytopeLines)}
+\DoxyCodeLine{00512\ \ \ \ \ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mConfiguration.representativeLineSampling)}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timer(getStatistic(),\ STABBING\_LINE\_EXTRACTION);}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ P\ myRepresentativeLine\ =\ MathGeometry::computeRepresentativeLine<P>(aPolytope,\ polyhedron,\ mTolerance);}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mConfiguration.hyperSphereNormalization)}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myRepresentativeLine\ =\ myRepresentativeLine.getNormalized();}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ polytopeLines.push\_back(myRepresentativeLine);}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPolytope-\/>setRepresentativeLine(myRepresentativeLine);}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}\ timer(getStatistic(),\ STABBING\_LINE\_EXTRACTION);}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_aa16073fa47fc615d8709e86d831bd5ca}{getExtremalStabbingLinesCount}}()\ ==\ 0)}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a0ec26e8b054116d8f4a5031589dde6ae}{computeExtremalStabbingLines}}(polyhedron,\ mTolerance);}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_aa16073fa47fc615d8709e86d831bd5ca}{getExtremalStabbingLinesCount}}();\ i++)}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ polytopeLines.push\_back(aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_ad3c4052274f34dfa4c7082432bb375b8}{getExtremalStabbingLine}}(i));}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ aPlane0\ =\ getQueryPolygon(0)-\/>getPlane();}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ aPlane1\ =\ getQueryPolygon(1)-\/>getPlane();}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ polytopeLines.size();\ i++)}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ std::pair<MathVector3d,\ MathVector3d>\ line\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7467476b382c75e9f5d9e43e84bb0e6f}{MathGeometry::getBackTo3D}}(polytopeLines[i],\ aPlane0,\ aPlane1);}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ V\_ASSERT(MathGeometry::isPointInsidePolygon(*getQueryPolygon(0),\ lines[i].first,\ MathArithmetic<double>::Tolerance()));}}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ V\_ASSERT(MathGeometry::isPointInsidePolygon(*getQueryPolygon(1),\ lines[i].second,\ MathArithmetic<double>::Tolerance()));}}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ std::set<SilhouetteMeshFace*>\ intersectedFaces;}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hit\ =\ findSceneIntersection(line.first,\ line.second,\ intersectedFaces,\ aPolytope);}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ if\ (mConfiguration.useEmbree\ )}}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ hit\ =\ hit\ ||\ findSceneIntersection(line.second,\ line.first,\ intersectedFaces,\ aPolytope);}}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!hit)}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ myFace\ :\ intersectedFaces)}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}}*\ s\ =\ mSilhouetteProcessor-\/>findSilhouette(myFace);}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ V\_ASSERT(s);}}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s)}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ occluders.push\_back(s);}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00567\ \ \ \ \ \}}
+\DoxyCodeLine{00568\ \}}
+
+\end{DoxyCode}

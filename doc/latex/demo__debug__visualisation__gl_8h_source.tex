@@ -1,0 +1,48 @@
+\doxysection{demo\+\_\+debug\+\_\+visualisation\+\_\+gl.\+h}
+\hypertarget{demo__debug__visualisation__gl_8h_source}{}\label{demo__debug__visualisation__gl_8h_source}\index{E:/External/visilib/demo/demo\_debug\_visualisation\_gl.h@{E:/External/visilib/demo/demo\_debug\_visualisation\_gl.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}visilib.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}helper\_triangle\_mesh\_container.h"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }visilibDemo}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_demo_1_1_demo_debug_visualisation_gl}{DemoDebugVisualisationGl}}}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ draw(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_a_a_b_b}{visilib::GeometryAABB}}\&\ aabb);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ drawPolygonEdges(\textcolor{keyword}{const}\ std::vector<float>\&\ vertices);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ drawPolygonPoints(\textcolor{keyword}{const}\ std::vector<float>\&\ vertices);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ drawPolygon(\textcolor{keyword}{const}\ std::vector<float>\&\ vertices);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ drawScene(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{visilib::HelperTriangleMeshContainer}}\&\ aScene);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ drawMesh(\textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{visilib::GeometryTriangleMeshDescription}}\&\ aMesh);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ drawLines(\textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{visilib::GeometryTriangleMeshDescription}}\&\ info);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ drawTriangles(\textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{visilib::GeometryTriangleMeshDescription}}\&\ info);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ display(\mbox{\hyperlink{classvisilib_1_1_helper_visual_debugger}{visilib::HelperVisualDebugger}}*\ debugger,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{visilib::HelperTriangleMeshContainer}}\&\ aScene,\ \textcolor{keyword}{const}\ std::vector<float>\&\ v0,\ \textcolor{keyword}{const}\ std::vector<float>\&\ v1,\ visilib::VisibilityResult\ result,\ \textcolor{keywordtype}{int}\ drawGeometryType);}
+\DoxyCodeLine{00041\ \ \ \ \ \};}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}

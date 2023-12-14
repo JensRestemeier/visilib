@@ -1,0 +1,174 @@
+\doxysection{math\+\_\+plucker\+\_\+2.\+h}
+\hypertarget{math__plucker__2_8h_source}{}\label{math__plucker__2_8h_source}\index{E:/External/visilib/visilib/math\_plucker\_2.h@{E:/External/visilib/visilib/math\_plucker\_2.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_2.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}math\_arithmetic.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}visilib\_core.h"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}()}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}(S\ x0,\ S\ x1,\ S\ x2)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ :mDirection(x0,\ x1),}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ mLocation(x2)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\&\ v)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ mDirection\ =\ v.mDirection;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ mLocation\ =\ v.mLocation;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2d}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2d}}\&\ anEnd)}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>}}\ myBegin\ =\ aBegin.to<S>();}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>}}\ myEnd\ =\ anEnd.to<S>();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ mDirection\ =\ myEnd\ -\/\ myBegin;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ mLocation\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>::cross}}(myBegin,\ myEnd).x;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ anEnd)}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>}}\ myBegin\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>}}(aBegin.x,\ aBegin.y);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>}}\ myEnd\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>}}(anEnd.x,\ anEnd.y);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ mDirection\ =\ myEnd\ -\/\ myBegin;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ mLocation\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>::cross}}(myBegin,\ myEnd).x;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\&\ operator\ -\/=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\&\ v)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ mLocation\ -\/=\ v.mLocation;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ mDirection\ -\/=\ v.mDirection;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\&\ operator\ +=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\&\ v)}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ mLocation\ +=\ v.mLocation;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ mDirection\ +=\ v.mDirection;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\&\ operator\ *=\ (S\ aNumber)}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ mLocation\ *=\ aNumber;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ mDirection\ *=\ aNumber;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ operator\ +(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\&\ v)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ v;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ operator\ -\/(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\&\ v)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00108\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ result\ -\/=\ v;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ operator\ /\ (S\ aNumber)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ result.mLocation\ /=\ aNumber;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ result.mDirection\ /=\ aNumber;}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ operator\ *\ (S\ aNumber)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00125\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ result.mLocation\ *=\ aNumber;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ result.mDirection\ *=\ aNumber;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>}}\&\ getDirection()\textcolor{keyword}{const}}
+\DoxyCodeLine{00134\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mDirection;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ S\ getLocation()\textcolor{keyword}{const}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mLocation;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ getNormalized()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00144\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}\ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ S\ myDiv\ =\ mDirection.getNorm();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(std::fabs(myDiv)\ >\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::Tolerance}}());}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ result.mDirection\ /=\ myDiv;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ result.mLocation\ /=\ myDiv;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ S\ dot(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2<S>}}\&\ p2)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00155\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mDirection.dot(p2.mDirection)\ +\ mLocation;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2<S>}}\ \ Zero()}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2}}(0.0,\ 0.0,\ 0.0);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2\_<S>}}\ mDirection;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ S\ mLocation;}
+\DoxyCodeLine{00166\ \ \ \ \ \};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00169\ \ \ \ \ std::ostream\&\ operator<<(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker2}{MathPlucker2<S>}}\&\ v)}
+\DoxyCodeLine{00170\ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ os\ <<\ v.mDirection\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ v.mLocation;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \}}
+
+\end{DoxyCode}

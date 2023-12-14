@@ -1,0 +1,202 @@
+\doxysection{helper\+\_\+statistic\+\_\+collector.\+h}
+\hypertarget{helper__statistic__collector_8h_source}{}\label{helper__statistic__collector_8h_source}\index{E:/External/visilib/visilib/helper\_statistic\_collector.h@{E:/External/visilib/visilib/helper\_statistic\_collector.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <iomanip>}\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}visilib\_core.h"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#ifdef\ WIN32}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}windows.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{enum}\ TimerType}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ VISIBILITY\_QUERY,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ RAY\_INTERSECTION,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ SILHOUETTE\_PROCESSING,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ POLYTOPE\_SPLIT,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ POLYTOPE\_BUILD,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ STABBING\_LINE\_EXTRACTION,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ OCCLUDER\_TREATMENT,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ TIMER\_LAST}
+\DoxyCodeLine{00045\ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{enum}\ CounterType}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ RAY\_COUNT,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ POLYTOPE\_SPLIT\_COUNT,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ OCCLUDER\_TRIANGLE\_COUNT,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ COUNTER\_LAST}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_helper_statistic_collector}{HelperStatisticCollector}}}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_statistic_collector}{HelperStatisticCollector}}()}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ clear();}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifdef\ WIN32}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ frequency[2];}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ QueryPerformanceFrequency((LARGE\_INTEGER*)frequency);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ mTimerFrequency\ =\ (double)frequency[0];}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ mTimerFrequency\ =\ 1000000.0;}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_statistic_collector}{\string~HelperStatisticCollector}}()}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ clear()}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ mCounts.resize(COUNTER\_LAST,\ 0);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ mTimers.resize(TIMER\_LAST,\ 0);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ mTimerIsRunning.resize(TIMER\_LAST,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ inc(CounterType\ counter)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ mCounts[counter]++;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ get(CounterType\ counter)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCounts[counter];}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ incrementTime(TimerType\ counter,\ \textcolor{keywordtype}{double}\ time)}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ mTimers[counter]\ +=\ time\ /\ mTimerFrequency;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setTimerIsRunning(TimerType\ timer,\ \textcolor{keywordtype}{bool}\ isRunning)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(mTimerIsRunning[timer]\ !=\ isRunning);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ mTimerIsRunning[timer]\ =\ isRunning;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ getUnkownTime()}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ known\ =\ 0;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ known\ +=\ mTimers[RAY\_INTERSECTION];}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ known\ +=\ mTimers[SILHOUETTE\_PROCESSING];}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ known\ +=\ mTimers[POLYTOPE\_SPLIT];}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ known\ +=\ mTimers[POLYTOPE\_BUILD];}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ known\ +=\ mTimers[STABBING\_LINE\_EXTRACTION];}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ known\ +=\ mTimers[OCCLUDER\_TREATMENT];}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mTimers[VISIBILITY\_QUERY]\ -\/\ known;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ percent(\textcolor{keywordtype}{double}\ time,\ \textcolor{keywordtype}{double}\ total)}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 100\ *\ time\ /\ total;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ display(\textcolor{keyword}{const}\ std::string\ \&\ header,\ \textcolor{keywordtype}{double}\ time,\ \textcolor{keywordtype}{double}\ totalTime)}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\textcolor{stringliteral}{"{}\ \ ["{}}<<\ header\ <<\ percent(time,\ totalTime)\ <<\ \textcolor{stringliteral}{"{}\%]"{}};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ display()\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Query\ :\ "{}}\ <<\ mTimers[VISIBILITY\_QUERY]\ <<\ \textcolor{stringliteral}{"{}sec.\ ("{}}\ <<\ 1.0\ /\ mTimers[VISIBILITY\_QUERY]\ <<\ \textcolor{stringliteral}{"{}\ queries/sec.)"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ displayCounts();}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ display(\textcolor{stringliteral}{"{}Ray\ tracing:\ \ \ \ "{}},\ mTimers[RAY\_INTERSECTION],\ mTimers[VISIBILITY\_QUERY]);\ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ display(\textcolor{stringliteral}{"{}Silhouette:\ \ \ \ \ "{}},\ mTimers[SILHOUETTE\_PROCESSING],\ mTimers[VISIBILITY\_QUERY]);\ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ display(\textcolor{stringliteral}{"{}Build\ Polytope:\ "{}},\ mTimers[POLYTOPE\_BUILD],\ mTimers[VISIBILITY\_QUERY]);\ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ display(\textcolor{stringliteral}{"{}Split\ Polytope:\ "{}},\ mTimers[POLYTOPE\_SPLIT],\ mTimers[VISIBILITY\_QUERY]);\ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ display(\textcolor{stringliteral}{"{}Stabbing\ line:\ \ "{}},\ mTimers[STABBING\_LINE\_EXTRACTION],\ mTimers[VISIBILITY\_QUERY]);\ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ display(\textcolor{stringliteral}{"{}Occluders:\ \ \ \ \ \ "{}},\ mTimers[OCCLUDER\_TREATMENT],\ mTimers[VISIBILITY\_QUERY]);\ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ display(\textcolor{stringliteral}{"{}Unknown:\ \ \ \ \ \ \ \ "{}},\ getUnkownTime(),\ mTimers[VISIBILITY\_QUERY]);\ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ displayCounts()}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ [Rays:\ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ mCounts[RAY\_COUNT]\ <<\ \textcolor{stringliteral}{"{}]"{}}<<\ std::endl}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ [Splits:\ \ \ \ \ \ \ \ \ "{}}\ <<\ mCounts[POLYTOPE\_SPLIT\_COUNT]\ <<\ \textcolor{stringliteral}{"{}]"{}}\ <<\ std::endl}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ \ [Occluder:\ \ \ \ \ \ \ "{}}\ <<\ mCounts[OCCLUDER\_TRIANGLE\_COUNT]\ <<\ \textcolor{stringliteral}{"{}]"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ std::vector<int>\ mCounts;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ std::vector<double>\ mTimers;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ std::vector<bool>\ mTimerIsRunning;}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ mTimerFrequency;}
+\DoxyCodeLine{00158\ \ \ \ \ \};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{HelperScopedTimer}}(\mbox{\hyperlink{classvisilib_1_1_helper_statistic_collector}{HelperStatisticCollector}}*\ aCollector,\ TimerType\ aTimer)}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ :\ mTimer(aTimer),}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ mCollector(aCollector)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#ifdef\ WIN32}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ QueryPerformanceCounter((LARGE\_INTEGER*)mStartTime);}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#else\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ mStartTime\ =\ clock();\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ mCollector-\/>setTimerIsRunning(mTimer,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_scoped_timer}{\string~HelperScopedTimer}}()}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#ifdef\ WIN32}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ ellapsedTime[2];}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ QueryPerformanceCounter((LARGE\_INTEGER*)ellapsedTime);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ ellapsedTime[0]\ -\/=\ mStartTime[0];}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ mCollector-\/>incrementTime(mTimer,\ ellapsedTime[0]);}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ mCollector-\/>incrementTime(mTimer,\ (\textcolor{keywordtype}{double})\ (clock()-\/\ mStartTime));\ }
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ mCollector-\/>setTimerIsRunning(mTimer,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#ifdef\ WIN32}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ mStartTime[2];}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ clock\_t\ mStartTime;}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ TimerType\ mTimer;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_statistic_collector}{HelperStatisticCollector}}*\ mCollector;}
+\DoxyCodeLine{00201\ \ \ \ \ \};}
+\DoxyCodeLine{00202\ \}}
+
+\end{DoxyCode}

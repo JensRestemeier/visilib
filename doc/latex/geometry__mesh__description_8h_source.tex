@@ -1,0 +1,79 @@
+\doxysection{geometry\+\_\+mesh\+\_\+description.\+h}
+\hypertarget{geometry__mesh__description_8h_source}{}\label{geometry__mesh__description_8h_source}\index{E:/External/visilib/visilib/geometry\_mesh\_description.h@{E:/External/visilib/visilib/geometry\_mesh\_description.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{\string~GeometryDiscreteMeshDescription}}()}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<int>\ getIndices(\textcolor{keywordtype}{size\_t}\ aFace)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ getIndexCount()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a05af40870e65c9fb19a27ea6fac9aff1}{vertexCount}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a62095a1d44914be5e4876494c3301f1e}{faceCount}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_ac6f07aa7316e876d2405150af6cbf1f5}{vertexArray}};\ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_aaa05beffdab2fd2f4cf4ac28a86eaf3e}{normalArray}};\ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{GeometryDiscreteMeshDescription}}}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description}{GeometryTriangleMeshDescription}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<int>\ getIndices(\textcolor{keywordtype}{size\_t}\ aFace)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::vector<int>\{\mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description_a161f5e6343b08d34bac9eb58b6ee6aa5}{indexArray}}[aFace\ *\ 3],\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description_a161f5e6343b08d34bac9eb58b6ee6aa5}{indexArray}}[aFace\ *\ 3\ +\ 1],\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description_a161f5e6343b08d34bac9eb58b6ee6aa5}{indexArray}}[aFace\ *\ 3\ +\ 2]\ \};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ getIndexCount()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description_a62095a1d44914be5e4876494c3301f1e}{faceCount}}\ *\ 3;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description_a161f5e6343b08d34bac9eb58b6ee6aa5}{indexArray}};\ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ GeometryDiscreteMeshDescription::GeometryDiscreteMeshDescription()}
+\DoxyCodeLine{00066\ \ \ \ \ :\ vertexCount(0),}
+\DoxyCodeLine{00067\ \ \ \ \ faceCount(0),}
+\DoxyCodeLine{00068\ \ \ \ \ vertexArray(nullptr),}
+\DoxyCodeLine{00069\ \ \ \ \ normalArray(nullptr)}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}\ GeometryTriangleMeshDescription::GeometryTriangleMeshDescription()}
+\DoxyCodeLine{00074\ \ \ \ \ :\ GeometryDiscreteMeshDescription(),}
+\DoxyCodeLine{00075\ \ \ \ \ indexArray(nullptr)}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ \}}
+
+\end{DoxyCode}

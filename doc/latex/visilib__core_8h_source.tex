@@ -1,0 +1,53 @@
+\doxysection{visilib\+\_\+core.\+h}
+\hypertarget{visilib__core_8h_source}{}\label{visilib__core_8h_source}\index{E:/External/visilib/visilib/visilib\_core.h@{E:/External/visilib/visilib/visilib\_core.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <CGAL/Lazy\_exact\_nt.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <CGAL/leda\_real.h>}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{typedef}\ CGAL::Lazy\_exact\_nt<leda\_real>\ exact;}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#ifdef\ INTEGRITY\_CHECK}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ \#define\ V\_ASSERT(X)\ assert(X)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \ \ \#define\ V\_ASSERT(X)\ ((void)0)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifdef\ \ OUTPUT\_DEBUG\_FILE}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ V\_LOG(std::ostream\&\ out,\ \textcolor{keyword}{const}\ std::string\&\ message,\ std::string\ prefix\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}["{}}<<prefix<<\textcolor{stringliteral}{"{}]\ "{}}\ <<\ message\ <<\ std::endl;}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ \ \ \ }}
+\DoxyCodeLine{00047\ \}}
+
+\end{DoxyCode}

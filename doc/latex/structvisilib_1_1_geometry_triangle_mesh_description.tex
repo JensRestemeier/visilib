@@ -1,5 +1,5 @@
-\hypertarget{structvisilib_1_1_geometry_triangle_mesh_description}{}\section{visilib\+::Geometry\+Triangle\+Mesh\+Description Struct Reference}
-\label{structvisilib_1_1_geometry_triangle_mesh_description}\index{visilib::GeometryTriangleMeshDescription@{visilib::GeometryTriangleMeshDescription}}
+\doxysection{visilib\+::Geometry\+Triangle\+Mesh\+Description Struct Reference}
+\hypertarget{structvisilib_1_1_geometry_triangle_mesh_description}{}\label{structvisilib_1_1_geometry_triangle_mesh_description}\index{visilib::GeometryTriangleMeshDescription@{visilib::GeometryTriangleMeshDescription}}
 
 
 Representation of a triangle mesh.  
@@ -15,26 +15,58 @@ Inheritance diagram for visilib\+::Geometry\+Triangle\+Mesh\+Description\+:\begi
 \includegraphics[height=2.000000cm]{structvisilib_1_1_geometry_triangle_mesh_description}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structvisilib_1_1_geometry_triangle_mesh_description_ac3bbf60ef76b5bbbd8731ca75113a1c7}\label{structvisilib_1_1_geometry_triangle_mesh_description_ac3bbf60ef76b5bbbd8731ca75113a1c7}} 
-virtual std\+::vector$<$ int $>$ {\bfseries get\+Indices} (size\+\_\+t a\+Face) const override
+virtual std\+::vector$<$ int $>$ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description_a5e423480f35b0ff27b31d14a412f546b}{get\+Indices}} (size\+\_\+t a\+Face) const override
 \item 
-\mbox{\Hypertarget{structvisilib_1_1_geometry_triangle_mesh_description_a7fd6d7e8f1a287607a18ad507be4c283}\label{structvisilib_1_1_geometry_triangle_mesh_description_a7fd6d7e8f1a287607a18ad507be4c283}} 
-virtual size\+\_\+t {\bfseries get\+Index\+Count} () const override
+virtual size\+\_\+t \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description_a7fd6d7e8f1a287607a18ad507be4c283}{get\+Index\+Count}} () const override
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structvisilib_1_1_geometry_triangle_mesh_description_a161f5e6343b08d34bac9eb58b6ee6aa5}\label{structvisilib_1_1_geometry_triangle_mesh_description_a161f5e6343b08d34bac9eb58b6ee6aa5}} 
-const int $\ast$ \mbox{\hyperlink{structvisilib_1_1_geometry_triangle_mesh_description_a161f5e6343b08d34bac9eb58b6ee6aa5}{index\+Array}}
+\Hypertarget{structvisilib_1_1_geometry_triangle_mesh_description_a161f5e6343b08d34bac9eb58b6ee6aa5}\label{structvisilib_1_1_geometry_triangle_mesh_description_a161f5e6343b08d34bac9eb58b6ee6aa5} 
+const int \texorpdfstring{$\ast$}{*} {\bfseries index\+Array}
 \begin{DoxyCompactList}\small\item\em Pointer to the index table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{visilib\+::\+Geometry\+Discrete\+Mesh\+Description}}}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t {\bfseries vertex\+Count}
+\begin{DoxyCompactList}\small\item\em Number of vertices. \end{DoxyCompactList}\item 
+size\+\_\+t {\bfseries face\+Count}
+\begin{DoxyCompactList}\small\item\em Number of faces. \end{DoxyCompactList}\item 
+const float \texorpdfstring{$\ast$}{*} {\bfseries vertex\+Array}
+\begin{DoxyCompactList}\small\item\em Pointer to the vertex table. \end{DoxyCompactList}\item 
+const float \texorpdfstring{$\ast$}{*} {\bfseries normal\+Array}
+\begin{DoxyCompactList}\small\item\em Pointer to the normal table (optional) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Representation of a triangle mesh. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structvisilib_1_1_geometry_triangle_mesh_description_a7fd6d7e8f1a287607a18ad507be4c283}\label{structvisilib_1_1_geometry_triangle_mesh_description_a7fd6d7e8f1a287607a18ad507be4c283} 
+\index{visilib::GeometryTriangleMeshDescription@{visilib::GeometryTriangleMeshDescription}!getIndexCount@{getIndexCount}}
+\index{getIndexCount@{getIndexCount}!visilib::GeometryTriangleMeshDescription@{visilib::GeometryTriangleMeshDescription}}
+\doxysubsubsection{\texorpdfstring{getIndexCount()}{getIndexCount()}}
+{\footnotesize\ttfamily virtual size\+\_\+t visilib\+::\+Geometry\+Triangle\+Mesh\+Description\+::get\+Index\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{visilib\+::\+Geometry\+Discrete\+Mesh\+Description}}.
+
+\Hypertarget{structvisilib_1_1_geometry_triangle_mesh_description_a5e423480f35b0ff27b31d14a412f546b}\label{structvisilib_1_1_geometry_triangle_mesh_description_a5e423480f35b0ff27b31d14a412f546b} 
+\index{visilib::GeometryTriangleMeshDescription@{visilib::GeometryTriangleMeshDescription}!getIndices@{getIndices}}
+\index{getIndices@{getIndices}!visilib::GeometryTriangleMeshDescription@{visilib::GeometryTriangleMeshDescription}}
+\doxysubsubsection{\texorpdfstring{getIndices()}{getIndices()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$ int $>$ visilib\+::\+Geometry\+Triangle\+Mesh\+Description\+::get\+Indices (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{a\+Face }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{structvisilib_1_1_geometry_discrete_mesh_description}{visilib\+::\+Geometry\+Discrete\+Mesh\+Description}}.
+
+
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/code/github/visilib/visilib/geometry\+\_\+mesh\+\_\+description.\+h\end{DoxyCompactItemize}
+E\+:/\+External/visilib/visilib/geometry\+\_\+mesh\+\_\+description.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,481 @@
+\doxysection{helper\+\_\+synthetic\+\_\+mesh\+\_\+builder.\+h}
+\hypertarget{helper__synthetic__mesh__builder_8h_source}{}\label{helper__synthetic__mesh__builder_8h_source}\index{E:/External/visilib/visilib/helper\_synthetic\_mesh\_builder.h@{E:/External/visilib/visilib/helper\_synthetic\_mesh\_builder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ \_USE\_MATH\_DEFINES}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_3.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}helper\_triangle\_mesh.h"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}helper\_triangle\_mesh\_container.h"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}math\_matrix\_4.h"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_2.h"{}}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{class\ }HelperTriangleMesh;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder}{HelperSyntheticMeshBuilder}}}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ getKey(\textcolor{keywordtype}{size\_t}\ myFaceNumber,\ \textcolor{keywordtype}{size\_t}\ v0,\ \textcolor{keywordtype}{size\_t}\ v1)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v0\ <\ v1\ ?\ v0\ *\ myFaceNumber\ +\ v1\ :\ v1\ *\ myFaceNumber\ +\ v0;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ SubdivisionPatternType}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ Regular,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ OneInside,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ ThreeOutside}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00056\ \ \ \ \ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_aa232622af286d93ec17df7ff71c5f2f9}{generateRegularGrid}}(\textcolor{keywordtype}{int}\ subdivision);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a302959ab04fdb90c2e1c6d0c157b7721}{generateCube}}(\textcolor{keywordtype}{int}\ subdivision);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a1c71d582856b74691db9238bf24e7f62}{generateSphere}}(\textcolor{keywordtype}{int}\ subdivision);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a63a57581bdcb7b3d593511321f0f2548}{generateCheckBoard}}(\textcolor{keywordtype}{int}\ subdivision,\ \textcolor{keywordtype}{bool}\ even);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_ae858a160ccfe307830a73e1edfd7b17f}{generateSlot}}(\textcolor{keywordtype}{float}\ x0,\ \textcolor{keywordtype}{float}\ y0,\ \textcolor{keywordtype}{float}\ xSize,\ \textcolor{keywordtype}{float}\ ySize);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a4781fa48f2c2b4b8c5ef186943bf4d30}{generateRegularPolygon}}(std::vector<MathVector3f>\&\ vertices,\ \textcolor{keywordtype}{size\_t}\ vertexCount);}
+\DoxyCodeLine{00075\ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_ae858a160ccfe307830a73e1edfd7b17f}{generateSlot}}(std::vector<int>\&\ indices,\ std::vector<MathVector3f>\&\ vertices,\ \textcolor{keywordtype}{float}\ x0,\ \textcolor{keywordtype}{float}\ y0,\textcolor{keywordtype}{float}\ xSize,\ \textcolor{keywordtype}{float}\ ySize);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a302959ab04fdb90c2e1c6d0c157b7721}{generateCube}}(std::vector<int>\&\ indices,\ std::vector<MathVector3f>\&\ vertices);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a23adb9695595040ccf8782bd29f364c4}{removeFaces}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ mesh,\ \textcolor{keywordtype}{size\_t}\ count);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a180737b641ccd8da503b6416559d3153}{addRandomness}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ mesh,\ \textcolor{keywordtype}{float}\ randomness);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{HelperTriangleMeshContainer}}*\ scene,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}});}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a47c189c29ad2889310e1667a30eb2ad7}{rotate}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{HelperTriangleMeshContainer}}*\ scene,\ \textcolor{keywordtype}{float}\ pitch,\ \textcolor{keywordtype}{float}\ yaw,\ \textcolor{keywordtype}{float}\ roll);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a31c66cba420f7938e7f246bea7057e54}{translate}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{HelperTriangleMeshContainer}}*\ scene,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ translation);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ mesh,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}});}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a47c189c29ad2889310e1667a30eb2ad7}{rotate}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ mesh,\ \textcolor{keywordtype}{float}\ pitch,\ \textcolor{keywordtype}{float}\ yaw,\ \textcolor{keywordtype}{float}\ roll);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a31c66cba420f7938e7f246bea7057e54}{translate}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ mesh,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ translation);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a180737b641ccd8da503b6416559d3153}{addRandomness}}(std::vector<MathVector3f>\&\ vertices,\ \textcolor{keywordtype}{float}\ randomness);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}}(std::vector<MathVector3f>\&\ vertices,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a47c189c29ad2889310e1667a30eb2ad7}{rotate}}(std::vector<MathVector3f>\&\ vertices,\ \textcolor{keywordtype}{float}\ pitch,\ \textcolor{keywordtype}{float}\ yaw,\ \textcolor{keywordtype}{float}\ roll);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a31c66cba420f7938e7f246bea7057e54}{translate}}(std::vector<MathVector3f>\&\ vertices,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ translation);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a408cd0c312a1053f6a479fc2fbea847f}{rescaleToUnitBox}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{HelperTriangleMeshContainer}}*\ scene);}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a296e5adbc26d762b483b482e264632dd}{subdivide}}(std::vector<int>\&\ indices,\ std::vector<MathVector3f>\&\ vertices,\ SubdivisionPatternType\ pattern\ =\ Regular);}
+\DoxyCodeLine{00124\ \ \ \ \ \};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a296e5adbc26d762b483b482e264632dd}{HelperSyntheticMeshBuilder::subdivide}}(std::vector<int>\&\ indices,\ std::vector<MathVector3f>\&\ vertices,\ SubdivisionPatternType\ pattern)}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ indices.size();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ std::vector<std::pair<size\_t,\ size\_t>>\ s;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ s.push\_back(std::pair<size\_t,\ size\_t>(0,\ 1));}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ s.push\_back(std::pair<size\_t,\ size\_t>(1,\ 2));}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ s.push\_back(std::pair<size\_t,\ size\_t>(0,\ 2));}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ std::unordered\_map<size\_t,\ size\_t>\ myEdgesMap;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i[6];}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ indices.resize(size\ *\ 4);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ lastIndex\ =\ size\ *\ 4\ -\/\ 1;}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ index\ =\ (\textcolor{keywordtype}{int})size\ -\/\ 3;\ index\ >=\ 0;\ index\ -\/=\ 3)}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ i[0]\ =\ indices[index\ +\ 0];}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ i[1]\ =\ indices[index\ +\ 1];}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ i[2]\ =\ indices[index\ +\ 2];}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ i[3]\ =\ 0;}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ i[4]\ =\ 0;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ i[5]\ =\ 0;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ split\ =\ 0;\ split\ <\ 3;\ split++)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ a\ =\ s[split].first;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ b\ =\ s[split].second;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ key\ =\ getKey(size,\ i[a],\ i[b]);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ myEdgesMap.find(key);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iter\ !=\ myEdgesMap.end())}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i[split\ +\ 3]\ =\ iter-\/>second;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i[split\ +\ 3]\ =\ vertices.size();}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ newVertex\ =\ (vertices[i[a]]\ +\ vertices[i[b]])\ *\ 0.5;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vertices.push\_back(newVertex);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myEdgesMap.insert(std::pair<size\_t,\ size\_t>(key,\ i[split\ +\ 3]));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pattern\ ==\ Regular)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices[lastIndex-\/-\/]\ =\ (int)i[0];\ indices[lastIndex-\/-\/]\ =\ (int)i[3];\ indices[lastIndex-\/-\/]\ =\ (int)i[5];}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices[lastIndex-\/-\/]\ =\ (int)i[3];\ indices[lastIndex-\/-\/]\ =\ (int)i[1];\ indices[lastIndex-\/-\/]\ =\ (int)i[4];}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices[lastIndex-\/-\/]\ =\ (int)i[5];\ indices[lastIndex-\/-\/]\ =\ (int)i[4];\ indices[lastIndex-\/-\/]\ =\ (int)i[2];}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ indices[lastIndex-\/-\/]\ =\ (int)i[3];\ indices[lastIndex-\/-\/]\ =\ (int)i[4];\ indices[lastIndex-\/-\/]\ =\ (int)i[5];}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ \ else\ if\ (pattern\ ==\ OneInside)}}
+\DoxyCodeLine{00177\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00178\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ indices[index\ +\ 0]\ =\ i[3];\ indices[index\ +\ 1]\ =\ i[4];\ \ \ indices[index\ +\ 2]\ =\ i[5];}}
+\DoxyCodeLine{00179\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00180\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ else\ if\ (pattern\ ==\ ThreeOutside)}}
+\DoxyCodeLine{00181\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00182\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ indices[index\ +\ 0]\ =\ i[0];\ indices[index\ +\ 1]\ =\ i[3];\ \ \ indices[index\ +\ 2]\ =\ i[5];}}
+\DoxyCodeLine{00183\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ indices.push\_back(i[3]);\ \ \ indices.push\_back(i[1]);\ \ \ \ \ indices.push\_back(i[4]);}}
+\DoxyCodeLine{00184\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ indices.push\_back(i[5]);\ \ \ indices.push\_back(i[4]);\ \ \ \ \ indices.push\_back(i[2]);}}
+\DoxyCodeLine{00185\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a302959ab04fdb90c2e1c6d0c157b7721}{HelperSyntheticMeshBuilder::generateCube}}(std::vector<int>\ \&\ indices,\ std::vector<MathVector3f>\ \&\ vertices)}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ 0.5f;}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/s,\ -\/s,\ -\/s));}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/s,\ s,\ -\/s));}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(s,\ s,\ -\/s));}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(s,\ -\/s,\ -\/s));}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/s,\ -\/s,\ s));}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/s,\ s,\ s));}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(s,\ s,\ s));}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(s,\ -\/s,\ s));}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ indices.push\_back(0);\ \ \ indices.push\_back(1);\ \ \ indices.push\_back(2);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ indices.push\_back(0);\ \ \ indices.push\_back(2);\ \ \ indices.push\_back(3);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ indices.push\_back(4);\ \ \ indices.push\_back(6);\ \ \ indices.push\_back(5);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ indices.push\_back(4);\ \ \ indices.push\_back(7);\ \ \ indices.push\_back(6);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ indices.push\_back(4);\ \ \ indices.push\_back(5);\ \ \ indices.push\_back(1);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ indices.push\_back(4);\ \ \ indices.push\_back(1);\ \ \ indices.push\_back(0);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ indices.push\_back(3);\ \ \ indices.push\_back(2);\ \ \ indices.push\_back(6);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ indices.push\_back(3);\ \ \ indices.push\_back(6);\ \ \ indices.push\_back(7);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ indices.push\_back(1);\ \ \ indices.push\_back(5);\ \ \ indices.push\_back(6);}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ indices.push\_back(1);\ \ \ indices.push\_back(6);\ \ \ indices.push\_back(2);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ indices.push\_back(4);\ \ \ indices.push\_back(0);\ \ \ indices.push\_back(3);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ indices.push\_back(4);\ \ \ indices.push\_back(3);\ \ \ indices.push\_back(7);}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}\ *\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_aa232622af286d93ec17df7ff71c5f2f9}{HelperSyntheticMeshBuilder::generateRegularGrid}}(\textcolor{keywordtype}{int}\ subdivision)}
+\DoxyCodeLine{00217\ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ vertices;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ std::vector<int>\ indices;}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ 0.5f;}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/s,\ -\/s,\ 0));}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/s,\ s,\ 0));}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(s,\ s,\ 0));}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(s,\ -\/s,\ 0));}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ indices.push\_back(0);\ indices.push\_back(1);\ indices.push\_back(2);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ indices.push\_back(0);\ indices.push\_back(2);\ indices.push\_back(3);}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ subdivision;\ i++)}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a296e5adbc26d762b483b482e264632dd}{subdivide}}(indices,\ vertices);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}(vertices,\ indices);}
+\DoxyCodeLine{00237\ \ \ \ \ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a63a57581bdcb7b3d593511321f0f2548}{HelperSyntheticMeshBuilder::generateCheckBoard}}(\textcolor{keywordtype}{int}\ subdivision,\ \textcolor{keywordtype}{bool}\ even)}
+\DoxyCodeLine{00240\ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_aa232622af286d93ec17df7ff71c5f2f9}{generateRegularGrid}}(subdivision\ -\/\ 1);}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a296e5adbc26d762b483b482e264632dd}{subdivide}}(result-\/>getIndices(),\ result-\/>getVertices(),\ even\ ?\ OneInside\ :\ ThreeOutside);}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}\ *\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a302959ab04fdb90c2e1c6d0c157b7721}{HelperSyntheticMeshBuilder::generateCube}}(\textcolor{keywordtype}{int}\ subdivision)}
+\DoxyCodeLine{00249\ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ vertices;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ std::vector<int>\ indices;}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a302959ab04fdb90c2e1c6d0c157b7721}{generateCube}}(indices,\ vertices);}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ subdivision;\ i++)}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a296e5adbc26d762b483b482e264632dd}{subdivide}}(indices,\ vertices);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}(vertices,\ indices);}
+\DoxyCodeLine{00261\ \ \ \ \ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a1c71d582856b74691db9238bf24e7f62}{HelperSyntheticMeshBuilder::generateSphere}}(\textcolor{keywordtype}{int}\ subdivision)}
+\DoxyCodeLine{00264\ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ vertices;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ std::vector<int>\ indices;}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a302959ab04fdb90c2e1c6d0c157b7721}{generateCube}}(indices,\ vertices);}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ subdivision;\ i++)}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a296e5adbc26d762b483b482e264632dd}{subdivide}}(indices,\ vertices);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ vertices.size();\ i++)}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ vertices[i].normalize();}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}(vertices,\ indices);}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}*\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_ae858a160ccfe307830a73e1edfd7b17f}{HelperSyntheticMeshBuilder::generateSlot}}(\textcolor{keywordtype}{float}\ x0,\ \textcolor{keywordtype}{float}\ y0,\ \textcolor{keywordtype}{float}\ xSize,\ \textcolor{keywordtype}{float}\ ySize)}
+\DoxyCodeLine{00284\ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ vertices;}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ std::vector<int>\ indices;}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_ae858a160ccfe307830a73e1edfd7b17f}{generateSlot}}(indices,\ vertices,\ x0,\ y0,xSize,\ ySize);}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}(vertices,\ indices);}
+\DoxyCodeLine{00291\ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_ae858a160ccfe307830a73e1edfd7b17f}{HelperSyntheticMeshBuilder::generateSlot}}(std::vector<int>\&\ indices,\ std::vector<MathVector3f>\&\ vertices,\ \textcolor{keywordtype}{float}\ x0,\ \textcolor{keywordtype}{float}\ y0,\ \textcolor{keywordtype}{float}\ xSize,\ \textcolor{keywordtype}{float}\ ySize)}
+\DoxyCodeLine{00294\ \ \ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ s\ =\ 0.5f;}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ 0.5f\ *\ xSize;}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ 0.5f\ *\ ySize;}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/s,\ \ s,\ 0));}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(\ 0,\ \ s,\ 0));}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(\ s,\ \ s,\ 0));}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(\ s,\ \ 0,\ 0));}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(\ s,\ -\/s,\ 0));}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(\ 0,\ -\/s,\ 0));}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/s,\ -\/s,\ 0));}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/s,\ \ 0,\ 0));}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(x0-\/x,\ y0+y,\ 0));}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(x0+x,\ y0+y,\ 0));}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(x0+x,\ y0-\/y,\ 0));}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(x0-\/x,\ y0-\/y,\ 0));}
+\DoxyCodeLine{00312\ \ \ \ \ \ }
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ indices.push\_back(0);\ indices.push\_back(1);\ \ \ \ \ indices.push\_back(8);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ indices.push\_back(1);\ indices.push\_back(9);\ \ \ \ \ indices.push\_back(8);}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ indices.push\_back(1);\ indices.push\_back(2);\ \ \ \ \ indices.push\_back(9);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ indices.push\_back(9);\ indices.push\_back(2);\ \ \ \ \ indices.push\_back(3);}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ indices.push\_back(9);\ indices.push\_back(3);\ \ \ \ \ indices.push\_back(10);}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ indices.push\_back(10);\ indices.push\_back(3);\ \ \ \ \ indices.push\_back(4);}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ indices.push\_back(10);\ indices.push\_back(4);\ \ \ \ \ indices.push\_back(5);}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ indices.push\_back(11);\ indices.push\_back(10);\ \ \ \ \ indices.push\_back(5);}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ indices.push\_back(6);\ indices.push\_back(11);\ \ \ \ \ indices.push\_back(5);}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ indices.push\_back(7);\ indices.push\_back(11);\ \ \ \ \ indices.push\_back(6);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ indices.push\_back(7);\ indices.push\_back(8);\ \ \ \ \ indices.push\_back(11);}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ indices.push\_back(7);\ indices.push\_back(0);\ \ \ \ \ indices.push\_back(8);}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a4781fa48f2c2b4b8c5ef186943bf4d30}{HelperSyntheticMeshBuilder::generateRegularPolygon}}(std::vector<MathVector3f>\ \&\ vertices,\ \textcolor{keywordtype}{size\_t}\ vertexCount)}
+\DoxyCodeLine{00330\ \ \ \ \ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vertexCount\ ==\ 1)}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ vertices.push\_back(MathVector3f::Zero());}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (vertexCount\ ==\ 2)}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(-\/1,\ 0,\ 0));}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(1,\ 0,\ 0));}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ theta\ =\ 0;}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dt\ =\ -\/\ 2.f\ *\ (float)\ M\_PI\ /\ (\textcolor{keywordtype}{float})vertexCount;}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ vertexCount;\ i++)}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vertices.push\_back(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(cos(theta),\ sin(theta),\ 0));}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ theta\ +=\ dt;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ \ \ \ \ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a23adb9695595040ccf8782bd29f364c4}{HelperSyntheticMeshBuilder::removeFaces}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}\ *\ mesh,\ \textcolor{keywordtype}{size\_t}\ count)}
+\DoxyCodeLine{00355\ \ \ \ \ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ std::vector<int>\&\ indices\ =\ mesh-\/>getIndices();}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ face\ =\ rand()\ \%\ (indices.size()\ /\ 3);}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ indices[face\ *\ 3\ +\ 0]\ =\ indices[indices.size()\ -\/\ 3];}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ indices[face\ *\ 3\ +\ 1]\ =\ indices[indices.size()\ -\/\ 2];}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ indices[face\ *\ 3\ +\ 2]\ =\ indices[indices.size()\ -\/\ 1];}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ indices.resize(indices.size()\ -\/\ 3);}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \ \ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a180737b641ccd8da503b6416559d3153}{HelperSyntheticMeshBuilder::addRandomness}}(std::vector<MathVector3f>\ \&\ vertices,\ \textcolor{keywordtype}{float}\ randomness)}
+\DoxyCodeLine{00370\ \ \ \ \ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (randomness\ ==\ 0.0)}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ vertices.size();\ i++)}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ random((\textcolor{keywordtype}{float})rand()\ /\ (\textcolor{keywordtype}{float})(RAND\_MAX),\ (\textcolor{keywordtype}{float})rand()\ /\ (\textcolor{keywordtype}{float})(RAND\_MAX),\ (\textcolor{keywordtype}{float})rand()\ /\ (\textcolor{keywordtype}{float})(RAND\_MAX));}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ random.normalize();}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ random\ *=\ randomness;}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ vertices[i]\ +=\ random;}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \}}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a408cd0c312a1053f6a479fc2fbea847f}{HelperSyntheticMeshBuilder::rescaleToUnitBox}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{HelperTriangleMeshContainer}}\ *\ scene)}
+\DoxyCodeLine{00384\ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ myMeshArray\ =\ scene-\/>\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container_a0297bc8aff400179d36afd3655877464}{getMeshArray}}();}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ std::vector<MathVector3f>\ myPoints;}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ myMeshArray.begin();\ iter\ !=\ myMeshArray.end();\ iter++)}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ myMin,\ myMax;}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a7087aa7f19e17f00a30f3d22562e5cb5}{MathArithmetic<float>::getMinMax}}((*iter)-\/>getVertices(),\ myMin,\ myMax);}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ myPoints.push\_back(myMin);}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ myPoints.push\_back(myMax);}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ myMin;}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ myMax;}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a7087aa7f19e17f00a30f3d22562e5cb5}{MathArithmetic<float>::getMinMax}}(myPoints,\ myMin,\ myMax);}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ myMiddle\ =\ (myMin\ +\ myMax)\ *\ (-\/0.5);}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ myExtent\ =\ myMax\ -\/\ myMin;}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ m\ =\ myExtent.x;}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ m\ =\ m\ >\ myExtent.y\ ?\ m\ :\ myExtent.y;}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ m\ =\ m\ >\ myExtent.z\ ?\ m\ :\ myExtent.z;}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ m\ =\ 1.0f\ /\ m;}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ myMeshArray.begin();\ iter\ !=\ myMeshArray.end();\ iter++)}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a31c66cba420f7938e7f246bea7057e54}{translate}}((*iter),\ myMiddle);}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}}((*iter),\ m);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00414\ \ \ \ \ \}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{HelperSyntheticMeshBuilder::scale}}(std::vector<MathVector3f>\ \&\ vertices,\ \textcolor{keywordtype}{float}\ scale)}
+\DoxyCodeLine{00417\ \ \ \ \ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ vertices.size();\ i++)}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ vertices[i]\ *=\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}};}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00422\ \ \ \ \ \}}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{HelperSyntheticMeshBuilder::scale}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{HelperTriangleMeshContainer}}\ *\ scene,\ \textcolor{keywordtype}{float}\ aScale)}
+\DoxyCodeLine{00425\ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ myMeshArray\ =\ scene-\/>\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container_a0297bc8aff400179d36afd3655877464}{getMeshArray}}();}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ myMeshArray.begin();\ iter\ !=\ myMeshArray.end();\ iter++)}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}}((*iter),\ aScale);}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a47c189c29ad2889310e1667a30eb2ad7}{HelperSyntheticMeshBuilder::rotate}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{HelperTriangleMeshContainer}}\ *\ scene,\ \textcolor{keywordtype}{float}\ pitch,\ \textcolor{keywordtype}{float}\ yaw,\ \textcolor{keywordtype}{float}\ roll)}
+\DoxyCodeLine{00435\ \ \ \ \ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ myMeshArray\ =\ scene-\/>\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container_a0297bc8aff400179d36afd3655877464}{getMeshArray}}();}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ myMeshArray.begin();\ iter\ !=\ myMeshArray.end();\ iter++)}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a47c189c29ad2889310e1667a30eb2ad7}{rotate}}((*iter),\ pitch,\ yaw,\ roll);}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a31c66cba420f7938e7f246bea7057e54}{HelperSyntheticMeshBuilder::translate}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container}{HelperTriangleMeshContainer}}\ *\ scene,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \&\ translation)}
+\DoxyCodeLine{00445\ \ \ \ \ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ myMeshArray\ =\ scene-\/>\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh_container_a0297bc8aff400179d36afd3655877464}{getMeshArray}}();}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ myMeshArray.begin();\ iter\ !=\ myMeshArray.end();\ iter++)}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a31c66cba420f7938e7f246bea7057e54}{translate}}((*iter),\ translation);}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \ \ \ \ \}}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a47c189c29ad2889310e1667a30eb2ad7}{HelperSyntheticMeshBuilder::rotate}}(std::vector<MathVector3f>\ \&\ vertices,\ \textcolor{keywordtype}{float}\ pitch,\ \textcolor{keywordtype}{float}\ yaw,\ \textcolor{keywordtype}{float}\ roll)}
+\DoxyCodeLine{00455\ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_matrix__}{MathMatrixf}}\ pitchMatrix;}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ pitchMatrix.setRotateX(pitch);}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_matrix__}{MathMatrixf}}\ yawMatrix;}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ yawMatrix.setRotateY(yaw);}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_matrix__}{MathMatrixf}}\ rollMatrix;}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ rollMatrix.setRotateZ(roll);}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ vertices.size();\ i++)}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//TODO\ replace\ this\ by\ a\ single\ matrix\ concatenation}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ vertices[i]\ =\ pitchMatrix.multiply(vertices[i]);}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ vertices[i]\ =\ yawMatrix.multiply(vertices[i]);}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ vertices[i]\ =\ rollMatrix.multiply(vertices[i]);}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a31c66cba420f7938e7f246bea7057e54}{HelperSyntheticMeshBuilder::translate}}(std::vector<MathVector3f>\ \&\ vertices,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \&\ translation)}
+\DoxyCodeLine{00475\ \ \ \ \ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ vertices.size();\ i++)}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ vertices[i]\ +=\ translation;}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a180737b641ccd8da503b6416559d3153}{HelperSyntheticMeshBuilder::addRandomness}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}\ *\ mesh,\ \textcolor{keywordtype}{float}\ randomness)}
+\DoxyCodeLine{00483\ \ \ \ \ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a180737b641ccd8da503b6416559d3153}{addRandomness}}(mesh-\/>getVertices(),\ randomness);}
+\DoxyCodeLine{00485\ \ \ \ \ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{HelperSyntheticMeshBuilder::scale}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}\ *\ mesh,\ \textcolor{keywordtype}{float}\ s)}
+\DoxyCodeLine{00488\ \ \ \ \ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a3ad2d53409b8fd3335e5acec7dd62e7a}{scale}}(mesh-\/>getVertices(),\ s);}
+\DoxyCodeLine{00490\ \ \ \ \ \}}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a47c189c29ad2889310e1667a30eb2ad7}{HelperSyntheticMeshBuilder::rotate}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}\ *\ mesh,\ \textcolor{keywordtype}{float}\ pitch,\ \textcolor{keywordtype}{float}\ yaw,\ \textcolor{keywordtype}{float}\ roll)}
+\DoxyCodeLine{00493\ \ \ \ \ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a47c189c29ad2889310e1667a30eb2ad7}{rotate}}(mesh-\/>getVertices(),\ pitch,\ yaw,\ roll);}
+\DoxyCodeLine{00495\ \ \ \ \ \}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a31c66cba420f7938e7f246bea7057e54}{HelperSyntheticMeshBuilder::translate}}(\mbox{\hyperlink{classvisilib_1_1_helper_triangle_mesh}{HelperTriangleMesh}}\ *\ mesh,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \&\ translation)}
+\DoxyCodeLine{00498\ \ \ \ \ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_helper_synthetic_mesh_builder_a31c66cba420f7938e7f246bea7057e54}{translate}}(mesh-\/>getVertices(),\ translation);}
+\DoxyCodeLine{00500\ \ \ \ \ \}}
+\DoxyCodeLine{00501\ \}}
+
+\end{DoxyCode}

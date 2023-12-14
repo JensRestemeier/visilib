@@ -1,0 +1,79 @@
+\doxysection{math\+\_\+combinatorial.\+h}
+\hypertarget{math__combinatorial_8h_source}{}\label{math__combinatorial_8h_source}\index{E:/External/visilib/visilib/math\_combinatorial.h@{E:/External/visilib/visilib/math\_combinatorial.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}visilib\_core.h"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_math_combinatorial}{MathCombinatorial}}}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_combinatorial_add385e8d5b8bfb586e3d16dee08c5cd1}{haveAtLeastNCommonFacets}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ aFacetsDescription1,\ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ aFacetsDescription2,\ \textcolor{keywordtype}{size\_t}\ n\ =\ 3);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_math_combinatorial_ae4b0f9e26c345cde34d7a6b1924e9f04}{initFacets}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ aFacetsDescription1,\ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ aFacetsDescription2,\ \textcolor{keywordtype}{size\_t}\ anHyperplane,\ std::vector<size\_t>\&\ result);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_combinatorial_a7b63205c6b27719a20d8ffdb1e7ef7c5}{hasFacet}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ facets,\ \textcolor{keywordtype}{size\_t}\ aFace);}
+\DoxyCodeLine{00037\ \ \ \ \ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_combinatorial_add385e8d5b8bfb586e3d16dee08c5cd1}{MathCombinatorial::haveAtLeastNCommonFacets}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ aFacetsDescription1,\ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ aFacetsDescription2,\ \textcolor{keywordtype}{size\_t}\ n)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ V\_ASSERT(std::is\_sorted(aFacetsDescription1.begin(),\ aFacetsDescription1.end()));}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ V\_ASSERT(std::is\_sorted(aFacetsDescription2.begin(),\ aFacetsDescription2.end()));}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ result(aFacetsDescription1.size());}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ std::set\_intersection(aFacetsDescription1.begin(),\ aFacetsDescription1.end(),\ aFacetsDescription2.begin(),\ aFacetsDescription2.end(),\ result.begin());}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ iter\ -\/\ result.begin();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ size\ >=\ n;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_math_combinatorial_ae4b0f9e26c345cde34d7a6b1924e9f04}{MathCombinatorial::initFacets}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ aFacetsDescription1,\ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ aFacetsDescription2,\ \textcolor{keywordtype}{size\_t}\ anHyperplane,\ std::vector<size\_t>\&\ result)}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_combinatorial_add385e8d5b8bfb586e3d16dee08c5cd1}{MathCombinatorial::haveAtLeastNCommonFacets}}(aFacetsDescription1,\ aFacetsDescription2));}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ requireSorting\ =\ anHyperplane\ <=\ aFacetsDescription1[aFacetsDescription1.size()\ -\/\ 1]}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ ||\ anHyperplane\ <=\ aFacetsDescription2[aFacetsDescription2.size()\ -\/\ 1];}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ result.resize(aFacetsDescription1.size());}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ iter\ =\ std::set\_intersection(aFacetsDescription1.begin(),\ aFacetsDescription1.end(),\ aFacetsDescription2.begin(),\ aFacetsDescription2.end(),\ result.begin());}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ iter\ -\/\ result.begin();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ result.resize(size\ +\ 1);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ result[size]\ =\ anHyperplane;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (requireSorting)}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ std::sort(result.begin(),\ result.end());}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ V\_ASSERT(std::is\_sorted(result.begin(),\ result.end()));}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_combinatorial_a7b63205c6b27719a20d8ffdb1e7ef7c5}{MathCombinatorial::hasFacet}}(\textcolor{keyword}{const}\ std::vector<size\_t>\ \&\ aFacetsDescription,\ \textcolor{keywordtype}{size\_t}\ aFace)}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ V\_ASSERT(std::is\_sorted(aFacetsDescription.begin(),\ aFacetsDescription.end()));}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::binary\_search(aFacetsDescription.begin(),\ aFacetsDescription.end(),\ aFace);;}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \}}
+
+\end{DoxyCode}

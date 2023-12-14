@@ -1,0 +1,109 @@
+\doxysection{geometry\+\_\+ray.\+h}
+\hypertarget{geometry__ray_8h_source}{}\label{geometry__ray_8h_source}\index{E:/External/visilib/visilib/geometry\_ray.h@{E:/External/visilib/visilib/geometry\_ray.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_3.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}visilib.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}visibility\_ray.h"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_visibility_ray}{VisibilityRay}}\&\ ray);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aStart,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aDirection);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}\&\ other);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aStart,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ aDirection);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a8000dea413615b492c5d65423efb01d3}{getStart}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a027b2a624d3d13db7b409c36439af81d}{mStart}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a1c4a4cecebb4f77dcaf45ad1167b3904}{getDirection}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_ad3285f944823e73b72c816231948c9fc}{mDirection}};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a634b177e5dc2ef7f97d62d1fecc6dac0}{get}}(\textcolor{keywordtype}{double}\&\ aSx,\ \textcolor{keywordtype}{double}\&\ aSy,\ \textcolor{keywordtype}{double}\&\ aSz,\ \textcolor{keywordtype}{int}\&\ akx,\ \textcolor{keywordtype}{int}\&\ aky,\ \textcolor{keywordtype}{int}\&\ akz)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ aSx\ =\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a19a4fc7cd519d2e28c6ce37d91dac6e4}{Sx}};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ aSy\ =\ Sy;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ aSz\ =\ Sz;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ akx\ =\ kx;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ aky\ =\ ky;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ akz\ =\ kz;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a49d9c7a9b9f886c7542a3f49c5678609}{get}}(\textcolor{keywordtype}{float}\&\ aSx,\ \textcolor{keywordtype}{float}\&\ aSy,\ \textcolor{keywordtype}{float}\&\ aSz,\ \textcolor{keywordtype}{int}\&\ akx,\ \textcolor{keywordtype}{int}\&\ aky,\ \textcolor{keywordtype}{int}\&\ akz)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ aSx\ =\ (float)\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a19a4fc7cd519d2e28c6ce37d91dac6e4}{Sx}};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ aSy\ =\ (float)Sy;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ aSz\ =\ (float)Sz;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ akx\ =\ kx;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ aky\ =\ ky;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ akz\ =\ kz;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a027b2a624d3d13db7b409c36439af81d}{mStart}};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_ad3285f944823e73b72c816231948c9fc}{mDirection}};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a19a4fc7cd519d2e28c6ce37d91dac6e4}{Sx}};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Sy;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Sz;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ kx;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ky;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ kz;}
+\DoxyCodeLine{00091\ \ \ \ \ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryRay::GeometryRay(\textcolor{keyword}{const}\ \mbox{\hyperlink{structvisilib_1_1_visibility_ray}{VisibilityRay}}\&\ ray)}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ :\ Sx(0.0),\ Sy(0.0),\ Sz(0.0),\ kx(0),\ ky(0),\ kz(0)}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ initialize(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(ray.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_a8c78b0461d9f6e5425c5e14fcd24a9d1}{org}}),\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}(ray.\mbox{\hyperlink{structvisilib_1_1_visibility_ray_ad3c5fe1430162ea249feb953f6a5a347}{dir}}));}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryRay::GeometryRay(\textcolor{keyword}{const}\ MathVector3f\&\ aStart,\ \textcolor{keyword}{const}\ MathVector3f\&\ aDirection)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ :\ Sx(0.0),\ Sy(0.0),\ Sz(0.0),\ kx(0),\ ky(0),\ kz(0)}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ initialize(aStart,\ aDirection);}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryRay::GeometryRay(\textcolor{keyword}{const}\ GeometryRay\&\ other)}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ :\ Sx(0.0),\ Sy(0.0),\ Sz(0.0),\ kx(0),\ ky(0),\ kz(0)}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ initialize(other.mStart,\ other.mDirection);}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ Note:\ the\ initialize\ method\ is\ defined\ in\ "{}MathGeometry.h"{}}}
+\DoxyCodeLine{00112\ \}}
+
+\end{DoxyCode}

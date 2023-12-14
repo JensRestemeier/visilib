@@ -1,0 +1,278 @@
+\doxysection{plucker\+\_\+polytope\+\_\+splitter.\+h}
+\hypertarget{plucker__polytope__splitter_8h_source}{}\label{plucker__polytope__splitter_8h_source}\index{E:/External/visilib/visilib/plucker\_polytope\_splitter.h@{E:/External/visilib/visilib/plucker\_polytope\_splitter.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}geometry\_position\_type.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}math\_predicates.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}math\_geometry.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}math\_combinatorial.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}plucker\_polytope.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}plucker\_polyhedron.h"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_splitter}{PluckerPolytopeSplitter}}}
+\DoxyCodeLine{00039\ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ GeometryPositionType\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_splitter_a50150fef5b24618c067c14c5e5fdb438}{split}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron,\ \textcolor{keyword}{const}\ P\&\ aPlane,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ aPolytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ aLeft,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ aRight,\ \textcolor{keywordtype}{size\_t}\ aPlaneId,\ \textcolor{keywordtype}{bool}\ anormalization,\ S\ tolerance);}
+\DoxyCodeLine{00052\ \ \ \ \ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{inline}\ GeometryPositionType\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_splitter_a50150fef5b24618c067c14c5e5fdb438}{PluckerPolytopeSplitter<P,\ S>::split}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ aPolyhedron,\ \textcolor{keyword}{const}\ P\&\ aPlane,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ aPolytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ aLeft,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ aRight,\ \textcolor{keywordtype}{size\_t}\ aPlaneID,\ \textcolor{keywordtype}{bool}\ normalization,\ S\ tolerance)}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasPointOnTheLeft\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasPointOnTheRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ myWait;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ std::unordered\_set<size\_t>\ myVertices;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ myQueryList;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ std::unordered\_map<size\_t,\ int>\ myStatus;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ std::unordered\_map<size\_t,\ S>\ \ \ myArrayOfPlanePosition;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ V\_ASSERT(aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a8e2edde9a2168838192ec6c32a7955a3}{getEdgeCount}}()\ >\ 0);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ edge[2];}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 1\ -\/\ edge\ classification}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ iterate\ through\ all\ the\ edges\ to\ inspect\ the\ relative\ position\ of\ the\ two\ myVertices\ of\ the\ edge\ with\ regards\ to\ the\ splitting\ hyperplane}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_ad9bf03ac433849c34f6df0ce91d4f8f3}{getEdges}}().begin();\ iter\ !=\ aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_ad9bf03ac433849c34f6df0ce91d4f8f3}{getEdges}}().end();\ iter++)}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ edge[0]\ =\ iter-\/>first;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ edge[1]\ =\ iter-\/>second;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ 2;\ i++)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ a\ =\ edge[i];}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myVertices.find(a)\ ==\ myVertices.end())}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myVertices.insert(a);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ result\ =\ aPlane.dot(aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(a));}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GeometryPositionType\ position\ =\ MathPredicates::getVertexPlaneRelativePosition(aPlane,\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(a),\ tolerance);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myArrayOfPlanePosition.insert(std::pair<size\_t,\ S>(a,\ result));}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position\ ==\ ON\_NEGATIVE\_SIDE)}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myStatus.insert(std::pair<size\_t,\ int>(a,\ -\/1));}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPointOnTheLeft\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (position\ ==\ ON\_POSITIVE\_SIDE)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myStatus.insert(std::pair<size\_t,\ int>(a,\ 1));}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPointOnTheRight\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(position\ ==\ ON\_BOUNDARY);}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myStatus.insert(std::pair<size\_t,\ int>(a,\ 0));}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myWait.push\_back(a);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myQueryList.push\_back(a);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 2\ -\/\ Treat\ the\ special\ cases,\ when\ the\ hyperplane\ does\ not\ split\ with\ the\ polytope}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!hasPointOnTheLeft\ \&\&\ !hasPointOnTheRight)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 2\ -\/\ Case\ 1\ -\/\ the\ hyperplanes\ contains\ all\ the\ myVertices\ of\ the\ polytope}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ no\ split\ is\ required,\ the\ hyperplane\ is\ added\ to\ the\ facets\ description\ of\ the\ myVertices\ contained\ in\ the\ hyperplane.}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_ad9bf03ac433849c34f6df0ce91d4f8f3}{getEdges}}().begin();\ iter\ !=\ aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_ad9bf03ac433849c34f6df0ce91d4f8f3}{getEdges}}().end();\ iter++)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myI1\ =\ iter-\/>first;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myI2\ =\ iter-\/>second;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aLeft-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(myI1,\ myI2,\ aPolyhedron);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aRight-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(myI1,\ myI2,\ aPolyhedron);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(aLeft-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a8e2edde9a2168838192ec6c32a7955a3}{getEdgeCount}}()\ >\ 0);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(aRight-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a8e2edde9a2168838192ec6c32a7955a3}{getEdgeCount}}()\ >\ 0);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ index\ =\ 0;\ index\ <\ myWait.size();\ index++)}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classvisilib_1_1_math_combinatorial_a7b63205c6b27719a20d8ffdb1e7ef7c5}{MathCombinatorial::hasFacet}}(aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(myWait[index]),\ aPlaneID))}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a027bd5891e7b3a091549bfc8865ae9aa}{addToFacetsDescription}}(myWait[index],\ aPlaneID);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_BOUNDARY;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!hasPointOnTheLeft)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 2\ -\/\ Case\ 2\ \ -\/\ the\ polytope\ is\ entierly\ on\ the\ positive\ side.\ Nothing\ to\ do.}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_POSITIVE\_SIDE;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!hasPointOnTheRight)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 2\ -\/\ Case\ 3\ \ -\/\ the\ polytope\ is\ on\ entierly\ the\ negative\ side.\ Nothing\ to\ do.}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_NEGATIVE\_SIDE;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 3\ -\/\ P\ processing}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ We\ are\ in\ the\ generic\ case,\ where\ the\ hyperplane\ split\ the\ polytope\ in\ two\ convex\ polytopes.}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ We\ first\ process\ all\ the\ myVertices\ and\ creates\ the\ new\ myVertices\ if\ required}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ hyperplane\ is\ added\ to\ the\ facets\ description\ of\ the\ myVertices\ contained\ in\ the\ hyperplane.}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ index\ =\ 0;\ index\ <\ myWait.size();\ index++)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classvisilib_1_1_math_combinatorial_a7b63205c6b27719a20d8ffdb1e7ef7c5}{MathCombinatorial::hasFacet}}(aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(myWait[index]),\ aPlaneID))}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a027bd5891e7b3a091549bfc8865ae9aa}{addToFacetsDescription}}(myWait[index],\ aPlaneID);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ iterate\ though\ all\ the\ edges\ to\ determine\ the\ operation\ required\ for\ each\ edge}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ initialNumberOfVertices\ =\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7b40cfeac1b1954b32866b5bffac3588}{getLinesCount}}();}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_ad9bf03ac433849c34f6df0ce91d4f8f3}{getEdges}}().begin();\ iter\ !=\ aPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_ad9bf03ac433849c34f6df0ce91d4f8f3}{getEdges}}().end();\ iter++)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myI1\ =\ iter-\/>first;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ myI2\ =\ iter-\/>second;}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sum\ =\ myStatus[myI1]\ +\ myStatus[myI2];}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ myStatus[myI1]\ \ \ |\ \ \ +\ +\ 0\ \ \ \ \ \ |\ +\ 0\ -\/\ |\ \ 0\ \ -\/\ \ -\/\ \ \ \ |\ \ position\ of\ vertex\ 0}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ myStatus[myI2]\ \ \ |\ \ \ +\ 0\ +\ \ \ \ \ \ |\ -\/\ 0\ +\ |\ \ -\/\ \ 0\ \ -\/\ \ \ \ |\ \ position\ of\ vertex\ 1}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ =======\ \ \ \ |=======|==========\ \ \ |}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sum\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ 2\ 1\ 1\ \ \ \ \ \ |\ 0\ 0\ 0\ |\ -\/1\ -\/1\ -\/2\ \ \ \ |\ \ the\ sum}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ operation\ \ \ \ \ \ \ \ |\ add\ to\ right\ |\ split\ |\ add\ to\ left\ |\ \ the\ operation\ to\ perform}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ <\ 0)\ \textcolor{comment}{//\ add\ edge\ to\ left\ polytope}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aLeft-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(myI1,\ myI2,\ aPolyhedron);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sum\ >\ 0)\textcolor{comment}{//\ add\ edge\ to\ right\ polytope}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aRight-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(myI1,\ myI2,\ aPolyhedron);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ split\ edge}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myStatus[myI1]\ !=\ 0)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ edge\ crosses\ the\ hyperplane:\ a\ new\ vertex\ is\ created\ at\ the\ intersection\ the\ edge\ and\ the\ hyperplane}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myStatus[myI1]\ >\ 0)}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ temp\ =\ myI1;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myI1\ =\ myI2;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myI2\ =\ temp;}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<size\_t>\ myFacets;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_combinatorial_ae4b0f9e26c345cde34d7a6b1924e9f04}{MathCombinatorial::initFacets}}(aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(myI1),\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(myI2),\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPlaneID,}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myFacets);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasVertex\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ test\ =\ initialNumberOfVertices;\ test\ <\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7b40cfeac1b1954b32866b5bffac3588}{getLinesCount}}()\ \&\&\ !hasVertex;\ test++)}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\ existingFacets\ =\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(test);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (existingFacets.size()\ ==\ myFacets.size()\ \&\&\ std::equal(existingFacets.begin(),\ existingFacets.end(),\ myFacets.begin()))}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasVertex\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hasVertex)}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ vertex\ position,\ at\ the\ intersection\ of\ the\ edge\ and\ the\ splitting\ hyperplane}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ P\ \ myIntersection\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ab6a7122ce9ad4d17b406e12ad1bd125f}{MathGeometry::interpolate}}(myArrayOfPlanePosition[myI1],\ myArrayOfPlanePosition[myI2],\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(myI1),\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(myI2),\ tolerance);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (normalization)}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myIntersection\ =\ myIntersection.getNormalized();}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ vertexIndex\ =\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a6c9fa6964a332bd0bf42b69835088223}{add}}(myIntersection,\ MathPredicates::getQuadricRelativePosition(myIntersection,\ tolerance),\ normalization,\ tolerance);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ for\ new\ edges\ creation}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myQueryList.push\_back(vertexIndex);}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a456acedaa72507e04a07234bd99d91d6}{initFacetsDescription}}(vertexIndex,\ myFacets);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_ad2cc2148a11d7b63f999fc25f1a13489}{checkFacetsDescription}}(vertexIndex,\ myI1,\ myI2,\ aPlaneID));}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ edges\ to\ the\ left\ and\ to\ the\ right}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aLeft-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(myI1,\ vertexIndex,\ aPolyhedron);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aRight-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(vertexIndex,\ myI2,\ aPolyhedron);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ myVertices\ are\ on\ the\ hyperplane,\ we\ do\ not\ have\ to\ split\ the\ edge}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aLeft-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(myI1,\ myI2,\ aPolyhedron);}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aRight-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(myI1,\ myI2,\ aPolyhedron);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{comment}{//**\ @brief}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Step\ 4\ -\/\ Creation\ of\ the\ edges\ of\ the\ polytope\ skeleton}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ iterate\ through\ all\ the\ new\ extremal\ stabbing\ lines,\ and\ creates\ and\ edge\ for\ the\ myVertices\ that\ share\ at\ least\ three\ common\ facets\ and\ if\ the\ edge\ will\ not\ be}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ degenerated\ (length\ 0)}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ m\ =\ 0;\ m\ <\ myQueryList.size();\ m++)}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ n\ =\ m\ +\ 1;\ n\ <\ myQueryList.size();\ n++)}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Qm\ =\ myQueryList[m];}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ Qn\ =\ myQueryList[n];}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ facetsQm\ =\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(Qm);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ facetsQn\ =\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(Qn);}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classvisilib_1_1_math_combinatorial_add385e8d5b8bfb586e3d16dee08c5cd1}{MathCombinatorial::haveAtLeastNCommonFacets}}(facetsQm,\ facetsQn))}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(Qm\ !=\ Qn);}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!MathPredicates::isEdgeCollapsed(aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(Qn),\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(Qm),\ tolerance))}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(facetsQm.size()\ !=\ facetsQn.size()\ ||\ !std::equal(facetsQm.begin(),\ facetsQm.end(),\ facetsQn.begin()));}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aLeft-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(Qm,\ Qn,\ aPolyhedron);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aRight-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(Qm,\ Qn,\ aPolyhedron);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ V\_ASSERT(aLeft-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a8e2edde9a2168838192ec6c32a7955a3}{getEdgeCount}}()\ >\ 0);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ V\_ASSERT(aRight-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a8e2edde9a2168838192ec6c32a7955a3}{getEdgeCount}}()\ >\ 0);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ aLeft-\/>V\_ASSERTIsValid(aPolyhedron,\ normalization);}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ aRight-\/>V\_ASSERTIsValid(aPolyhedron,\ normalization);}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ON\_BOUNDARY;}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \}}
+
+\end{DoxyCode}

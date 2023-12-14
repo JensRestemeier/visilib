@@ -1,5 +1,5 @@
-\hypertarget{classvisilib_1_1_silhouette_container_embree}{}\section{visilib\+::Silhouette\+Container\+Embree Class Reference}
-\label{classvisilib_1_1_silhouette_container_embree}\index{visilib::SilhouetteContainerEmbree@{visilib::SilhouetteContainerEmbree}}
+\doxysection{visilib\+::Silhouette\+Container\+Embree Class Reference}
+\hypertarget{classvisilib_1_1_silhouette_container_embree}{}\label{classvisilib_1_1_silhouette_container_embree}\index{visilib::SilhouetteContainerEmbree@{visilib::SilhouetteContainerEmbree}}
 
 
 Represents a set of silhouettes, using Embree library from Intel to perform ray-\/tracing against those silhouettes.  
@@ -15,42 +15,54 @@ Inheritance diagram for visilib\+::Silhouette\+Container\+Embree\+:\begin{figure
 \includegraphics[height=2.000000cm]{classvisilib_1_1_silhouette_container_embree}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual bool \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a3cc23503bfa6f2db55762cf0851d6c69}{intersect}} (\mbox{\hyperlink{structvisilib_1_1_visibility_ray}{Visibility\+Ray}} $\ast$a\+Ray) override
+virtual bool \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a3cc23503bfa6f2db55762cf0851d6c69}{intersect}} (\mbox{\hyperlink{structvisilib_1_1_visibility_ray}{Visibility\+Ray}} \texorpdfstring{$\ast$}{*}a\+Ray) override
 \begin{DoxyCompactList}\small\item\em Intersect the ray with the geometry. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_ad3d6193f5484b3fb56096efd8a1230a8}{prepare}} ()
 \begin{DoxyCompactList}\small\item\em Prepare the scene before ray tracing. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classvisilib_1_1_silhouette_container}{visilib\+::\+Silhouette\+Container}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}\label{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}} 
-R\+T\+C\+Scene \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}{m\+Scene}}
+const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} \texorpdfstring{$\ast$}{*} $>$ \& {\bfseries get\+Silhouettes} ()
+\item 
+void {\bfseries add\+Silhouette} (\mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} \texorpdfstring{$\ast$}{*}a\+Silhouette)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a}\label{classvisilib_1_1_silhouette_container_embree_af4054861fb6b0bea527689b4cec1d59a} 
+RTCScene {\bfseries m\+Scene}
 \begin{DoxyCompactList}\small\item\em The Embree scene. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_embree_a79d334ebeeb331eb3268a0da8cdd006d}\label{classvisilib_1_1_silhouette_container_embree_a79d334ebeeb331eb3268a0da8cdd006d}} 
+\Hypertarget{classvisilib_1_1_silhouette_container_embree_a79d334ebeeb331eb3268a0da8cdd006d}\label{classvisilib_1_1_silhouette_container_embree_a79d334ebeeb331eb3268a0da8cdd006d} 
 std\+::unordered\+\_\+map$<$ unsigned int, std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ $>$ {\bfseries ids}
 \end{DoxyCompactItemize}
-\subsection*{Static Private Attributes}
+\doxysubsubsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072}\label{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072}} 
-static R\+T\+C\+Device \mbox{\hyperlink{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072}{m\+Device}} = nullptr
+\Hypertarget{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072}\label{classvisilib_1_1_silhouette_container_embree_a5be6b858528a5207948fe5bdb9a72072} 
+static RTCDevice {\bfseries m\+Device} = nullptr
 \begin{DoxyCompactList}\small\item\em The Embree device. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Additional Inherited Members}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classvisilib_1_1_silhouette_container}{visilib\+::\+Silhouette\+Container}}}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class P , class S $>$ }\\static bool {\bfseries is\+Occluded} (\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{Plucker\+Polytope}}$<$ P $>$ \texorpdfstring{$\ast$}{*}polytope, \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{Plucker\+Polyhedron}}$<$ P $>$ \texorpdfstring{$\ast$}{*}polyhedron, const std\+::vector$<$ \mbox{\hyperlink{classvisilib_1_1_silhouette}{Silhouette}} \texorpdfstring{$\ast$}{*} $>$ \&a\+Silhouettes, const std\+::vector$<$ P $>$ \&polytope\+Lines, S my\+Tolerance)
+\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Represents a set of silhouettes, using Embree library from Intel to perform ray-\/tracing against those silhouettes. 
 
 This class is performance oriented, and is intended to provide the fastest possible occluder ray intersection, by using a modern ray tracing engine. 
 
-\subsection{Member Function Documentation}
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_embree_a3cc23503bfa6f2db55762cf0851d6c69}\label{classvisilib_1_1_silhouette_container_embree_a3cc23503bfa6f2db55762cf0851d6c69}} 
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classvisilib_1_1_silhouette_container_embree_a3cc23503bfa6f2db55762cf0851d6c69}\label{classvisilib_1_1_silhouette_container_embree_a3cc23503bfa6f2db55762cf0851d6c69} 
 \index{visilib::SilhouetteContainerEmbree@{visilib::SilhouetteContainerEmbree}!intersect@{intersect}}
 \index{intersect@{intersect}!visilib::SilhouetteContainerEmbree@{visilib::SilhouetteContainerEmbree}}
-\subsubsection{\texorpdfstring{intersect()}{intersect()}}
-{\footnotesize\ttfamily bool visilib\+::\+Silhouette\+Container\+Embree\+::intersect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structvisilib_1_1_visibility_ray}{Visibility\+Ray}} $\ast$}]{a\+Ray }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+\doxysubsubsection{\texorpdfstring{intersect()}{intersect()}}
+{\footnotesize\ttfamily bool visilib\+::\+Silhouette\+Container\+Embree\+::intersect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structvisilib_1_1_visibility_ray}{Visibility\+Ray}} \texorpdfstring{$\ast$}{*}}]{a\+Ray }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -60,10 +72,10 @@ The function calls embree to perform the intersection
 
 Reimplemented from \mbox{\hyperlink{classvisilib_1_1_silhouette_container}{visilib\+::\+Silhouette\+Container}}.
 
-\mbox{\Hypertarget{classvisilib_1_1_silhouette_container_embree_ad3d6193f5484b3fb56096efd8a1230a8}\label{classvisilib_1_1_silhouette_container_embree_ad3d6193f5484b3fb56096efd8a1230a8}} 
+\Hypertarget{classvisilib_1_1_silhouette_container_embree_ad3d6193f5484b3fb56096efd8a1230a8}\label{classvisilib_1_1_silhouette_container_embree_ad3d6193f5484b3fb56096efd8a1230a8} 
 \index{visilib::SilhouetteContainerEmbree@{visilib::SilhouetteContainerEmbree}!prepare@{prepare}}
 \index{prepare@{prepare}!visilib::SilhouetteContainerEmbree@{visilib::SilhouetteContainerEmbree}}
-\subsubsection{\texorpdfstring{prepare()}{prepare()}}
+\doxysubsubsection{\texorpdfstring{prepare()}{prepare()}}
 {\footnotesize\ttfamily void visilib\+::\+Silhouette\+Container\+Embree\+::prepare (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
@@ -78,5 +90,5 @@ Reimplemented from \mbox{\hyperlink{classvisilib_1_1_silhouette_container}{visil
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/code/github/visilib/visilib/silhouette\+\_\+container\+\_\+embree.\+h\item 
-C\+:/code/github/visilib/demo/demo\+\_\+helper.\+cpp\end{DoxyCompactItemize}
+E\+:/\+External/visilib/visilib/silhouette\+\_\+container\+\_\+embree.\+h\item 
+E\+:/\+External/visilib/demo/demo\+\_\+helper.\+cpp\end{DoxyCompactItemize}

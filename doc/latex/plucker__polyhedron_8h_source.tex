@@ -1,0 +1,210 @@
+\doxysection{plucker\+\_\+polyhedron.\+h}
+\hypertarget{plucker__polyhedron_8h_source}{}\label{plucker__polyhedron_8h_source}\index{E:/External/visilib/visilib/plucker\_polyhedron.h@{E:/External/visilib/visilib/plucker\_polyhedron.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}geometry\_position\_type.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}math\_combinatorial.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}math\_plucker\_6.h"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron}}}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{\string~PluckerPolyhedron}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7b40cfeac1b1954b32866b5bffac3588}{getLinesCount}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mLines.size();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ P\&\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(\textcolor{keywordtype}{size\_t}\ aNumber)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mLines[aNumber];}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ GeometryPositionType\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a2e0a70cef3ea5955aabd0bdfad1a3cbe}{getQuadricRelativePosition}}(\textcolor{keywordtype}{size\_t}\ aNumber)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_af63dd9d53731d814b761d6df8065471a}{mQuadricRelativePositions}}[aNumber];}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a215fcdba3dc71993795ef9a2d89f1751}{isNormalized}}(\textcolor{keywordtype}{size\_t}\ aNumber)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a1a5f85971b842416bfa3e6d2db4c9929}{mNormalizations}}[aNumber];}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a6c9fa6964a332bd0bf42b69835088223}{add}}(\textcolor{keyword}{const}\ P\&\ aLine,\ GeometryPositionType\ aPosition,\ \textcolor{keywordtype}{bool}\ aNormalization,\ S\ tolerance);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ std::vector<size\_t>\&\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(\textcolor{keywordtype}{size\_t}\ v)\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_ae2b339d924fa151fe24d33cc60040d48}{mFacetsDescription}}[v];}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a027bd5891e7b3a091549bfc8865ae9aa}{addToFacetsDescription}}(\textcolor{keywordtype}{size\_t}\ aVertice,\ \textcolor{keywordtype}{size\_t}\ aFace);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a456acedaa72507e04a07234bd99d91d6}{initFacetsDescription}}(\textcolor{keywordtype}{size\_t}\ aVerticeDestination,\ \textcolor{keyword}{const}\ std::vector<size\_t>\ \&\ source);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_ad2cc2148a11d7b63f999fc25f1a13489}{checkFacetsDescription}}(\textcolor{keywordtype}{size\_t}\ aVerticeDestination,\ \textcolor{keywordtype}{size\_t}\ aVerticeSource1,\ \textcolor{keywordtype}{size\_t}\ aVerticeSource2,\ \textcolor{keywordtype}{size\_t}\ aReplacement);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_ae9e79e8652ffe2b28040e6cb0650933b}{containsOtherLinesWithSameFacetsDescription}}(\textcolor{keywordtype}{size\_t}\ duplicatedLine)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ resize(\textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_aab25f8beb468ef198b0d1667722e9687}{isValid}}(\textcolor{keywordtype}{size\_t}\ aVertice);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ std::vector<P>\ mLines;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ std::vector<GeometryPositionType>\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_af63dd9d53731d814b761d6df8065471a}{mQuadricRelativePositions}};\ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a1a5f85971b842416bfa3e6d2db4c9929}{mNormalizations}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ std::vector<std::vector<size\_t>>\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_ae2b339d924fa151fe24d33cc60040d48}{mFacetsDescription}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a6c9fa6964a332bd0bf42b69835088223}{PluckerPolyhedron<P>::add}}(\textcolor{keyword}{const}\ P\&\ aLine,\ GeometryPositionType\ aPosition,\ \textcolor{keywordtype}{bool}\ aNormalization,\ S\ tolerance)}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ V\_ASSERT(!MathPredicates::isZero(aLine,\ tolerance));}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ V\_ASSERT(!aNormalization\ ||\ MathPredicates::isNormalized(aLine,\ tolerance));}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ mLines.push\_back(aLine);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ mQuadricRelativePositions.push\_back(aPosition);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ mNormalizations.push\_back(aNormalization);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ mFacetsDescription.push\_back(std::vector<size\_t>());}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mLines.size()\ -\/\ 1;}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>::resize}}(\textcolor{keywordtype}{size\_t}\ size)}
+\DoxyCodeLine{00154\ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ mLines.resize(size);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ mQuadricRelativePositions.resize(size);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ mNormalizations.resize(size);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ mFacetsDescription.resize(size);}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00162\ \ \ \ \ PluckerPolyhedron<P>::PluckerPolyhedron()}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00167\ \ \ \ \ PluckerPolyhedron<P>::\string~PluckerPolyhedron()}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a027bd5891e7b3a091549bfc8865ae9aa}{PluckerPolyhedron<P>::addToFacetsDescription}}(\textcolor{keywordtype}{size\_t}\ aVertice,\ \textcolor{keywordtype}{size\_t}\ aFace)}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ V\_ASSERT(isValid(aVertice));}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ length\ =\ mFacetsDescription[aVertice].size();}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ mFacetsDescription[aVertice].resize(length\ +\ 1);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i\ =\ length;}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ i\ >\ 0\ \&\&\ mFacetsDescription[aVertice][i\ -\/\ 1]\ >\ aFace;\ -\/-\/i)}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ mFacetsDescription[aVertice][i]\ =\ mFacetsDescription[aVertice][i\ -\/\ 1];}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ mFacetsDescription[aVertice][i]\ =\ aFace;}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ V\_ASSERT(isValid(aVertice));}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a456acedaa72507e04a07234bd99d91d6}{PluckerPolyhedron<P>::initFacetsDescription}}(\textcolor{keywordtype}{size\_t}\ aVerticeDestination,\ \textcolor{keyword}{const}\ std::vector<size\_t>\ \&\ source)}
+\DoxyCodeLine{00192\ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{comment}{//V\_ASSERT(mFacetsDescription.size()\ ==\ aVerticeDestination);}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a\ Source\ is\ sortded\ in\ place,\ so\ it\ can\ be\ modified\ by\ the\ function}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ std::vector<size\_t>\&\ facets\ =\ getFacetsDescription(aVerticeDestination);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ source.size();\ i++)}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ facets.push\_back(source[i]);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ std::sort(facets.begin(),\ facets.end());}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ V\_ASSERT(isValid(aVerticeDestination));}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_ad2cc2148a11d7b63f999fc25f1a13489}{PluckerPolyhedron<P>::checkFacetsDescription}}(\textcolor{keywordtype}{size\_t}\ aVerticeDestination,\ \textcolor{keywordtype}{size\_t}\ aVerticeSource1,\ \textcolor{keywordtype}{size\_t}\ aVerticeSource2,\ \textcolor{keywordtype}{size\_t}\ aReplacement)}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aVerticeDestination\ >=\ mFacetsDescription.size())}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sanity\ checks}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classvisilib_1_1_math_combinatorial_add385e8d5b8bfb586e3d16dee08c5cd1}{MathCombinatorial::haveAtLeastNCommonFacets}}(getFacetsDescription(aVerticeSource1),\ getFacetsDescription(aVerticeSource2)))}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#ifdef\ FULL\_VALIDITY\_CHECK}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (containsOtherLinesWithSameFacetsDescription(aVerticeDestination))}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isValid(aVerticeDestination))}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isValid(aVerticeSource1))}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isValid(aVerticeSource2))}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classvisilib_1_1_math_combinatorial_add385e8d5b8bfb586e3d16dee08c5cd1}{MathCombinatorial::haveAtLeastNCommonFacets}}(getFacetsDescription(aVerticeSource1),\ getFacetsDescription(aVerticeDestination)))}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classvisilib_1_1_math_combinatorial_add385e8d5b8bfb586e3d16dee08c5cd1}{MathCombinatorial::haveAtLeastNCommonFacets}}(getFacetsDescription(aVerticeSource2),\ getFacetsDescription(aVerticeDestination)))}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_aab25f8beb468ef198b0d1667722e9687}{PluckerPolyhedron<P>::isValid}}(\textcolor{keywordtype}{size\_t}\ aVertice)}
+\DoxyCodeLine{00237\ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ std::vector<size\_t>\&\ facets\ =\ getFacetsDescription(aVertice);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::is\_sorted(facets.begin(),\ facets.end());}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_ae9e79e8652ffe2b28040e6cb0650933b}{PluckerPolyhedron<P>::containsOtherLinesWithSameFacetsDescription}}(\textcolor{keywordtype}{size\_t}\ aVerticeDestination)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00244\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ source\ =\ mFacetsDescription[aVerticeDestination];}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ getLinesCount();\ i++)}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ aVerticeDestination)}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ facets\ =\ mFacetsDescription[i];}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.size()\ ==\ facets.size()\ \&\&\ std::equal(source.begin(),\ source.end(),\ facets.begin()))}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \}}
+
+\end{DoxyCode}

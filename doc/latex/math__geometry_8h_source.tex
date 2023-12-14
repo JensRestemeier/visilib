@@ -1,0 +1,969 @@
+\doxysection{math\+\_\+geometry.\+h}
+\hypertarget{math__geometry_8h_source}{}\label{math__geometry_8h_source}\index{E:/External/visilib/visilib/math\_geometry.h@{E:/External/visilib/visilib/math\_geometry.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}math\_plucker\_2.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}math\_plucker\_6.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}math\_predicates.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}silhouette\_mesh\_face.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}geometry\_position\_type.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}geometry\_convex\_polygon.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}geometry\_aabbox.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}geometry\_ray.h"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{class\ }GeometryRay;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{class\ }GeometryAABB;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{class\ }PluckerPolytope;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{class\ }PluckerPolyhedron;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_math_geometry}{MathGeometry}}}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ad65e69745c8a1f786d279ebf0a8c7fb7}{isPointInsidePolygon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ aPolygon,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ aPoint,\ \textcolor{keywordtype}{double}\ tolerance);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ae24dedad7a35b9c818759ea566b8b3c5}{hitsTriangle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}\&\ ray,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ v0,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ v2);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_af19a3bdb94d0e929dbe8ffcda093c57e}{hitsBoundingBox}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}\&\ aRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_a_a_b_b}{GeometryAABB}}\&\ boundingBox);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a73f9ca6d8b008ced426ce0c1388b5fa0}{computeRayParameters}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}\&\ aRay,\ \textcolor{keywordtype}{double}\&\ Sx,\ \textcolor{keywordtype}{double}\&\ Sy,\ \textcolor{keywordtype}{double}\&\ Sz,\ \textcolor{keywordtype}{int}\&\ kx,\ \textcolor{keywordtype}{int}\&\ ky,\ \textcolor{keywordtype}{int}\&\ kz);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_adac5d1f80cdb58ce8a53901e6e142a87}{isEdgePotentiallyInsideShaft}}(\textcolor{keyword}{const}\ std::vector<MathPlane3d>\&\ aShaftPlanes,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ b,\ \textcolor{keywordtype}{bool}\ exclude);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ P\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ab6a7122ce9ad4d17b406e12ad1bd125f}{interpolate}}(S\ anOffset1,\ S\ anOffset2,\ \textcolor{keyword}{const}\ P\&\ aVertice1,\ \textcolor{keyword}{const}\ P\&\ aVertice2,\ S\ tolerance);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a15d002043e880ed6cb2539797e344785}{getAnchorPoint}}(\textcolor{keyword}{const}\ P\&\ line);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a0b130b390ddefe87d092eabb11bbcc09}{findPluckerEdgeWithQuadricIntersection}}(\textcolor{keyword}{const}\ P\&\ v1,\ \textcolor{keyword}{const}\ P\&\ v2,\ GeometryPositionType\ p1,\ GeometryPositionType\ p2,\ std::vector<P>\&\ result,\ \textcolor{keywordtype}{bool}\ newtonRaphson,\ S\ tolerance);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ab2821b2a4ac9021467e5885ed08cff63}{findPluckerEdgeWithQuadricIntersection}}(\textcolor{keyword}{const}\ P\&\ v1,\ \textcolor{keyword}{const}\ P\&\ v2,\ GeometryPositionType\ p1,\ GeometryPositionType\ p2,\ std::vector<P>\&\ result,\ S\ tolerance);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a29d14c13f99b5a47942062dd82487b89}{hasPluckerEdgeWithQuadricIntersection}}(\textcolor{keyword}{const}\ P\&\ v1,\ \textcolor{keyword}{const}\ P\&\ v2,\ GeometryPositionType\ p1,\ GeometryPositionType\ p2,\ S\ tolerance);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a8ebbe0b6e95a1335f9067d7b8b01016d}{computePlane}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ polygon);}
+\DoxyCodeLine{00108\ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_af1319565cb7ce7ab64ffc79a2c60a35b}{computePlaneFromApproximateNormal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ polygon,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ approximateNormal);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<S>}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a8ebbe0b6e95a1335f9067d7b8b01016d}{computePlane}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ v0,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ v2);}
+\DoxyCodeLine{00115\ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a6b3430d7013a6d749d613c4b95bd071c}{clipWithGardBand}}(\mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ polygon,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ aPlane,\ \textcolor{keywordtype}{double}\ anEpsilon);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>\ \textcolor{keyword}{static}\ std::pair<MathVector3d,\ MathVector3d>\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7467476b382c75e9f5d9e43e84bb0e6f}{getBackTo3D}}(\textcolor{keyword}{const}\ P\&\ aPoint,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ aPlane1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ aPlane2);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>\ \textcolor{keyword}{static}\ std::pair<MathVector3d,\ MathVector3d>\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7467476b382c75e9f5d9e43e84bb0e6f}{getBackTo3D}}(\textcolor{keyword}{const}\ P\&\ aPoint);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ad2ba51f89b23e91d29aa0ccfeaf49833}{getPlaneIntersection}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<double>}}\&\ plane,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\&\ aDirection,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\&\ anIntersection,\ \textcolor{keywordtype}{double}\ epsilon);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ad92f7fd332aca0943d17f622327a67c3}{intersect}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ polygon,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ aPlane);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7ae619c8f6cea8df0ee3216ca2be3cea}{getGravityCenter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ polygon);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ hasVertexOnFrontSide(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ plane,\ \mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face}{SilhouetteMeshFace}}*\ face);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_aab15ed823a527c5b3915acece6bfb673}{hasVertexOutsidePlane}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\&\ plane,\ \mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face}{SilhouetteMeshFace}}*\ face);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ P\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ad6d2f79eb23fdfd9ce23bca5d36fc403}{computeRepresentativeLine}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron,\ S\ tolerance);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_abf551f08e5b219198b159e41b06aae48}{getPlaneIntersectionWithEdge}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\&\ myV1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\&\ myV2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<double>}}\&\ aPlane);}
+\DoxyCodeLine{00157\ \ \ \ }
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ \textcolor{keyword}{static}\ P\ getProjectionOnQuadric(\textcolor{keyword}{const}\ P\&\ line);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \textcolor{keyword}{static}\ isEdgeInsidePolytope(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ b,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ aPolytope,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ approximateNormal,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron,\ S\ tolerance);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ isBoxInsideConvexHull(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ AABBMin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ AABBMax,\ \textcolor{keyword}{const}\ std::vector<\mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<S>}}>\&\ convexHullPlanes);}
+\DoxyCodeLine{00166\ \ \};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ad65e69745c8a1f786d279ebf0a8c7fb7}{MathGeometry::isPointInsidePolygon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ aPolygon,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ aPoint,\ \textcolor{keywordtype}{double}\ tolerance)}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aPolygon.getVertexCount()\ ==\ 0)}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aPolygon.getVertexCount()\ ==\ 1)}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ r\ =\ aPoint\ -\/\ aPolygon.getVertex(0);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ r.getSquaredNorm()\ <\ tolerance;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aPolygon.getVertexCount()\ ==\ 2)}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ ab\ =\ aPolygon.getVertex(0)\ -\/\ aPolygon.getVertex(1);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ ac\ =\ aPolygon.getVertex(0)\ -\/\ aPoint;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ bc\ =\ aPolygon.getVertex(1)\ -\/\ aPoint;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ test\ =\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<double>::getAbs}}(ac.getNorm()\ +\ bc.getNorm()\ -\/\ ab.getNorm());}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::cout\ <<\ "{}Test\ 2D:\ "{}\ <<\ test\ <<\ std::endl;}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ test\ <\ 1e-\/6;\ \textcolor{comment}{//TODO}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::getAbs}}(aPolygon.getPlane().dot(aPoint))\ >\ tolerance)}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ aPolygon.getVertexCount();\ i++)}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2i}}\ myEdge\ =\ aPolygon.getEdge(i);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myNormal\ =\ MathVector3d::cross(aPolygon.getPlane().mNormal,\ aPolygon.getVertex(myEdge.x)\ -\/\ aPolygon.getVertex(myEdge.y));}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ myPlane(myNormal.x,\ myNormal.y,\ myNormal.z,\ -\/myNormal.dot(aPolygon.getVertex(i)));}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myPlane.dot(aPoint)\ >\ tolerance)}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_adac5d1f80cdb58ce8a53901e6e142a87}{MathGeometry::isEdgePotentiallyInsideShaft}}(\textcolor{keyword}{const}\ std::vector<MathPlane3d>\ \&\ aShaftPlanes,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ \&\ b,\ \textcolor{keywordtype}{bool}\ exclude)}
+\DoxyCodeLine{00206\ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ V\_ASSERT(aShaftPlanes.size()\ >\ 0);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Approximate\ using\ a\ bounding\ sphere}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ myCenter\ =\ a;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ myCenter\ +=\ b;}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ myCenter\ *=\ 0.5;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ radiusVector\ =\ b;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ radiusVector\ -\/=\ a;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ radius\ =\ radiusVector.getNorm()*0.5;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \ myCenterD\ =\ convert<MathVector3d>(myCenter);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ aShaftPlanes.size();\ i++)}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\ =\ aShaftPlanes[i].dot(myCenterD);}
+\DoxyCodeLine{00223\ \ \ \ \ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (exclude)}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d\ <\ -\/radius)}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d\ <=\ -\/radius)}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathGeometry::hasVertexOnFrontSide(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \&\ plane,\ \mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face}{SilhouetteMeshFace}}\ *\ face)}
+\DoxyCodeLine{00243\ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ face-\/>getVertexCount();\ i++)}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plane.dot(convert<MathVector3d>(face-\/>\mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face_a4b56dbad7f4518fbec47e95ccbda5df9}{getVertex}}(i)))\ >\ 0.0)\textcolor{comment}{//TODO\ ADD\ A\ TOLERANCE?}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7ae619c8f6cea8df0ee3216ca2be3cea}{MathGeometry::getGravityCenter}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ \&\ polygon)}
+\DoxyCodeLine{00256\ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ center;}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ polygon.getVertexCount();\ i++)}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ center\ +=\ polygon.getVertex(i);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ center\ *=\ (1.\ /\ (double)(polygon.getVertexCount()));}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ center;}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a15d002043e880ed6cb2539797e344785}{MathGeometry::getAnchorPoint}}(\textcolor{keyword}{const}\ P\ \&\ line)}
+\DoxyCodeLine{00271\ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ direction\ =\ convert<MathVector3d>(line.getDirection());}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ location\ =\ convert<MathVector3d>(line.getLocation());}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ result\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>::cross}}(direction,\ location);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ norm\ =\ direction.getSquaredNorm();}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::getAbs}}(norm\ -\/\ 1.0)\ >=\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::Tolerance}}())}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (norm\ <=\ 0)}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Can\ not\ normalize\ vector:\ "{}}\ <<\ std::endl;\textcolor{comment}{//\ <<\ result.x\ <<\ "{},"{}\ <<\ result.y\ <<\ "{},"{}\ <<\ result.z\ <<\ std::endl;}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ MathVector3d::Zero();}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(0);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ /=\ norm;}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keyword}{inline}\ P\ \ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ab6a7122ce9ad4d17b406e12ad1bd125f}{MathGeometry::interpolate}}(S\ anOffset1,\ S\ anOffset2,\ \textcolor{keyword}{const}\ P\ \&\ aVertice1,\ \textcolor{keyword}{const}\ P\ \&\ aVertice2,\ S\ tolerance)}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ P\ \ myVector1\ =\ aVertice1;}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ P\ \ myVector2\ =\ aVertice2;}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ S\ lambdaV1\ =\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<S>::getAbs}}(anOffset1);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ S\ lambdaV2\ =\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<S>::getAbs}}(anOffset2);}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ S\ eta\ =\ lambdaV2\ -\/\ lambdaV1;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ S\ gamma;}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ S\ sum;}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ S\ sum2;}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (eta\ <\ -\/tolerance)}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ eta\ =\ -\/eta;}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ lambdaV2;}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ gamma\ =\ lambdaV2;}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ sum2\ =\ lambdaV2;}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ eta;}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ lambdaV1;}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ gamma\ =\ lambdaV1;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ sum2\ =\ lambdaV1;}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ myVector1\ =\ aVertice2;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ eta;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ myVector2\ =\ aVertice1;}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ S\ alpha,\ beta;}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ sum2\ +=\ sum;}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (eta\ >=\ tolerance\ ||\ gamma\ >=\ tolerance)}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::getAbs}}(sum2)\ >\ tolerance);}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ S\ div\ =\ 1.f\ /\ (sum2);}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ alpha\ =\ gamma\ *\ div;}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ beta\ =\ sum\ *\ div;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ alpha\ =\ beta\ =\ 0.5f;}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ myVector1\ *=\ alpha;}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ myVector2\ *=\ beta;}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ myVector1\ +=\ myVector2;}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ myVector1;}
+\DoxyCodeLine{00350\ \ \ \ \ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathGeometry::findPluckerEdgeWithQuadricIntersection<MathPlucker6<float>,\ \textcolor{keywordtype}{float}>(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<float>}}\ \&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plucker6}{MathPlucker6<float>}}\ \&\ v2,\ GeometryPositionType\ p1,\ GeometryPositionType\ p2,\ std::vector<MathPlucker6<float>>\ \&\ result,\ \textcolor{keywordtype}{float}\ tolerance)}
+\DoxyCodeLine{00354\ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ findPluckerEdgeWithQuadricIntersection<MathPlucker6<float>,\ \textcolor{keywordtype}{float}>(v1,\ v2,\ p1,\ p2,\ result,\ \textcolor{keyword}{true},\ tolerance);}
+\DoxyCodeLine{00356\ \ \ \ \ \}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathGeometry::findPluckerEdgeWithQuadricIntersection<MathPlucker6<double>,\ \textcolor{keywordtype}{double}>(\textcolor{keyword}{const}\ MathPlucker6<double>\ \&\ v1,\ \textcolor{keyword}{const}\ MathPlucker6<double>\ \&\ v2,\ GeometryPositionType\ p1,\ GeometryPositionType\ p2,\ std::vector<MathPlucker6<double>>\ \&\ result,\ \textcolor{keywordtype}{double}\ tolerance)}
+\DoxyCodeLine{00360\ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ findPluckerEdgeWithQuadricIntersection<MathPlucker6<double>,\ \textcolor{keywordtype}{double}>(v1,\ v2,\ p1,\ p2,\ result,\ \textcolor{keyword}{true},\ tolerance);}
+\DoxyCodeLine{00362\ \ \ \ \ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathGeometry::findPluckerEdgeWithQuadricIntersection<MathPlucker2<double>,\ \textcolor{keywordtype}{double}>(\textcolor{keyword}{const}\ MathPlucker2<double>\ \&\ v1,\ \textcolor{keyword}{const}\ MathPlucker2<double>\ \&\ v2,\ GeometryPositionType\ p1,\ GeometryPositionType\ p2,\ std::vector<MathPlucker2<double>>\ \&\ result,\ \textcolor{keywordtype}{double}\ tolerance)}
+\DoxyCodeLine{00366\ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ findPluckerEdgeWithQuadricIntersection<MathPlucker2<double>,\ \textcolor{keywordtype}{double}>(v1,\ v2,\ p1,\ p2,\ result,\ \textcolor{keyword}{true},\ tolerance);}
+\DoxyCodeLine{00368\ \ \ \ \ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathGeometry::findPluckerEdgeWithQuadricIntersection<MathPlucker6<exact>,\ exact>(\textcolor{keyword}{const}\ MathPlucker6<exact>\ \&\ v1,\ \textcolor{keyword}{const}\ MathPlucker6<exact>\ \&\ v2,\ GeometryPositionType\ p1,\ GeometryPositionType\ p2,\ std::vector<MathPlucker6<exact>>\ \&\ result,\ exact\ tolerance)}
+\DoxyCodeLine{00373\ \ \ \ \ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ findPluckerEdgeWithQuadricIntersection<MathPlucker6<exact>,\ exact>(v1,\ v2,\ p1,\ p2,\ result,\ \textcolor{keyword}{false},\ tolerance);}
+\DoxyCodeLine{00375\ \ \ \ \ \}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a0b130b390ddefe87d092eabb11bbcc09}{MathGeometry::findPluckerEdgeWithQuadricIntersection}}(\textcolor{keyword}{const}\ P\ \&\ v1,\ \textcolor{keyword}{const}\ P\ \&\ v2,\ GeometryPositionType\ p1,\ GeometryPositionType\ p2,\ std::vector<P>\ \&\ result,\ \textcolor{keywordtype}{bool}\ newtonRaphson,\ S\ tolerance)}
+\DoxyCodeLine{00381\ \ \ \ \ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ result.clear();}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p1\ ==\ ON\_BOUNDARY)}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(v1);}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p2\ ==\ ON\_BOUNDARY)}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(v2);}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result.size()\ >\ 0)}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ P\ \ F\ =\ v2\ -\/\ v1;}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ S\ a\ =\ F.dot(F);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ S\ b\ =\ F.dot(v1);}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ S\ c\ =\ v1.dot(v1);}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ std::vector<S>\ ts;}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a\ <=\ tolerance\ \&\&\ a\ >=\ -\/tolerance)}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \{\textcolor{comment}{//a==0}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (b\ <=\ tolerance\ \&\&\ b\ >=\ -\/tolerance)}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{comment}{//b==0}}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ ts.push\_back(-\/c\ /\ (2\ *\ b));}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ S\ b\_2\ =\ b\ *\ b;}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a\ *\ a\ +\ b\_2\ +\ c\ *\ c\ <=\ tolerance)}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ S\ delta\ =\ b\_2\ -\/\ a\ *\ c;}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\ <=\ -\/tolerance)}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ delta\ <\ 0:\ no\ root}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\ <=\ tolerance)}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ delta\ is\ 0,\ single\ root}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ts.push\_back(-\/b\ /\ a);}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//general\ case:\ delta\ is\ positive,\ two\ roots}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ sqrt\_delta\ =\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<S>::getSqrt}}(delta);}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::getAbs}}(a)\ >=\ tolerance);}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ts.push\_back((-\/b\ +\ sqrt\_delta)\ /\ a);}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ts.push\_back((-\/b\ -\/\ sqrt\_delta)\ /\ a);}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ ts.size();\ i++)}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ S\ t\ =\ ts[i];}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (t\ >=\ -\/tolerance\ \&\&\ t\ <=\ 1\ +\ tolerance)}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (newtonRaphson)}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ at,\ b2;}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ b2\ =\ 2\ *\ b;}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ fxn\ =\ (a\ *\ t\ *\ t\ +\ b2\ *\ t\ +\ c);}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ iter\ =\ 0;}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Newton\ -\/\ Raphson\ iteration\ scheme\ :\ xn\ +\ 1\ =\ xn\ -\/\ f(xn)\ /\ f'(xn)}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//f\ (t)\ \ =\ a\ t*t\ +\ 2\ b\ t\ +\ c}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//f'(t)\ \ =\ 2\ at\ +\ 2b}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ toleranceLocal\ =\ 1e-\/18;}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::getAbs}}(fxn)\ >=\ toleranceLocal\ \&\&\ iter\ <\ 20)}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ at\ =\ a\ *\ t;}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fxn\ =\ (at\ *\ t\ +\ b2\ *\ t\ +\ c);}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ fdxn\ =\ (2\ *\ at\ +\ b2);}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ t\ -\/\ fxn\ /\ fdxn;}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iter++;}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (t\ >=\ -\/tolerance\ \&\&\ t\ <=\ 1\ +\ tolerance)}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back((F\ *\ t\ +\ v1));}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\#if\ \_DEBUG}}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ result.size();\ i++)}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(result[i].dot(result[i])\ <\ tolerance);}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00479\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result.size()\ >\ 0;}
+\DoxyCodeLine{00481\ \ \ \ \ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00484\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a29d14c13f99b5a47942062dd82487b89}{MathGeometry::hasPluckerEdgeWithQuadricIntersection}}(\textcolor{keyword}{const}\ P\ \&\ v1,\ \textcolor{keyword}{const}\ P\ \&\ v2,\ GeometryPositionType\ p1,\ GeometryPositionType\ p2,\ S\ tolerance)}
+\DoxyCodeLine{00485\ \ \ \ \ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p1\ ==\ ON\_BOUNDARY\ ||\ p2\ ==\ ON\_BOUNDARY)}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ P\ \ F\ =\ v2\ -\/\ v1;}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ S\ a\ =\ F.dot(F);}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ S\ b\ =\ F.dot(v1);}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ S\ c\ =\ v1.dot(v1);}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ std::vector<S>\ ts;}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a\ <=\ tolerance\ \&\&\ a\ >=\ -\/tolerance)}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (b\ <=\ tolerance\ \&\&\ b\ >=\ -\/tolerance)}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ S\ t\ =\ (-\/c\ /\ (2\ *\ b));}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (t\ >=\ -\/tolerance\ \&\&\ t\ <=\ 1\ +\ tolerance);}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ S\ b\_2\ =\ b\ *\ b;}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a\ *\ a\ +\ b\_2\ +\ c\ *\ c\ <=\ tolerance)}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ S\ delta\ =\ b\_2\ -\/\ a\ *\ c;}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\ <=\ -\/tolerance)}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ delta\ <\ 0:\ no\ root}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (delta\ <=\ tolerance)}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ delta\ is\ 0,\ single\ root}}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ t\ =\ (-\/b\ /\ a);}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (t\ >=\ -\/tolerance\ \&\&\ t\ <=\ 1\ +\ tolerance);}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//general\ case:\ delta\ is\ positive,\ two\ roots}}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ sqrt\_delta\ =\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<S>::getSqrt}}(delta);}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<S>::getAbs}}(a)\ >=\ tolerance);}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ S\ t\ =\ (-\/b\ +\ sqrt\_delta)\ /\ a;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (t\ >=\ -\/tolerance\ \&\&\ t\ <=\ 1\ +\ tolerance)}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t\ =\ (-\/b\ -\/\ sqrt\_delta)\ /\ a;}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (t\ >=\ -\/tolerance\ \&\&\ t\ <=\ 1\ +\ tolerance)}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00545\ \ \ \ \ \}}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00553\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a6b3430d7013a6d749d613c4b95bd071c}{MathGeometry::clipWithGardBand}}(\mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ \&\ aPolygon,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \&\ aPlane,\ \textcolor{keywordtype}{double}\ anEpsilon)}
+\DoxyCodeLine{00554\ \ \ \ \ \{}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ myPlane(aPlane);}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ myPlane.d\ -\/=\ anEpsilon;}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ polygonInterior\ =\ 1,}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ polygonBoundary\ =\ 0,}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ polygonExterior\ =\ -\/1}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ std::vector<signed\ char>\ location(aPolygon.getVertexCount());}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ positive\ =\ 0;}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ negative\ =\ 0;}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ a\ =\ 0;\ a\ <\ aPolygon.getVertexCount();\ a++)}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\ =\ myPlane.dot(aPolygon.getVertex(a));}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d\ >\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::Tolerance}}())}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ location[a]\ =\ polygonInterior;}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ positive++;}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (d\ <\ -\/\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::Tolerance}}())}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ location[a]\ =\ polygonExterior;}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ negative++;}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ location[a]\ =\ polygonBoundary;}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00588\ }
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (negative\ ==\ 0)}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (positive\ ==\ 0)}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ aPolygon.clear();}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ std::cout<<"{}CLIP\ -\/the\ query\ polygon"{}<<std::endl;}}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ previous\ =\ aPolygon.getVertexCount()\ -\/\ 1;}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ std::vector<MathVector3d>\ result;}
+\DoxyCodeLine{00602\ }
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ index\ =\ 0;\ index\ <\ aPolygon.getVertexCount();\ index++)}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ loc\ =\ location[index];}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loc\ ==\ polygonExterior)}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (location[previous]\ ==\ polygonInterior)}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ v1\ =\ aPolygon.getVertex(previous);}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ v2\ =\ aPolygon.getVertex(index);}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myRes\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_abf551f08e5b219198b159e41b06aae48}{getPlaneIntersectionWithEdge}}(v1,\ v2,\ myPlane);}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(myRes);}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ v1\ =\ aPolygon.getVertex(index);}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((loc\ ==\ polygonInterior)\ \&\&\ (location[previous]\ ==\ polygonExterior))}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ v2\ =\ aPolygon.getVertex(previous);}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myRes\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_abf551f08e5b219198b159e41b06aae48}{getPlaneIntersectionWithEdge}}(v1,\ v2,\ myPlane);}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(myRes);}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00625\ }
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result.push\_back(v1);}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ previous\ =\ index;}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \textcolor{comment}{//TODO\ TEST!\ (not\ tested)}}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ aPolygon\ =\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}(result);}
+\DoxyCodeLine{00633\ }
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ V\_ASSERT(aPolygon.getVertexCount()\ >\ 1);}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (aPolygon.getVertexCount()\ >\ 1);}
+\DoxyCodeLine{00636\ \ \ \ \ \}}
+\DoxyCodeLine{00637\ }
+\DoxyCodeLine{00638\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a8ebbe0b6e95a1335f9067d7b8b01016d}{MathGeometry::computePlane}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ \&\ polygon)}
+\DoxyCodeLine{00639\ \ \ \ \ \{}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ edgeNotFound\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i\ =\ 1;}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myNormal;}
+\DoxyCodeLine{00643\ }
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (edgeNotFound\ \&\&\ i\ <\ polygon.getVertexCount()\ -\/\ 1)}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ myNormal\ =\ MathVector3d::cross(polygon.getVertex(i)\ -\/\ polygon.getVertex(i\ -\/\ 1),\ polygon.getVertex(i\ +\ 1)\ -\/\ polygon.getVertex(i));}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ edgeNotFound\ =\ (myNormal.getSquaredNorm()\ <\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<double>::Tolerance}}());}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ axes[3]\ =\ \{\ MathVector3d::X(),\ MathVector3d::Y(),\ MathVector3d::Z()\ \};}
+\DoxyCodeLine{00653\ }
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (edgeNotFound\ \&\&\ polygon.getVertexCount()\ >\ 1)}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myEdge1\ =\ polygon.getVertex(0)\ -\/\ polygon.getVertex(1);}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (edgeNotFound\ \&\&\ i\ <\ 3)}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myNormal\ =\ MathVector3d::cross(myEdge1,\ axes[i]);}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edgeNotFound\ =\ (myNormal.getSquaredNorm()\ <\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<double>::Tolerance}}());}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (edgeNotFound)}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ myNormal\ =\ axes[0];}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ edgeNotFound\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ V\_ASSERT(!edgeNotFound);}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ myNormal.normalize();}
+\DoxyCodeLine{00672\ }
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}(myNormal.x,\ myNormal.y,\ myNormal.z,\ -\/myNormal.dot(polygon.getVertex(0)));}
+\DoxyCodeLine{00674\ \ \ \ \ \}}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00677\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<S>}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a8ebbe0b6e95a1335f9067d7b8b01016d}{MathGeometry::computePlane}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ v0,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ v2)}
+\DoxyCodeLine{00678\ \ \ \ \ \{}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ myNormal\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>::cross}}(v1\ -\/\ v0,\ v2\ -\/\ v0);}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ myNormal.normalize();}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<S>}}(myNormal.x,\ myNormal.y,\ myNormal.z,\ -\/myNormal.dot(v0));}
+\DoxyCodeLine{00683\ \ \ \ \ \}}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_af1319565cb7ce7ab64ffc79a2c60a35b}{MathGeometry::computePlaneFromApproximateNormal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ \&\ aPolygon,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \&\ approximateNormal)}
+\DoxyCodeLine{00686\ \ \ \ \ \{}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ V\_ASSERT(aPolygon.getVertexCount()\ >=\ 2);}
+\DoxyCodeLine{00688\ }
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ edge\ =\ aPolygon.getVertex(1)\ -\/\ aPolygon.getVertex(0);}
+\DoxyCodeLine{00690\ }
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ e1\ =\ MathVector3d::cross(approximateNormal,\ edge);}
+\DoxyCodeLine{00692\ }
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myNormal\ =\ MathVector3d::cross(edge,\ e1);}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ myNormal.normalize();}
+\DoxyCodeLine{00695\ }
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}(myNormal.x,\ myNormal.y,\ myNormal.z,\ -\/myNormal.dot(aPolygon.getVertex(0)));}
+\DoxyCodeLine{00697\ \ \ \ \ \}}
+\DoxyCodeLine{00698\ }
+\DoxyCodeLine{00699\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00700\ \ \ \ \ \textcolor{keyword}{inline}\ std::pair<MathVector3d,\ MathVector3d>\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7467476b382c75e9f5d9e43e84bb0e6f}{MathGeometry::getBackTo3D}}(\textcolor{keyword}{const}\ P\ \&\ aPoint,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \&\ aPlane1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \&\ aPlane2)}
+\DoxyCodeLine{00701\ \ \ \ \ \{}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myBegin\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a15d002043e880ed6cb2539797e344785}{MathGeometry::getAnchorPoint}}(aPoint);}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myDir\ =\ convert<MathVector3d>(aPoint.getDirection());}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ V\_ASSERT(!myDir.isZero(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::Tolerance}}()));}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ myMax\ =\ myDir.normalize();}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ V\_ASSERT(myMax\ >\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::Tolerance}}());}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myResult1;}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myResult2;}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result1\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ad2ba51f89b23e91d29aa0ccfeaf49833}{getPlaneIntersection}}(aPlane1,\ myBegin,\ myDir,\ myResult1,\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::Tolerance}}());}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ result2\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ad2ba51f89b23e91d29aa0ccfeaf49833}{getPlaneIntersection}}(aPlane2,\ myBegin,\ myDir,\ myResult2,\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::Tolerance}}());}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ V\_ASSERT(result1\ \&\&\ result2);}
+\DoxyCodeLine{00712\ }
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<MathVector3d,\ MathVector3d>(myResult1,\ myResult2);}
+\DoxyCodeLine{00714\ \ \ \ \ \}}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{00717\ \ \ \ \ \textcolor{keyword}{inline}\ std::pair<MathVector3d,\ MathVector3d>\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7467476b382c75e9f5d9e43e84bb0e6f}{MathGeometry::getBackTo3D}}(\textcolor{keyword}{const}\ P\ \&\ aPoint)}
+\DoxyCodeLine{00718\ \ \ \ \ \{}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ axis[3]\ =\ \{\ MathVector3d::X(),\ MathVector3d::Y(),\ MathVector3d::Z()\ \};}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ condition\ =\ 0;}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ myDir\ =\ convert<MathVector3d>(aPoint.getDirection());}
+\DoxyCodeLine{00722\ }
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ max\ =\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<double>::getAbs}}(myDir.dot(axis[0]));}
+\DoxyCodeLine{00724\ }
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ 3;\ i++)}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ dx\ =\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<double>::getAbs}}(myDir.dot(axis[i]));}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dx\ >\ max)}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ max\ =\ dx;}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition\ =\ i;}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ plane1(axis[condition].x,\ axis[condition].y,\ axis[condition].z,\ 1);}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ plane2(axis[condition].x,\ axis[condition].y,\ axis[condition].z,\ -\/1);}
+\DoxyCodeLine{00737\ }
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7467476b382c75e9f5d9e43e84bb0e6f}{getBackTo3D}}(aPoint,\ plane1,\ plane2);}
+\DoxyCodeLine{00739\ \ \ \ \ \}}
+\DoxyCodeLine{00740\ }
+\DoxyCodeLine{00741\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ad2ba51f89b23e91d29aa0ccfeaf49833}{MathGeometry::getPlaneIntersection}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<double>}}\ \&\ plane,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\ \&\ aBegin,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\ \&\ aDirection,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\ \&\ anIntersection,\ \textcolor{keywordtype}{double}\ tolerance)}
+\DoxyCodeLine{00742\ \ \ \ \ \{}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ anIntersection\ =\ aBegin;}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\ myDir(aDirection);}
+\DoxyCodeLine{00745\ }
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ lambda\ =\ -\/(plane.dot(aBegin));}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ div\ =\ plane.mNormal.dot(myDir);}
+\DoxyCodeLine{00748\ }
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::getAbs}}(div)\ >\ tolerance)}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ lambda\ /=\ div;}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ myDir\ *=\ lambda;}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \ anIntersection\ +=\ myDir;}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT(\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::getAbs}}(plane.dot(anIntersection))\ <=\ tolerance);}
+\DoxyCodeLine{00755\ }
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00758\ }
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00760\ \ \ \ \ \}}
+\DoxyCodeLine{00761\ }
+\DoxyCodeLine{00762\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00763\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ae24dedad7a35b9c818759ea566b8b3c5}{MathGeometry::hitsTriangle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}\ \&\ ray,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ \&\ v0,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ \&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ \&\ v2)}
+\DoxyCodeLine{00764\ \ \ \ \ \{}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ A\ =\ v0\ -\/\ convert<MathVector3\_<S>>(ray.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a8000dea413615b492c5d65423efb01d3}{getStart}}());}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ B\ =\ v1\ -\/\ convert<MathVector3\_<S>>(ray.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a8000dea413615b492c5d65423efb01d3}{getStart}}());}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ C\ =\ v2\ -\/\ convert<MathVector3\_<S>>(ray.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a8000dea413615b492c5d65423efb01d3}{getStart}}());}
+\DoxyCodeLine{00768\ }
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ S\ Sx;\ \ \ S\ Sy;\ \ \ S\ Sz;}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ kx;\ \textcolor{keywordtype}{int}\ ky;\ \textcolor{keywordtype}{int}\ kz;}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ ray.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a634b177e5dc2ef7f97d62d1fecc6dac0}{get}}(Sx,\ Sy,\ Sz,\ kx,\ ky,\ kz);}
+\DoxyCodeLine{00772\ }
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ S\ Ax\ =\ A[kx]\ -\/\ Sx\ *\ A[kz];}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ S\ Ay\ =\ A[ky]\ -\/\ Sy\ *\ A[kz];}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ S\ Bx\ =\ B[kx]\ -\/\ Sx\ *\ B[kz];}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ S\ By\ =\ B[ky]\ -\/\ Sy\ *\ B[kz];}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ S\ Cx\ =\ C[kx]\ -\/\ Sx\ *\ C[kz];}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ S\ Cy\ =\ C[ky]\ -\/\ Sy\ *\ C[kz];}
+\DoxyCodeLine{00779\ }
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ S\ U\ =\ Cx\ *\ By\ -\/\ Cy\ *\ Bx;}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ S\ V\ =\ Ax\ *\ Cy\ -\/\ Ay\ *\ Cx;}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ S\ W\ =\ Bx\ *\ Ay\ -\/\ By\ *\ Ax;}
+\DoxyCodeLine{00783\ }
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fall\ back\ to\ test\ against\ edges\ using\ S\ precision.}}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (U\ ==\ 0.0\ ||\ V\ ==\ 0.0\ ||\ W\ ==\ 0.0)\ \{}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ S\ CxBy\ =\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Cx)\ *\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(By);}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ S\ CyBx\ =\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Cy)\ *\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Bx);}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \ \ \ \ U\ =\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(CxBy\ -\/\ CyBx);}
+\DoxyCodeLine{00789\ }
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \ \ \ \ S\ AxCy\ =\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Ax)\ *\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Cy);}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \ S\ AyCx\ =\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Ay)\ *\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Cx);}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \ \ \ \ V\ =\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(AxCy\ -\/\ AyCx);}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ S\ BxAy\ =\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Bx)\ *\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Ay);}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \ \ \ \ S\ ByAx\ =\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(By)\ *\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(Ax);}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \ \ \ \ W\ =\ \textcolor{keyword}{static\_cast<}S\textcolor{keyword}{>}(BxAy\ -\/\ ByAx);}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00798\ }
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*if\ (trace\_options\_.cull\_back\_face)\ \{}}
+\DoxyCodeLine{00800\ \textcolor{comment}{\ \ \ \ \ \ \ \ if\ (U\ <\ 0.0\ ||\ V\ <\ 0.0\ ||\ W\ <\ 0.0)\ return\ false;}}
+\DoxyCodeLine{00801\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00802\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((U\ <\ 0.0\ ||\ V\ <\ 0.0\ ||\ W\ <\ 0.0)\ \&\&\ (U\ >\ 0.0\ ||\ V\ >\ 0.0\ ||\ W\ >\ 0.0))\ \{}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00806\ }
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ S\ det\ =\ U\ +\ V\ +\ W;}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (det\ ==\ 0.0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00809\ }
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00811\ \textcolor{comment}{\ \ \ \ \ \ \ \ const\ S\ Az\ =\ Sz\ *\ A[kz];}}
+\DoxyCodeLine{00812\ \textcolor{comment}{\ \ \ \ \ \ \ \ const\ S\ Bz\ =\ Sz\ *\ B[kz];}}
+\DoxyCodeLine{00813\ \textcolor{comment}{\ \ \ \ \ \ \ \ const\ S\ Cz\ =\ Sz\ *\ C[kz];}}
+\DoxyCodeLine{00814\ \textcolor{comment}{\ \ \ \ \ \ \ \ const\ S\ D\ =\ U\ *\ Az\ +\ V\ *\ Bz\ +\ W\ *\ Cz;}}
+\DoxyCodeLine{00815\ \textcolor{comment}{}}
+\DoxyCodeLine{00816\ \textcolor{comment}{\ \ \ \ \ \ \ \ const\ S\ rcpDet\ =\ S(1.0)\ /\ det;}}
+\DoxyCodeLine{00817\ \textcolor{comment}{}}
+\DoxyCodeLine{00818\ \textcolor{comment}{\ \ \ \ \ \ \ \ S\ tt\ =\ D\ *\ rcpDet;}}
+\DoxyCodeLine{00819\ \textcolor{comment}{\ \ \ \ \ \ \ \ if\ (tt\ >\ (*t\_inout))}}
+\DoxyCodeLine{00820\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00821\ \textcolor{comment}{\ \ \ \ \ \ \ \ return\ false;}}
+\DoxyCodeLine{00822\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00823\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00825\ \ \ \ \ \}}
+\DoxyCodeLine{00826\ }
+\DoxyCodeLine{00827\ }
+\DoxyCodeLine{00828\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00829\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ MathGeometry::isEdgeInsidePolytope(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ b,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ aPolytope,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ approximateNormal,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron,\ S\ tolerance)}
+\DoxyCodeLine{00830\ \ \ \ \ \{}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ e\ =\ b;}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ e\ -\/=\ a;}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ e1\ =\ MathVector3d::cross(approximateNormal,\ e);}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ e1.normalize();}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\ =\ e.getNorm();}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ e1\ *=\ d;}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Try\ to\ split\ the\ polytope\ by\ the\ hyperplane\ of\ the\ candidate\ edge}}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasPointInside1\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasPointInside2\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00840\ }
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ P\ \ myHyperplane(a,\ a\ +\ e1);}
+\DoxyCodeLine{00843\ }
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v\ :\ aPolytope-\/>getVertices())}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GeometryPositionType\ position\ =\ MathPredicates::getVertexPlaneRelativePosition(myHyperplane,polyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(v),\ tolerance);}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position\ ==\ ON\_NEGATIVE\_SIDE\ ||\ position\ ==\ ON\_BOUNDARY)}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPointInside1\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00852\ }
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00855\ }
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \ \ \ \ P\ \ myHyperplane(b,\ b\ +\ e1);}
+\DoxyCodeLine{00858\ }
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ v\ :\ aPolytope-\/>getVertices())}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GeometryPositionType\ position\ =\ MathPredicates::getVertexPlaneRelativePosition(myHyperplane,\ polyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(v),\ tolerance);}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (position\ ==\ ON\_POSITIVE\_SIDE\ ||\ position\ ==\ ON\_BOUNDARY)}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPointInside2\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00869\ }
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hasPointInside1\ \&\&\ hasPointInside2;}
+\DoxyCodeLine{00871\ \ \ \ \ \}}
+\DoxyCodeLine{00872\ }
+\DoxyCodeLine{00873\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00874\ \ \ \ \ \textcolor{keyword}{inline}\ P\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_ad6d2f79eb23fdfd9ce23bca5d36fc403}{MathGeometry::computeRepresentativeLine}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}\ *\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}\ *\ polyhedron,\ S\ tolerance)}
+\DoxyCodeLine{00875\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ P\ \ myGravityCenterImaginary\ =\ P::Zero();}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ myVertices\ =\ polytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a7c6d2e55d4fd53b5adfc804ef08fa4e0}{getVertices}}();}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ iter\ =\ myVertices.begin();\ iter\ !=\ myVertices.end();\ iter++)}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ v\ =\ *iter;}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ myGravityCenterImaginary\ +=\ polyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7543774b767ad4d4a9a386de6e82d9e1}{get}}(v);}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ P\ myGravityCenterReal\ =\ getProjectionOnQuadric<P,S>(myGravityCenterImaginary);}
+\DoxyCodeLine{00886\ }
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ V\_ASSERT(MathPredicates::getQuadricRelativePosition(myGravityCenterReal,\ tolerance)\ ==\ ON\_BOUNDARY);}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ myGravityCenterReal;}
+\DoxyCodeLine{00889\ \ \ \ \ \}}
+\DoxyCodeLine{00890\ }
+\DoxyCodeLine{00891\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a73f9ca6d8b008ced426ce0c1388b5fa0}{MathGeometry::computeRayParameters}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}\ \&\ aRay,\ \textcolor{keywordtype}{double}\&\ Sx,\ \textcolor{keywordtype}{double}\&\ Sy,\ \textcolor{keywordtype}{double}\&\ Sz,\ \textcolor{keywordtype}{int}\&\ kx,\ \textcolor{keywordtype}{int}\&\ ky,\ \textcolor{keywordtype}{int}\&\ kz)}
+\DoxyCodeLine{00892\ \ \ \ \ \{}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\&\ myDirection\ =\ aRay.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a1c4a4cecebb4f77dcaf45ad1167b3904}{getDirection}}();}
+\DoxyCodeLine{00894\ }
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ kz\ =\ 0;}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ absDir\ =\ fabs(myDirection[0]);}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (absDir\ <\ fabs(myDirection[1]))}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \ \ \ \ kz\ =\ 1;}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ absDir\ =\ fabs(myDirection[1]);}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (absDir\ <\ fabs(myDirection[2]))}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \ \ \ \ kz\ =\ 2;}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \ \ \ \ absDir\ =\ fabs(myDirection[2]);}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00907\ }
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ kx\ =\ kz\ +\ 1;}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kx\ ==\ 3)\ kx\ =\ 0;}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ ky\ =\ kx\ +\ 1;}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ky\ ==\ 3)\ ky\ =\ 0;}
+\DoxyCodeLine{00912\ }
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swap\ kx\ and\ ky\ dimention\ to\ preserve\ widing\ direction\ of\ triangles.}}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myDirection[kz]\ <\ 0.0f)\ std::swap(kx,\ ky);}
+\DoxyCodeLine{00915\ }
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Claculate\ shear\ constants.}}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ Sx\ =\ myDirection[kx]\ /\ myDirection[kz];}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ Sy\ =\ myDirection[ky]\ /\ myDirection[kz];}
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \ \ Sz\ =\ 1.0f\ /\ myDirection[kz];}
+\DoxyCodeLine{00920\ \ \ \ \ \}}
+\DoxyCodeLine{00921\ }
+\DoxyCodeLine{00922\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_af19a3bdb94d0e929dbe8ffcda093c57e}{MathGeometry::hitsBoundingBox}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray}{GeometryRay}}\ \&\ aRay,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_a_a_b_b}{GeometryAABB}}\ \&\ boundingBox)}
+\DoxyCodeLine{00923\ \ \ \ \ \{}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ myBoxHalfSize\ =\ (boundingBox.getMax()\ -\/\ boundingBox.getMin())\ *\ 0.5f;}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ myBoxCenter\ =\ boundingBox.getMin()\ +\ myBoxHalfSize;}
+\DoxyCodeLine{00926\ }
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ fWdU[3],\ fAWdU[3],\ fDdU[3],\ fADdU[3],\ fAWxDdU[3],\ fRhs;}
+\DoxyCodeLine{00928\ }
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ kDiff\ =\ aRay.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a8000dea413615b492c5d65423efb01d3}{getStart}}()\ -\/\ myBoxCenter;}
+\DoxyCodeLine{00930\ }
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ fWdU[0]\ =\ aRay.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a1c4a4cecebb4f77dcaf45ad1167b3904}{getDirection}}().x;}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ fAWdU[0]\ =\ std::fabs(fWdU[0]);}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ fDdU[0]\ =\ kDiff.x;}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ fADdU[0]\ =\ std::fabs(fDdU[0]);}
+\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fADdU[0]\ >\ myBoxHalfSize.x\ \&\&\ fDdU[0]\ *\ fWdU[0]\ >=\ 0.0f)}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00937\ }
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ fWdU[1]\ =\ aRay.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a1c4a4cecebb4f77dcaf45ad1167b3904}{getDirection}}().y;}
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ fAWdU[1]\ =\ std::fabs(fWdU[1]);}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ fDdU[1]\ =\ kDiff.y;}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ fADdU[1]\ =\ std::fabs(fDdU[1]);}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fADdU[1]\ >\ myBoxHalfSize.y\ \&\&\ fDdU[1]\ *\ fWdU[1]\ >=\ 0.0f)}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00944\ }
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ fWdU[2]\ =\ aRay.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a1c4a4cecebb4f77dcaf45ad1167b3904}{getDirection}}().z;}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ fAWdU[2]\ =\ std::fabs(fWdU[2]);}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ fDdU[2]\ =\ kDiff.z;}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ fADdU[2]\ =\ std::fabs(fDdU[2]);}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fADdU[2]\ >\ myBoxHalfSize.z\ \&\&\ fDdU[2]\ *\ fWdU[2]\ >=\ 0.0f)}
+\DoxyCodeLine{00950\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00951\ }
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ kWxD\ =\ MathVector3f::cross(aRay.\mbox{\hyperlink{classvisilib_1_1_geometry_ray_a1c4a4cecebb4f77dcaf45ad1167b3904}{getDirection}}(),\ kDiff);}
+\DoxyCodeLine{00953\ }
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ fAWxDdU[0]\ =\ std::fabs(kWxD.x);}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ fRhs\ =\ myBoxHalfSize.y\ *\ fAWdU[2]\ +\ myBoxHalfSize.z\ *\ fAWdU[1];}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fAWxDdU[0]\ >\ fRhs)}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00958\ }
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ fAWxDdU[1]\ =\ std::fabs(kWxD.y);}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ fRhs\ =\ myBoxHalfSize.x\ *\ fAWdU[2]\ +\ myBoxHalfSize.z\ *\ fAWdU[0];}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fAWxDdU[1]\ >\ fRhs)}
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00963\ }
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ fAWxDdU[2]\ =\ std::fabs(kWxD.z);}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ fRhs\ =\ myBoxHalfSize.x\ *\ fAWdU[1]\ +\ myBoxHalfSize.y\ *\ fAWdU[0];}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fAWxDdU[2]\ >\ fRhs)}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00968\ }
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00970\ \ \ \ \ \}}
+\DoxyCodeLine{00971\ }
+\DoxyCodeLine{00972\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_abf551f08e5b219198b159e41b06aae48}{MathGeometry::getPlaneIntersectionWithEdge}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\ \&\ myV1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<double>}}\ \&\ myV2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<double>}}\ \&\ aPlane)}
+\DoxyCodeLine{00973\ \ \ \ \ \{}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ offset1\ =\ aPlane.dot(myV1);}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ offset2\ =\ aPlane.dot(myV2);}
+\DoxyCodeLine{00976\ }
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ interpolate<MathVector3d,\ double>(offset1,\ offset2,\ myV1,\ myV2,\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::Tolerance}}());}
+\DoxyCodeLine{00978\ \ \ \ \ \}}
+\DoxyCodeLine{00979\ }
+\DoxyCodeLine{00980\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_aab15ed823a527c5b3915acece6bfb673}{MathGeometry::hasVertexOutsidePlane}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3d}}\ \&\ plane,\ \mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face}{SilhouetteMeshFace}}\ *\ face)}
+\DoxyCodeLine{00981\ \ \ \ \ \{}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ face-\/>getVertexCount();\ i++)}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::fabs(plane.dot(convert<MathVector3d>(face-\/>\mbox{\hyperlink{classvisilib_1_1_silhouette_mesh_face_a4b56dbad7f4518fbec47e95ccbda5df9}{getVertex}}(i))))\ >=\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic<double>::Tolerance}}())}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00989\ }
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00991\ \ \ \ \ \}}
+\DoxyCodeLine{00992\ }
+\DoxyCodeLine{00993\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>\ }
+\DoxyCodeLine{00994\ \ \ \ \ \textcolor{keyword}{inline}\ P\ MathGeometry::getProjectionOnQuadric(\textcolor{keyword}{const}\ P\&\ line)}
+\DoxyCodeLine{00995\ \ \ \ \ \{}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ a\ =\ line.getDirection();}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ b\ =\ line.getLocation();}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ S\ p\ =\ a.dot(b);}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ S\ q\ =\ a.getSquaredNorm()\ +\ b.getSquaredNorm();}
+\DoxyCodeLine{01000\ }
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ S\ mu\ =\ 2\ *\ p\ /\ (\ q+\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<S>::getSqrt}}(q*q-\/4*p*p));}
+\DoxyCodeLine{01002\ \textcolor{comment}{//\ \ \ \ \ \ \ \ S\ invU\ =\ 1\ /\ (1\ -\/\ mu\ *\ mu);}}
+\DoxyCodeLine{01003\ }
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ P((a.x\ -\/\ mu\ *\ b.x),\ (a.y\ -\/\ mu\ *\ b.y),\ (a.z\ -\/\ mu\ *\ b.z),\ (b.x\ -\/\ mu\ *\ a.x),\ (b.y\ -\/\ mu\ *\ a.y),\ (b.z\ -\/\ mu\ *\ a.z));}
+\DoxyCodeLine{01005\ \ \ \ \ \}}
+\DoxyCodeLine{01006\ }
+\DoxyCodeLine{01007\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{01008\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ isBoxInsideConvexHull(\textcolor{keyword}{const}\ MathVector3\_<S>\&\ AABBMin,\ \textcolor{keyword}{const}\ MathVector3\_<S>\&\ AABBMax,\ \textcolor{keyword}{const}\ std::vector<MathPlane3\_<S>>\&\ convexHullPlanes)}
+\DoxyCodeLine{01009\ \ \ \ \ \{}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ plane:\ convexHullPlanes)}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ d\ =\ std::max(AABBMin.x\ *\ plane.getNormal().x,\ AABBMax.x\ *\ plane.getNormal().x)\ }
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::max(AABBMin.y\ *\ plane.getNormal().y,\ AABBMax.y\ *\ plane.getNormal().y)\ }
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ std::max(AABBMin.z\ *\ plane.getNormal().z,\ AABBMax.z\ *\ plane.getNormal().z)\ }
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ plane.d;}
+\DoxyCodeLine{01016\ }
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d>0)\ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01020\ \ \ \ \ \}}
+\DoxyCodeLine{01021\ }
+\DoxyCodeLine{01022\ }
+\DoxyCodeLine{01023\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ GeometryConvexPolygon::computePlane()}
+\DoxyCodeLine{01024\ \ \ \ \ \{}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ mPlane\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a8ebbe0b6e95a1335f9067d7b8b01016d}{MathGeometry::computePlane}}(*\textcolor{keyword}{this});}
+\DoxyCodeLine{01026\ \ \ \ \ \}}
+\DoxyCodeLine{01027\ }
+\DoxyCodeLine{01028\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ GeometryRay::initialize(\textcolor{keyword}{const}\ MathVector3f\ \&\ aStart,\ \textcolor{keyword}{const}\ MathVector3f\ \&\ aDirection)}
+\DoxyCodeLine{01029\ \ \ \ \ \{}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a027b2a624d3d13db7b409c36439af81d}{mStart}}\ =\ aStart;}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_ad3285f944823e73b72c816231948c9fc}{mDirection}}\ =\ aDirection;}
+\DoxyCodeLine{01032\ }
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a73f9ca6d8b008ced426ce0c1388b5fa0}{MathGeometry::computeRayParameters}}(*\textcolor{keyword}{this},\ \mbox{\hyperlink{classvisilib_1_1_geometry_ray_a19a4fc7cd519d2e28c6ce37d91dac6e4}{Sx}},\ Sy,\ Sz,\ kx,\ ky,\ kz);}
+\DoxyCodeLine{01034\ \ \ \ \ \}}
+\DoxyCodeLine{01035\ \}}
+
+\end{DoxyCode}

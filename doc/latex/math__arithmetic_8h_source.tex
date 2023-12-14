@@ -1,0 +1,189 @@
+\doxysection{math\+\_\+arithmetic.\+h}
+\hypertarget{math__arithmetic_8h_source}{}\label{math__arithmetic_8h_source}\index{E:/External/visilib/visilib/math\_arithmetic.h@{E:/External/visilib/visilib/math\_arithmetic.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <float.h>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}visilib\_core.h"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{class\ }MathVector3\_;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_math_arithmetic}{MathArithmetic}}}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8266820603880540bcc75d4985cbeb99}{isSameSign}}(\textcolor{keywordtype}{double}\ x,\ \textcolor{keywordtype}{double}\ y)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::signbit(x)\ ==\ std::signbit(y);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a7087aa7f19e17f00a30f3d22562e5cb5}{getMinMax}}(\textcolor{keyword}{const}\ std::vector<\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}>\&\ aPoints,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ aMin,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ aMax);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a7087aa7f19e17f00a30f3d22562e5cb5}{getMinMax}}(\textcolor{keyword}{const}\ S*\ aPoints,\ \textcolor{keywordtype}{size\_t}\ pointCount,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ aMin,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ aMax);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ S\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{getAbs}}(S\ a);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ S\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{getSqrt}}(S\ a);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ S\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{Tolerance}}();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ S\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a358b0763eb83ccd94a657aa3fbc57284}{GuardBandClipping}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8380e91fbec3559877651450282153cb}{isFinite}}(S\ a);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8380e91fbec3559877651450282153cb}{isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ a);}
+\DoxyCodeLine{00070\ \ \ \ \ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<double>::Tolerance}}()\ \{\ \textcolor{keywordflow}{return}\ \ 1e-\/11;\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<float>::Tolerance}}()\ \{\ \textcolor{keywordflow}{return}\ 1e-\/6f;\ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a358b0763eb83ccd94a657aa3fbc57284}{MathArithmetic<double>::GuardBandClipping}}()\ \{\ \textcolor{keywordflow}{return}\ 1e-\/12;\ \};}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a358b0763eb83ccd94a657aa3fbc57284}{MathArithmetic<float>::GuardBandClipping}}()\ \{\ \textcolor{keywordflow}{return}\ 1e-\/6f;\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<double>::getAbs}}(\textcolor{keywordtype}{double}\ s);}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<float>::getAbs}}(\textcolor{keywordtype}{float}\ s);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{template}<>\ exact\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<exact>::getAbs}}(exact\ s);}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<double>::getSqrt}}(\textcolor{keywordtype}{double}\ s);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<float>::getSqrt}}(\textcolor{keywordtype}{float}\ s);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{template}<>\ exact\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<exact>::getSqrt}}(exact\ s);}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8380e91fbec3559877651450282153cb}{MathArithmetic<double>::isFinite}}(\textcolor{keywordtype}{double}\ s);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8380e91fbec3559877651450282153cb}{MathArithmetic<float>::isFinite}}(\textcolor{keywordtype}{float}\ s);}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8380e91fbec3559877651450282153cb}{MathArithmetic<exact>::isFinite}}(exact\ s);}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{template}<>\ \textcolor{keyword}{inline}\ exact\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<exact>::Tolerance}}()\ \{\ \textcolor{keywordflow}{return}\ leda\_real(1e-\/20);\ \}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<double>::getAbs}}(\textcolor{keywordtype}{double}\ s)}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::fabs(s);}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<float>::getAbs}}(\textcolor{keywordtype}{float}\ s)}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::fabs(s);}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{inline}\ exact\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<exact>::getAbs}}(exact\ s)}
+\DoxyCodeLine{00117\ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CGAL::abs(s);}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<double>::getSqrt}}(\textcolor{keywordtype}{double}\ s)}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sqrt(s);}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<float>::getSqrt}}(\textcolor{keywordtype}{float}\ s)}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sqrt(s);}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{inline}\ exact\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<exact>::getSqrt}}(exact\ s)}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//return\ approximate\_sqrt(s);0}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CGAL::sqrt(s);}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8380e91fbec3559877651450282153cb}{MathArithmetic<double>::isFinite}}(\textcolor{keywordtype}{double}\ s)}
+\DoxyCodeLine{00145\ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isfinite(s);}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8380e91fbec3559877651450282153cb}{MathArithmetic<float>::isFinite}}(\textcolor{keywordtype}{float}\ s)}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isfinite(s);}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8380e91fbec3559877651450282153cb}{MathArithmetic<exact>::isFinite}}(exact\ s)}
+\DoxyCodeLine{00158\ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CGAL::is\_finite(s);}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a8380e91fbec3559877651450282153cb}{MathArithmetic<S>::isFinite}}(\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ a)}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isFinite(a.x)\ \&\&\ isFinite(a.y)\ \&\&\ isFinite(a.z);}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a7087aa7f19e17f00a30f3d22562e5cb5}{MathArithmetic<S>::getMinMax}}(\textcolor{keyword}{const}\ S*\ aPoints,\ \textcolor{keywordtype}{size\_t}\ aPointCount,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ aMin,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ aMax)}
+\DoxyCodeLine{00171\ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}*\ p\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}*\textcolor{keyword}{>}(aPoints);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ aMin\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}(\ FLT\_MAX,\ \ FLT\_MAX,\ \ FLT\_MAX);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ aMax\ =\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}(-\/FLT\_MAX,\ -\/FLT\_MAX,\ -\/FLT\_MAX);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ aPointCount;\ i++)}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p[i].x\ <\ aMin.x)\ aMin.x\ =\ p[i].x;}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p[i].y\ <\ aMin.y)\ aMin.y\ =\ p[i].y;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p[i].z\ <\ aMin.z)\ aMin.z\ =\ p[i].z;}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p[i].x\ >\ aMax.x)\ aMax.x\ =\ p[i].x;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p[i].y\ >\ aMax.y)\ aMax.y\ =\ p[i].y;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p[i].z\ >\ aMax.z)\ aMax.z\ =\ p[i].z;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a7087aa7f19e17f00a30f3d22562e5cb5}{MathArithmetic<S>::getMinMax}}(\textcolor{keyword}{const}\ std::vector<\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}>\&\ aPoints,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ aMin,\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ aMax)}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ S*\ p\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }S*\textcolor{keyword}{>}(\&(aPoints[0].x));}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a7087aa7f19e17f00a30f3d22562e5cb5}{MathArithmetic<S>::getMinMax}}(p,\ aPoints.size(),\ aMin,\ aMax);}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,118 @@
+\doxysection{math\+\_\+matrix\+\_\+4.\+h}
+\hypertarget{math__matrix__4_8h_source}{}\label{math__matrix__4_8h_source}\index{E:/External/visilib/visilib/math\_matrix\_4.h@{E:/External/visilib/visilib/math\_matrix\_4.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <string.h>}\ \textcolor{comment}{//for\ memset}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}math\_vector\_3.h"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{class\ }MathMatrix\_;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{typedef}\ MathMatrix\_<float>\ MathMatrixf;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{typedef}\ MathMatrix\_<double>\ MathMatrixd;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_math_matrix__}{MathMatrix\_}}}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_matrix__}{MathMatrix\_}}()}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&f[0],\ 0,\ 16\ *\ \textcolor{keyword}{sizeof}(S));}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ \ multiply(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\&\ aVector)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}(}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[0][0]\ *\ aVector.x\ +\ v[1][0]\ *\ aVector.y\ +\ v[2][0]\ *\ aVector.z\ +\ v[3][0],}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[0][1]\ *\ aVector.x\ +\ v[1][1]\ *\ aVector.y\ +\ v[2][1]\ *\ aVector.z\ +\ v[3][1],}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[0][2]\ *\ aVector.x\ +\ v[1][2]\ *\ aVector.y\ +\ v[2][2]\ *\ aVector.z\ +\ v[3][2]);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<S>}}\ multiply(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<S>}}\ \&\ aVector)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_plane3__}{MathPlane3\_<S>}}(}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[0][0]\ *\ aVector.mNormal.x\ +\ v[1][0]\ *\ aVector.mNormal.y\ +\ v[2][0]\ *\ aVector.mNormal.z\ +\ v[3][0]\ *\ aVector.d,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[0][1]\ *\ aVector.mNormal.x\ +\ v[1][1]\ *\ aVector.mNormal.y\ +\ v[2][1]\ *\ aVector.mNormal.z\ +\ v[3][1]\ *\ aVector.d,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[0][2]\ *\ aVector.mNormal.x\ +\ v[1][2]\ *\ aVector.mNormal.y\ +\ v[2][2]\ *\ aVector.mNormal.z\ +\ v[3][2]\ *\ aVector.d,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[0][3]\ *\ aVector.mNormal.x\ +\ v[1][3]\ *\ aVector.mNormal.y\ +\ v[2][3]\ *\ aVector.mNormal.z\ +\ v[3][3]\ *\ aVector.d);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setRotateZ(S\ phi)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&f[0],\ 0,\ 16\ *\ \textcolor{keyword}{sizeof}(S));}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ v[2][2]\ =\ 1;\ v[3][3]\ =\ 1;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//rotate\ z}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ v[0][0]\ =\ cos(phi);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ v[0][1]\ =\ sin(phi);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ v[1][0]\ =\ -\/sin(phi);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ v[1][1]\ =\ cos(phi);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ setRotateY(S\ alpha)}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&f[0],\ 0,\ 16\ *\ \textcolor{keyword}{sizeof}(S));}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ v[1][1]\ =\ 1;\ v[3][3]\ =\ 1;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//rotate\ y}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ v[0][0]\ =\ cos(alpha);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ v[0][2]\ =\ -\/sin(alpha);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ v[2][0]\ =\ sin(alpha);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ v[2][2]\ =\ cos(alpha);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \ setRotateX(S\ theta)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&f[0],\ 0,\ 16\ *\ \textcolor{keyword}{sizeof}(S));}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ v[0][0]\ =\ 1;\ v[3][3]\ =\ 1;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//rotate\ x}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ v[1][1]\ =\ cos(theta);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ v[1][2]\ =\ sin(theta);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ v[2][1]\ =\ -\/sin(theta);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ v[2][2]\ =\ cos(theta);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setTranslation(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_<S>}}\ \&\ aCenter)}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ v[3][0]\ =\ aCenter.x;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ v[3][1]\ =\ aCenter.y;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ v[3][2]\ =\ aCenter.z;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ S\ v[4][4];}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ S\ f[16];}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00114\ \ \ \ \ \};}
+\DoxyCodeLine{00115\ \}}
+
+\end{DoxyCode}

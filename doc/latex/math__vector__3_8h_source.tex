@@ -1,0 +1,184 @@
+\doxysection{math\+\_\+vector\+\_\+3.\+h}
+\hypertarget{math__vector__3_8h_source}{}\label{math__vector__3_8h_source}\index{E:/External/visilib/visilib/math\_vector\_3.h@{E:/External/visilib/visilib/math\_vector\_3.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}math\_arithmetic.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{class\ }MathVector3\_;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{class\ }MathPlane3\_;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//typedef\ MathVector3\_<S>\ MathVector3\_<S>;}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{typedef}\ MathVector3\_<float>\ MathVector3f;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{typedef}\ MathVector3\_<double>\ MathVector3d;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}()\ :\ x(0),\ y(0),\ z(0)\ \{\}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ aV)\ :\ x(aV.x),\ y(aV.y),\ z(aV.z)\ \{\}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ aV1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ aV2)\ :\ x(aV1.x\ -\/\ aV2.x),\ y(aV1.y\ -\/\ aV2.y),\ z(aV1.z\ -\/\ aV2.z)\ \{\}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}(S\ aX,\ S\ aY,\ S\ aZ)\ :\ x(aX),\ y(aY),\ z(aZ)\ \{\}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}(\textcolor{keyword}{const}\ S*\ a)\ :\ x(a[0]),\ y(a[1]),\ z(a[2])\ \{\}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ operator\ =\ \ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ v)\ \{\ x\ =\ v.x;\ \ y\ =\ v.y;\ \ z\ =\ v.z;\ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ operator\ +=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ v)\ \{\ x\ +=\ v.x;\ y\ +=\ v.y;\ z\ +=\ v.z;\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ operator\ -\/=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ v)\ \{\ x\ -\/=\ v.x;\ y\ -\/=\ v.y;\ z\ -\/=\ v.z;\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ operator\ *=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ v)\ \{\ x\ *=\ v.x;\ y\ *=\ v.y;\ z\ *=\ v.z;\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ operator\ /=\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ v)\ \{\ x\ /=\ v.x;\ y\ /=\ v.y;\ z\ /=\ v.z;\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ operator\ *=\ (S\ f)\ \{\ x\ *=\ f;\ \ y\ *=\ f;\ z\ *=\ f;\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ operator\ /=\ (S\ f)\ \{\ x\ /=\ f;\ \ y\ /=\ f;\ z\ /=\ f;\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ operator\ *\ (S\ f)\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}(x\ *\ f,\ y\ *\ f,\ z\ *\ f);\ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ operator\ -\/(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\&\ v)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}(x\ -\/\ v.x,\ y\ -\/\ v.y,\ z\ -\/\ v.z);\ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ operator\ +(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ \&\ v)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}(x\ +\ v.x,\ y\ +\ v.y,\ z\ +\ v.z);\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ \&\ v)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}(x\ ==\ v.x\ \&\&\ y\ ==\ v.y\ \&\&\ z\ ==\ v.z);\ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ \&\ v)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}(x\ !=\ v.x\ ||\ y\ !=\ v.y\ ||\ z\ !=\ v.z);\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ S*\ operator\ \&()\ \{\ \textcolor{keywordflow}{return}\ (\&x);\ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ S*\ operator\ \&()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ (\&x);\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ S\ operator[]\ (\textcolor{keywordtype}{int}\ i)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }S*\textcolor{keyword}{>}(\&x)[i];}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ operator<<(std::ostream\ \&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ \&\ v)}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ v.x\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ v.y\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ v.z\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ S\ dot(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ \&\ a)\textcolor{keyword}{const\ }\{\ \textcolor{keywordflow}{return}\ a.x*\ x\ +\ a.y\ *\ y\ +\ a.z\ *\ z;\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isZero(S\ anEps)\textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ S\ getSquaredNorm()\textcolor{keyword}{const\ }\{\ \textcolor{keywordflow}{return}\ (dot(*\textcolor{keyword}{this}));\ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ S\ getNorm()\textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ cross(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ \&\ v1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ \&\ v2)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}(v1.y\ *\ v2.z\ -\/\ v1.z\ *\ v2.y,\ v1.z\ *\ v2.x\ -\/\ v1.x\ *\ v2.z,\ v1.x\ *\ v2.y\ -\/\ v1.y\ *\ v2.x);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ S\ normalize();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ getNormalized()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ result(*\textcolor{keyword}{this});}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ result.normalize();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ Zero()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}((S)0.0,\ (S)0.0,\ (S)0.0);\ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ X()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}((S)1.0,\ (S)0.0,\ (S)0.0);\ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ Y()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}((S)0.0,\ (S)1.0,\ (S)0.0);\ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}\ Z()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3\_}}((S)0.0,\ (S)0.0,\ (S)1.0);\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ S\ x,\ y,\ z;}
+\DoxyCodeLine{00109\ \ \ \ \ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ To,\ \textcolor{keyword}{typename}\ From>\ To\ convert(\textcolor{keyword}{const}\ From\ \&\ f);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}\ convert(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ \&\ f)}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3f}}((\textcolor{keywordtype}{float})f.x,\ (\textcolor{keywordtype}{float})f.y,\ (\textcolor{keywordtype}{float})f.z);}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{inline}\ MathVector3d\ convert(\textcolor{keyword}{const}\ MathVector3f\ \&\ f)}
+\DoxyCodeLine{00121\ \ \ \ \ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MathVector3d((\textcolor{keywordtype}{double})f.x,\ (\textcolor{keywordtype}{double})f.y,\ (\textcolor{keywordtype}{double})f.z);}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{inline}\ MathVector3f\ convert(\textcolor{keyword}{const}\ MathVector3f\ \&\ f)}
+\DoxyCodeLine{00127\ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MathVector3f(f.x,\ f.y,\ f.z);}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{inline}\ MathVector3d\ convert(\textcolor{keyword}{const}\ MathVector3d\ \&\ f)}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MathVector3d(f.x,\ f.y,\ f.z);}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#ifdef\ EXACT\_ARITHMETIC}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{inline}\ MathVector3d\ convert(\textcolor{keyword}{const}\ MathVector3\_<exact>\ \&\ f)}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MathVector3d(to\_double(f.x),\ to\_double(f.y),\ to\_double(f.z));}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{inline}\ MathVector3\_<exact>\ convert(\textcolor{keyword}{const}\ MathVector3d\ \&\ f)}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MathVector3\_<exact>(f.x,\ f.y,\ f.z);}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ MathVector3\_<S>::isZero(S\ anEps)\textcolor{keyword}{const}}
+\DoxyCodeLine{00153\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<S>::getAbs}}(x)\ <=\ anEps\ \&\&\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<S>::getAbs}}(y)\ <=\ anEps\ \&\&\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<S>::getAbs}}(z)\ <=\ anEps);}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{inline}\ S\ MathVector3\_<S>::normalize()}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ S\ d\ =\ getNorm();}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ V\_ASSERT\ (std::fabs(d)>MathArithmetic::Tolerance());}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a49d461fc744a29e6f418541da95fb772}{MathArithmetic<S>::getAbs}}(d)\ >\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a402058efef79b2039522f78fda6ffddb}{MathArithmetic<S>::Tolerance}}())}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ S\ inv\ =\ (S)1.0\ /\ d;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ x\ *=\ inv;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ y\ *=\ inv;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ z\ *=\ inv;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ d;}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00178\ \ \ \ \ S\ MathVector3\_<S>::getNorm()\textcolor{keyword}{const}}
+\DoxyCodeLine{00179\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classvisilib_1_1_math_arithmetic_a6c4b62a5088df9be7476d931d64fece5}{MathArithmetic<S>::getSqrt}}(getSquaredNorm());}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \}}
+
+\end{DoxyCode}

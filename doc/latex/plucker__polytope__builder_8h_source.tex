@@ -1,0 +1,234 @@
+\doxysection{plucker\+\_\+polytope\+\_\+builder.\+h}
+\hypertarget{plucker__polytope__builder_8h_source}{}\label{plucker__polytope__builder_8h_source}\index{E:/External/visilib/visilib/plucker\_polytope\_builder.h@{E:/External/visilib/visilib/plucker\_polytope\_builder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Visilib,\ an\ open\ source\ library\ for\ exact\ visibility\ computation.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Copyright(C)\ 2021\ by\ Denis\ Haumont}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ is\ part\ of\ Visilib.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Visilib\ is\ free\ software\ :\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00008\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00009\ \textcolor{comment}{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00010\ \textcolor{comment}{(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Visilib\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00014\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.See\ the}}
+\DoxyCodeLine{00015\ \textcolor{comment}{GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00018\ \textcolor{comment}{along\ with\ Visilib.\ If\ not,\ see\ <http://www.gnu.org/licenses/>}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}math\_predicates.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}geometry\_convex\_polygon.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}math\_combinatorial.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}plucker\_polytope.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}plucker\_polyhedron.h"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }visilib}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder}{PluckerPolytopeBuilder}}}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder}{PluckerPolytopeBuilder}}(\textcolor{keywordtype}{bool}\ normalization,\ S\ tolerance);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_a408e2ce76e25ae9545abeb7babc51713}{build}}(\mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ a,\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ b,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_a5074ddd2e6fd2a48cb5770cd6af067f9}{addSourcePolygonEdgesAsHyperplanes}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ aPolyhedron,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ aPolygon,\ \textcolor{keywordtype}{bool}\ clockWise,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ approximateNormal);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_adc471ddde614669033182397d6be20d7}{addExtremalStabbingLines}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ a,\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ b,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ polyhedron);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_a7af3c78c82093b0b1cebff631edc1387}{addEdges}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ aPolyhedron);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ mNormalization;\ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ S\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_ab0c2fa8b5d11ee8edcf54d19e9c835fd}{mTolerance}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder}{PluckerPolytopeBuilder<P,\ S>::PluckerPolytopeBuilder}}(\textcolor{keywordtype}{bool}\ aNormalization,\ S\ aTolerance)}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ mNormalization\ =\ aNormalization;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ mTolerance\ =\ aTolerance;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_a5074ddd2e6fd2a48cb5770cd6af067f9}{PluckerPolytopeBuilder<P,\ S>::addSourcePolygonEdgesAsHyperplanes}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}*\ aPolyhedron,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\&\ aPolygon,\ \textcolor{keywordtype}{bool}\ clockWise,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ approximateNormal)}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ n\ =\ aPolygon.getVertexCount();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ std::vector<MathVector3d>\ v;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <\ 3)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ manage\ the\ case\ of\ a\ degenerated\ polygons}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ v.resize(3);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ v[1]\ =\ aPolygon.getVertex(0);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ ==\ 1)}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ polygon\ is\ a\ single\ vertex.\ We\ initialize\ two\ temporary\ vertices}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[0]\ =\ v[1]\ +\ MathVector3d::X();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[2]\ =\ v[1]\ +\ MathVector3d::Y();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (n\ ==\ 2)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ polygon\ is\ a\ single\ edge.\ We\ initialize\ one\ temporary\ vertex}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[2]\ =\ aPolygon.getVertex(1);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ edge\ =\ v[2]\ -\/\ v[1];}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ e1\ =\ MathVector3d::cross(approximateNormal,\ edge);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e1.normalize();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e1\ *=\ edge.getNorm();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v[0]\ =\ (v[1]\ +\ v[2])\ *\ 0.5\ +\ e1;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ We\ compute\ an\ additional\ vertex\ that\ will\ be\ used\ to\ add\ two\ edges\ to\ form\ a\ valid\ polygon,\ in\ order\ to\ make\ sure\ that\ each\ vertex\ of\ the\ polygon}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\ at\ the\ intersection\ of\ two\ edges.\ This\ ensure\ later\ one\ in\ Plucker\ space\ that\ each\ extremal\ lines\ is\ at\ the\ intersection\ of\ four\ hyperplanes.*/}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ edge\ =\ v[2]\ -\/\ v[1];}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ e1\ =\ MathVector3d::cross(approximateNormal,\ edge);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ e1.normalize();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ e1\ *=\ edge.getNorm();}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ v[0]\ =\ (v[1]\ +\ v[2])\ *\ 0.5\ +\ e1;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ manage\ the\ case\ of\ a\ regular\ convex\ polygon}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ aPolygon.getVertices();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ v.size();}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ the\ oriented\ Plucker\ line\ representation\ of\ each\ edge\ and\ store\ it\ in\ Polyhedron}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ v1\ =\ v[i\ \%\ count];}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ v2\ =\ v[(i\ +\ 1)\ \%\ count];}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ P\ \ line\ =\ clockWise\ ?\ P(v1,\ v2)\ :\ P(v2,\ v1);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mNormalization)}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line\ =\ line.getNormalized();}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_ASSERT((MathPredicates::isNormalized(line,\ mTolerance)));}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a6c9fa6964a332bd0bf42b69835088223}{add}}(line,\ ON\_BOUNDARY,\ mNormalization,\ mTolerance);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_adc471ddde614669033182397d6be20d7}{PluckerPolytopeBuilder<P,\ S>::addExtremalStabbingLines}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}\ *\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ \&\ a,\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ \&\ b,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}\ *\ aPolyhedron)}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ There\ is\ an\ extremal\ stabbing\ line\ passing\ through\ each\ vertex\ of\ polygon\ a\ and\ each\ vertex\ of\ polygon\ b.}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ procedure\ initialize\ the\ facets\ of\ each\ stabbing\ line,\ which\ is\ the\ list\ of\ edges\ incident\ to\ the\ lines\ in\ 3D\ space.\ In\ Plucker\ space,\ it\ is\ list\ of\ hyperplanes\ that\ meet\ at}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ Plucker\ point\ corresponding\ to\ the\ stabbing\ line}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count1\ =\ a.getVertexCount();}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count2\ =\ b.getVertexCount();}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ mySize1\ =\ count1\ >\ 3\ ?\ count1\ :\ 3;}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ myTemp(4);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ myStabbingNumber\ =\ 0;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ iterate\ through\ all\ the\ vertex\ of\ polygon\ a}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ count1;\ i++)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count1\ >\ 2)}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ regular\ case:\ the\ first\ two\ facets\ are\ the\ edges\ of\ the\ polygon\ a}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2i}}\ edges\ =\ a.getEdgesOfVertex(i);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myTemp[0]\ =\ edges.x;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myTemp[1]\ =\ edges.y;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ degenated\ case\ (polygon\ a\ is\ a\ single\ vertex\ or\ an\ edge):\ the\ facets\ are\ the\ additional\ edges\ that\ we\ have\ added}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myTemp[0]\ =\ i;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myTemp[1]\ =\ i\ +\ 1;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ iterate\ through\ all\ the\ vertex\ of\ polygon\ b}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ count2;\ j++)}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ v1\ =\ a.getVertex(i);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\&\ v2\ =\ b.getVertex(j);}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ P\ \ myStabbingLine(v1,\ v2);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mNormalization)}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myStabbingLine\ =\ myStabbingLine.getNormalized();}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ polytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a1fa9e55e2b8058ab39d94c3b5ff87c53}{addExtremalStabbingLine}}(myStabbingLine);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ vertexIndex\ =\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a6c9fa6964a332bd0bf42b69835088223}{add}}(myStabbingLine,\ ON\_BOUNDARY,\ mNormalization,\ mTolerance);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count2\ >\ 2)}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ regular\ case:\ the\ first\ two\ facets\ are\ the\ edges\ of\ the\ polygon\ b}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector2__}{MathVector2i}}\ edges\ =\ b.getEdgesOfVertex(j);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myTemp[2]\ =\ edges.x\ +\ mySize1;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myTemp[3]\ =\ edges.y\ +\ mySize1;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ degenated\ case\ (polygon\ b\ is\ a\ single\ vertex\ or\ an\ edge):\ the\ facets\ are\ the\ additional\ edges\ that\ we\ have\ added}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myTemp[2]\ =\ j\ +\ mySize1;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myTemp[3]\ =\ j\ +\ mySize1\ +\ 1;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a456acedaa72507e04a07234bd99d91d6}{initFacetsDescription}}(vertexIndex,\ myTemp);}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myStabbingNumber++;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_a408e2ce76e25ae9545abeb7babc51713}{PluckerPolytopeBuilder<P,\ S>::build}}(\mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ \&\ a,\ \mbox{\hyperlink{classvisilib_1_1_geometry_convex_polygon}{GeometryConvexPolygon}}\ \&\ b,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}\ *\ aPolyhedron)}
+\DoxyCodeLine{00204\ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}*\ myPolytope\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}();}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ gravity\ centers\ are\ used\ to\ compute\ an\ approximated\ normal\ vector,\ that\ will\ be\ used\ when\ polygons\ are\ degenerated}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ ga\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7ae619c8f6cea8df0ee3216ca2be3cea}{MathGeometry::getGravityCenter}}(a);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classvisilib_1_1_math_vector3__}{MathVector3d}}\ gb\ =\ \mbox{\hyperlink{classvisilib_1_1_math_geometry_a7ae619c8f6cea8df0ee3216ca2be3cea}{MathGeometry::getGravityCenter}}(b);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ addSourcePolygonEdgesAsHyperplanes(aPolyhedron,\ a,\ \textcolor{keyword}{true},\ gb\ -\/\ ga);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ addSourcePolygonEdgesAsHyperplanes(aPolyhedron,\ b,\ \textcolor{keyword}{false},\ ga\ -\/\ gb);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ addExtremalStabbingLines(myPolytope,\ a,\ b,\ aPolyhedron);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ addEdges(myPolytope,\ aPolyhedron);}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ myPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a3137c0414f0cfb604cd4dd06c1dbaeaf}{computeEdgesIntersectingQuadric}}(aPolyhedron,\ mTolerance);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ V\_ASSERT(myPolytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_a8a766bb84150935065deee93b472de85}{isValid}}(aPolyhedron,\ mNormalization,\ mTolerance));}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ myPolytope;}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ P,\ \textcolor{keyword}{class}\ S>}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvisilib_1_1_plucker_polytope_builder_a7af3c78c82093b0b1cebff631edc1387}{PluckerPolytopeBuilder<P,\ S>::addEdges}}(\mbox{\hyperlink{classvisilib_1_1_plucker_polytope}{PluckerPolytope<P>}}\ *\ polytope,\ \mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron}{PluckerPolyhedron<P>}}\ *\ aPolyhedron)}
+\DoxyCodeLine{00225\ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ iterate\ through\ all\ the\ extremal\ stabbing\ lines,\ and\ creates\ and\ edge\ for\ the\ vertices\ that\ share\ at\ least\ three\ common\ facets}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ complexity\ is\ O(n\string^2),\ and\ more\ optimized\ version\ could\ be\ devised\ but\ we\ keep\ this\ one\ for\ simplicity}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7b40cfeac1b1954b32866b5bffac3588}{getLinesCount}}();\ i++)}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ i\ +\ 1;\ j\ <\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7b40cfeac1b1954b32866b5bffac3588}{getLinesCount}}();\ j++)}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classvisilib_1_1_math_combinatorial_add385e8d5b8bfb586e3d16dee08c5cd1}{MathCombinatorial::haveAtLeastNCommonFacets}}(aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(i),\ aPolyhedron-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polyhedron_a7f78a21c4fd5aa5c52fa0716d17830c5}{getFacetsDescription}}(j)))}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ polytope-\/>\mbox{\hyperlink{classvisilib_1_1_plucker_polytope_af3cfb4c40c20fe5eff92efaf2f1820a0}{addEdge}}(i,\ j,\ aPolyhedron);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \}}
+
+\end{DoxyCode}
