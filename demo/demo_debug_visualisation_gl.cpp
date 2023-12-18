@@ -248,7 +248,7 @@ size_t DemoDebugVisualisationGl::display(HelperVisualDebugger * debugger, const 
     glColor3f(0.0f, 0.0f, 255.0f);
     if (drawGeometryType == 1)
     {
-        DemoDebugVisualisationGl::drawLines(debugger->getSamplingLines());
+       DemoDebugVisualisationGl::drawLines(debugger->getSamplingLines());
     }
 #endif
     return 0;

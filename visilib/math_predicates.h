@@ -171,6 +171,19 @@ namespace visilib
     }
 #endif
 
+#ifdef ENABLE_GMP
+    template <>
+    inline bool MathPredicates::isZero(const MathPlucker6<GmpFloat>& a, GmpFloat epsilon)
+    {
+        return a.getDirection().isZero(epsilon) && a.getLocation().isZero(epsilon);
+    }
+    template <>
+    inline bool MathPredicates::isZero(const MathPlucker6<GmpRational>& a, GmpRational epsilon)
+    {
+        return a.getDirection().isZero(epsilon) && a.getLocation().isZero(epsilon);
+    }
+#endif
+
     template <>
     inline bool MathPredicates::isZero(double scalar, double tolerance)
     {
@@ -190,6 +203,28 @@ namespace visilib
         return CGAL::is_zero(scalar);
     }
 #endif
+
+#ifdef ENABLE_GMP
+    template <>
+    inline bool MathPredicates::isZero(GmpFloat scalar, GmpFloat tolerance)
+    {
+        mpf_t a;
+        mpf_abs(a, scalar.v);
+        return mpf_cmp(a, tolerance.v) < 0;
+    }
+    template <>
+    inline bool MathPredicates::isZero(GmpRational scalar, GmpRational tolerance)
+    {
+        mpq_t a;
+        mpq_abs(a, scalar.v);
+        return mpq_cmp(a, tolerance.v) < 0;
+    }
+#endif
+
+    inline double to_double(double v)
+    {
+        return v;
+    }
 
     template<typename P, class S>
     inline bool MathPredicates::isNormalized(const P & a, S tolerance)

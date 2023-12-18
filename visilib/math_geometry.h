@@ -376,6 +376,20 @@ namespace visilib
 
 #endif
 
+#ifdef ENABLE_GMP
+    template<>
+    inline bool MathGeometry::findPluckerEdgeWithQuadricIntersection<MathPlucker6<GmpFloat>, GmpFloat>(const MathPlucker6<GmpFloat>& v1, const MathPlucker6<GmpFloat>& v2, GeometryPositionType p1, GeometryPositionType p2, std::vector<MathPlucker6<GmpFloat>>& result, GmpFloat tolerance)
+    {
+        return findPluckerEdgeWithQuadricIntersection<MathPlucker6<GmpFloat>, GmpFloat>(v1, v2, p1, p2, result, false, tolerance);
+    }
+
+    template<>
+    inline bool MathGeometry::findPluckerEdgeWithQuadricIntersection<MathPlucker6<GmpRational>, GmpRational>(const MathPlucker6<GmpRational>& v1, const MathPlucker6<GmpRational>& v2, GeometryPositionType p1, GeometryPositionType p2, std::vector<MathPlucker6<GmpRational>>& result, GmpRational tolerance)
+    {
+        return findPluckerEdgeWithQuadricIntersection<MathPlucker6<GmpRational>, GmpRational>(v1, v2, p1, p2, result, false, tolerance);
+    }
+#endif
+
     template<class P, class S>
     inline bool MathGeometry::findPluckerEdgeWithQuadricIntersection(const P & v1, const P & v2, GeometryPositionType p1, GeometryPositionType p2, std::vector<P> & result, bool newtonRaphson, S tolerance)
     {

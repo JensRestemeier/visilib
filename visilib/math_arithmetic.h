@@ -46,7 +46,7 @@ namespace visilib
 
         /** @brief Compute the axis aligned bounding box of a set of points.*/
         static void getMinMax(const std::vector<MathVector3_<S>>& aPoints, MathVector3_<S>& aMin, MathVector3_<S>& aMax);
-      
+
         /** @brief Compute the axis aligned bounding box of a set of points.*/
         static void getMinMax(const S* aPoints, size_t pointCount, MathVector3_<S>& aMin, MathVector3_<S>& aMax);
 
@@ -71,6 +71,10 @@ namespace visilib
 
     template<> inline double MathArithmetic<double>::Tolerance() { return  1e-11; }
     template<> inline float MathArithmetic<float>::Tolerance() { return 1e-6f; }
+#ifdef ENABLE_GMP
+    template<> inline GmpFloat MathArithmetic<GmpFloat>::Tolerance() { return  GmpFloat(1e-6); }
+    template<> inline GmpRational MathArithmetic<GmpRational>::Tolerance() { return  GmpRational(1e-6); }
+#endif
     template<> inline double MathArithmetic<double>::GuardBandClipping() { return 1e-12; };
     template<> inline float MathArithmetic<float>::GuardBandClipping() { return 1e-6f; };
 
@@ -80,6 +84,10 @@ namespace visilib
 #ifdef EXACT_ARITHMETIC
     template<> exact MathArithmetic<exact>::getAbs(exact s);
 #endif
+#ifdef ENABLE_GMP
+    template<> inline GmpFloat MathArithmetic<GmpFloat>::getAbs(GmpFloat  s);
+    template<> inline GmpRational MathArithmetic<GmpRational>::getAbs(GmpRational  s);
+#endif
 
     template<> inline double MathArithmetic<double>::getSqrt(double s);
     template<> inline float MathArithmetic<float>::getSqrt(float s);
@@ -87,12 +95,20 @@ namespace visilib
 #ifdef EXACT_ARITHMETIC
     template<> exact MathArithmetic<exact>::getSqrt(exact s);
 #endif
+#ifdef ENABLE_GMP
+    template<> inline GmpFloat MathArithmetic<GmpFloat>::getSqrt(GmpFloat  s);
+    template<> inline GmpRational MathArithmetic<GmpRational>::getSqrt(GmpRational  s);
+#endif
 
     template<> inline bool MathArithmetic<double>::isFinite(double s);
 
     template<> inline bool MathArithmetic<float>::isFinite(float s);
 #ifdef EXACT_ARITHMETIC
     template<> inline bool MathArithmetic<exact>::isFinite(exact s);
+#endif
+#ifdef ENABLE_GMP
+    template<> inline bool MathArithmetic<GmpFloat>::isFinite(GmpFloat s);
+    template<> inline bool MathArithmetic<GmpRational>::isFinite(GmpRational  s);
 #endif
 
 #ifdef EXACT_ARITHMETIC
@@ -118,6 +134,23 @@ namespace visilib
         return CGAL::abs(s);
     }
 #endif
+#ifdef ENABLE_GMP
+    template<>
+    inline GmpFloat MathArithmetic<GmpFloat>::getAbs(GmpFloat  s)
+    {
+        GmpFloat tmp;
+        mpf_abs(tmp.v, s.v);
+        return tmp;
+    }
+
+    template<>
+    inline GmpRational MathArithmetic<GmpRational>::getAbs(GmpRational s)
+    {
+        GmpRational tmp;
+        mpq_abs(tmp.v, s.v);
+        return tmp;
+    }
+#endif
 
     template<>
     inline double MathArithmetic<double>::getSqrt(double s)
@@ -140,6 +173,19 @@ namespace visilib
     }
 #endif
 
+#ifdef ENABLE_GMP
+    template<>
+    inline GmpFloat MathArithmetic<GmpFloat>::getSqrt(GmpFloat s)
+    {
+        return sqrt(s);
+    }
+    template<>
+    inline GmpRational MathArithmetic<GmpRational>::getSqrt(GmpRational  s)
+    {
+        return sqrt(s);
+    }
+#endif
+
     template<>
     inline bool MathArithmetic<double>::isFinite(double s)
     {
@@ -159,6 +205,18 @@ namespace visilib
         return CGAL::is_finite(s);
     }
 #endif
+#ifdef ENABLE_GMP
+    template<>
+    inline bool MathArithmetic<GmpFloat>::isFinite(GmpFloat s)
+    {
+        return true;
+    }
+    template<>
+    inline bool MathArithmetic<GmpRational>::isFinite(GmpRational s)
+    {
+        return true;
+    }
+#endif
 
     template<class S>
     inline bool MathArithmetic<S>::isFinite(MathVector3_<S> a)
@@ -170,9 +228,9 @@ namespace visilib
     inline void  MathArithmetic<S>::getMinMax(const S* aPoints, size_t aPointCount, MathVector3_<S>& aMin, MathVector3_<S>& aMax)
     {
         const MathVector3_<S>* p = reinterpret_cast<const MathVector3_<S>*>(aPoints);
-        aMin = MathVector3_<S>( FLT_MAX,  FLT_MAX,  FLT_MAX);
+        aMin = MathVector3_<S>(FLT_MAX, FLT_MAX, FLT_MAX);
         aMax = MathVector3_<S>(-FLT_MAX, -FLT_MAX, -FLT_MAX);
-        
+
         for (size_t i = 0; i < aPointCount; i++)
         {
             if (p[i].x < aMin.x) aMin.x = p[i].x;
@@ -184,7 +242,7 @@ namespace visilib
             if (p[i].z > aMax.z) aMax.z = p[i].z;
         }
     }
-    
+
     template<class S>
     inline void  MathArithmetic<S>::getMinMax(const std::vector<MathVector3_<S>>& aPoints, MathVector3_<S>& aMin, MathVector3_<S>& aMax)
     {

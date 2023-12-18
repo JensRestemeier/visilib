@@ -229,12 +229,7 @@ void DemoConfiguration::displaySettings()
     std::cout << "[Middle line: " << getStatusString(representativeLineSampling) << "]";
     std::cout << "[Normalization: " << getStatusString(normalization) << "]" << std::endl;
 
-#if EXACT_ARITHMETIC            
-    if (precisionType == VisibilityExactQueryConfiguration::EXACT)
-        std::cout << "  [Exact arithmetic: ON]";
-    else
-#endif
-        std::cout << "  [Exact arithmetic: OFF]";
+    std::cout << "  [Arithmetic: " << toStr(precisionType) << "]";
 #if EMBREE           
     std::cout << "[Embree:" << getStatusString(embree) << "]" << std::endl;
 #endif
@@ -292,10 +287,32 @@ void DemoConfiguration::readConfig(const std::string& filename)
     input.close();
 }
 
+const std::string DemoConfiguration::toStr(VisibilityExactQueryConfiguration::PrecisionType p)
+{
+    switch (p) {
+    case VisibilityExactQueryConfiguration::FLOAT:
+        return "FLOAT";
+    case VisibilityExactQueryConfiguration::DOUBLE:
+        return "DOUBLE";
+#if EXACT_ARITHMETIC            
+    case VisibilityExactQueryConfiguration::EXACT:
+        return "EXACT";
+#endif
+#ifdef ENABLE_GMP
+    case VisibilityExactQueryConfiguration::GMP_FLOAT:
+        return "GMP_FLOAT";
+    case VisibilityExactQueryConfiguration::GMP_RATIONAL:
+        return "GMP_RATIONAL";
+#endif
+    default:
+        return "UNKNOWN";
+    }
+}
+
 
 void DemoConfiguration::displaySummary()
 {
-    std::cout << "VisibilityTest [Scaling: " << globalScaling << ", v0: " << vertexCount0 << ", vv1: " << vertexCount1 << "; phi:" << phi << "; precision: "<< precisionType<<"] ";
+    std::cout << "VisibilityTest [Scaling: " << globalScaling << ", v0: " << vertexCount0 << ", vv1: " << vertexCount1 << "; phi:" << phi << "; precision: "<< toStr(precisionType) <<"] ";
 }
 
 #if EMBREE

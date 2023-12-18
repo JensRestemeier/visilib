@@ -41,6 +41,10 @@ namespace visilib
 #ifdef EXACT_ARITHMETIC  
             , EXACT      /**< @brief Exact arithmetic (based on CGAL and LEDA)*/
 #endif
+#ifdef ENABLE_GMP
+            , GMP_FLOAT     /**< @brief Extended precision arithmetic (based on GMP) */
+            , GMP_RATIONAL  /**< @brief Rational arithmetic (based on GMP) */
+#endif
         };
 
         VisibilityExactQueryConfiguration()
@@ -119,7 +123,7 @@ The main feature of the current version is exact occlusion query between two pol
   - point to segment
   - point to polygon
 
-- robust arithmetic computation via exact artithmetic via CGALand LEDA libraries(multiple precision arithmetic combined with interval arithmetic computations)
+- robust arithmetic computation via exact artithmetic via CGAL and LEDA libraries(multiple precision arithmetic combined with interval arithmetic computations)
 - fast ray - triangle intersection based on Intel Embree library
 - easy to use : header only library
 

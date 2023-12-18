@@ -58,6 +58,10 @@ bool VisibilityTest(std::string& )
 #ifdef EXACT_ARITHMETIC
     precisions.push_back(VisibilityExactQueryConfiguration::EXACT);
 #endif
+#ifdef ENABLE_GMP
+    precisions.push_back(VisibilityExactQueryConfiguration::GMP_FLOAT);
+    precisions.push_back(VisibilityExactQueryConfiguration::GMP_RATIONAL);
+#endif
     std::vector<float> globalScalings = {0.05f, 0.1f, 1.f, 5.0f };
     std::vector<size_t> vertexCount = { 1,2,3,5,7,9,11 };
     std::vector<bool> normalizations = { true,false };

@@ -26,6 +26,11 @@ along with Visilib. If not, see <http://www.gnu.org/licenses/>
 typedef CGAL::Lazy_exact_nt<leda_real> exact;
 #endif
 
+#ifdef ENABLE_GMP
+#include "math_gmp_float.h"
+#include "math_gmp_rational.h"
+#endif
+
 #include <iostream>
 #include <string>
 #include <assert.h>

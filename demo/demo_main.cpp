@@ -149,9 +149,7 @@ namespace visilibDemo
 
             std::cout << "  s: enable/disable silhouette optimisation" << std::endl;
             std::cout << "  n: enable/disable nomalization" << std::endl;
-#if EXACT_ARITHMETIC
-            std::cout << "  e: enable/disable exact arithmetic" << std::endl;
-#endif
+            std::cout << "  e: change precision type" << std::endl;
 #if EMBREE
             std::cout << "  g: enable/disable embree ray tracing" << std::endl;
 #endif
@@ -159,11 +157,13 @@ namespace visilibDemo
             std::cout << "  f: enable/disable detect aperture only" << std::endl;
 
             std::cout << "  n: enable/disable Plucker normalization" << std::endl;
-            std::cout << "  f: enable/disable fast silhouette rejection test" << std::endl;
+            // std::cout << "  f: enable/disable fast silhouette rejection test" << std::endl;
 
             std::cout << "  x: change scene " << std::endl;
             std::cout << "  +/-: increase/decrease scaling of query polygons" << std::endl;
             std::cout << "  1/2: increase/decrease number of vertices of query polygons" << std::endl;
+
+            std::cout << "  [*] / [/] adjust global scaling" << std::endl;
 
             std::cout << "  w: write config" << std::endl;
             std::cout << "  o: open config" << std::endl;
@@ -260,11 +260,32 @@ namespace visilibDemo
                 break;
 
 
-#ifdef EXACT_ARITHMETIC
             case 'e':
-                mDemoConfiguration.precisionType = mDemoConfiguration.precisionType == VisibilityExactQueryConfiguration::DOUBLE ? VisibilityExactQueryConfiguration::EXACT : VisibilityExactQueryConfiguration::DOUBLE;
-                forceDisplay = true;
+                switch (mDemoConfiguration.precisionType)
+                {
+                case VisibilityExactQueryConfiguration::FLOAT:
+                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::DOUBLE;
+                    break;
+#ifdef EXACT_ARITHMETIC
+                case VisibilityExactQueryConfiguration::DOUBLE:
+                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::EXACT;
+                    break;
+#elif ENABLE_GMP
+                case VisibilityExactQueryConfiguration::DOUBLE:
+                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::GMP_FLOAT;
+                    break;
+                case VisibilityExactQueryConfiguration::GMP_FLOAT:
+                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::GMP_RATIONAL;
+                    break;
 #endif
+                default:
+                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::FLOAT;
+                    break;
+
+                }
+                std::cout << "  [Arithmetic: " << DemoConfiguration::toStr(mDemoConfiguration.precisionType) << "]" << std::endl;
+                forceDisplay = true;
+
                 break;
 #if EMBREE
             case 'g':
