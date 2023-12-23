@@ -390,6 +390,14 @@ namespace visilib
     }
 #endif
 
+#if ENABLE_REALEXPR
+    template<>
+    inline bool MathGeometry::findPluckerEdgeWithQuadricIntersection<MathPlucker6<RealExpr>, RealExpr>(const MathPlucker6<RealExpr>& v1, const MathPlucker6<RealExpr>& v2, GeometryPositionType p1, GeometryPositionType p2, std::vector<MathPlucker6<RealExpr>>& result, RealExpr tolerance)
+    {
+        return findPluckerEdgeWithQuadricIntersection<MathPlucker6<RealExpr>, RealExpr>(v1, v2, p1, p2, result, false, tolerance);
+    }
+#endif
+
     template<class P, class S>
     inline bool MathGeometry::findPluckerEdgeWithQuadricIntersection(const P & v1, const P & v2, GeometryPositionType p1, GeometryPositionType p2, std::vector<P> & result, bool newtonRaphson, S tolerance)
     {

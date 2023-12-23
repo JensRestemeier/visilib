@@ -5,13 +5,11 @@
 #include <gmp.h>
 struct GmpFloat;
 
-inline GmpFloat sqrt(const GmpFloat& val);
 inline std::ostream& operator<< (std::ostream& stream, const GmpFloat& val);
 inline GmpFloat operator+(const GmpFloat& lhs, const GmpFloat& rhs);
 inline GmpFloat operator-(const GmpFloat& lhs, const GmpFloat& rhs);
 inline GmpFloat operator/(const GmpFloat& lhs, const GmpFloat& rhs);
 inline GmpFloat operator*(const GmpFloat& lhs, const GmpFloat& rhs);
-inline double to_double(const GmpFloat& rhs);
 
 struct GmpFloat {
     mpf_t v;
@@ -86,14 +84,28 @@ struct GmpFloat {
     {
         return mpf_cmp(v, rhs.v) >= 0;
     }
+    inline GmpFloat abs() const 
+    {
+        GmpFloat tmp;
+        mpf_abs(tmp.v, v);
+        return tmp;
+    }
+    inline GmpFloat sqrt() const
+    {
+        GmpFloat tmp;
+        mpf_sqrt(tmp.v, v);
+        return tmp;
+    }
+    static GmpFloat tolerance() {
+        return GmpFloat(1e-11);
+    }
 };
 
-inline GmpFloat sqrt(const GmpFloat& val)
+inline GmpFloat sqrt(GmpFloat x)
 {
-    GmpFloat tmp;
-    mpf_sqrt(tmp.v, val.v);
-    return tmp;
+    return x.sqrt();
 }
+
 inline std::ostream& operator<< (std::ostream& stream, const GmpFloat& val)
 {
     return stream << mpf_get_d(val.v);

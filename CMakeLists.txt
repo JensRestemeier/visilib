@@ -20,7 +20,7 @@
 # top-level CMakeLists.txt
 # !! To be run from 'cmakeout' subdirectory !!
 
-cmake_minimum_required (VERSION 2.4.0 FATAL_ERROR)
+cmake_minimum_required (VERSION 3.24.2 FATAL_ERROR)
 
 set( VISILIB_LIB_NAME "visilib" )
 set( VISILIB_DEMO_NAME "visilibDemo" )
@@ -28,6 +28,8 @@ set( VISILIB_DEMO_NAME "visilibDemo" )
 set( VERSION_MAJOR 1 )
 set( VERSION_MINOR 0 )
 set( VERSION_REVISION 0 )
+
+set (ALLOW_DUPLICATE_CUSTOM_TARGETS 1)
 
 project( ${VISILIB_LIB_NAME} )
 project( ${VISILIB_DEMO_NAME} )
@@ -42,6 +44,16 @@ set (USE_EMBREE False)
 
 #Set USE_EXACT_ARITHMETIC flag to True to enable exact arithmetic computation with CGAL library (default:false) 
 set (USE_EXACT_ARITHMETIC False)
+
+add_definitions(-DENABLE_GMP)
+include_directories("E:/External/gmp/dist/include")
+link_directories("E:/External/gmp/dist/lib")
+set(LIBS ${LIBS} libgmpd-13.lib libgmpxxd-9.lib)
+
+add_definitions(-DENABLE_REALEXPR)
+include_directories("E:/External/RealExpr.v1/exact/src")
+link_directories("E:/External/RealExpr.v1/lib/x64/Debug")
+set(LIBS ${LIBS} RealExpr.lib)
 
 #Comment the following line to disable the sanity integrity checks performed during computations in debug mode (default: checks are activated)
 add_definitions(-DINTEGRITY_CHECK)
@@ -59,7 +71,7 @@ if (GLUT_FOUND)
     include_directories(${GLUT_INCLUDE_DIRS})
     link_directories(${GLUT_LIBRARY_DIRS})
     add_definitions(${GLUT_DEFINITIONS})
-    set (LIBS ${GLUT_LIBRARY})
+    set (LIBS ${LIBS} ${GLUT_LIBRARY})
 else()
     message(ERROR " GLUT not found!")
 endif()

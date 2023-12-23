@@ -184,6 +184,14 @@ namespace visilib
     }
 #endif
 
+#ifdef ENABLE_REALEXPR
+    template <>
+    inline bool MathPredicates::isZero(const MathPlucker6<RealExpr>& a, RealExpr epsilon)
+    {
+        return a.getDirection().isZero(epsilon) && a.getLocation().isZero(epsilon);
+    }
+#endif
+
     template <>
     inline bool MathPredicates::isZero(double scalar, double tolerance)
     {
@@ -218,6 +226,14 @@ namespace visilib
         mpq_t a;
         mpq_abs(a, scalar.v);
         return mpq_cmp(a, tolerance.v) < 0;
+    }
+#endif
+
+#ifdef ENABLE_REALEXPR
+    template <>
+    inline bool MathPredicates::isZero(RealExpr scalar, RealExpr tolerance)
+    {
+        return scalar.isZero();
     }
 #endif
 

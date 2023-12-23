@@ -62,6 +62,9 @@ bool VisibilityTest(std::string& )
     precisions.push_back(VisibilityExactQueryConfiguration::GMP_FLOAT);
     precisions.push_back(VisibilityExactQueryConfiguration::GMP_RATIONAL);
 #endif
+#ifdef ENABLE_REALEXPR
+    precisions.push_back(VisibilityExactQueryConfiguration::REAL_EXPR);
+#endif
     std::vector<float> globalScalings = {0.05f, 0.1f, 1.f, 5.0f };
     std::vector<size_t> vertexCount = { 1,2,3,5,7,9,11 };
     std::vector<bool> normalizations = { true,false };

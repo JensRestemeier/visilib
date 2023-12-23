@@ -68,6 +68,11 @@ inline VisibilityResult visilib::areVisible(GeometryOccluderSet* scene, const fl
         query = new VisibilityExactQuery_<MathPlucker6<GmpRational>, GmpRational>(scene, configuration, MathArithmetic<GmpRational>::Tolerance());
         break;
 #endif
+#ifdef ENABLE_REALEXPR
+    case VisibilityExactQueryConfiguration::REAL_EXPR:
+        query = new VisibilityExactQuery_<MathPlucker6<RealExpr>, RealExpr>(scene, configuration, MathArithmetic<RealExpr>::Tolerance());
+        break;
+#endif
     case VisibilityExactQueryConfiguration::DOUBLE:
         query = new VisibilityExactQuery_<MathPlucker6<double>, double>(scene, configuration, MathArithmetic<double>::Tolerance());
         break;

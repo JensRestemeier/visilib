@@ -5,13 +5,11 @@
 #include <gmp.h>
 struct GmpRational;
 
-inline GmpRational sqrt(const GmpRational& val);
 inline std::ostream& operator<< (std::ostream& stream, const GmpRational& val);
 inline GmpRational operator+(const GmpRational& lhs, const GmpRational& rhs);
 inline GmpRational operator-(const GmpRational& lhs, const GmpRational& rhs);
 inline GmpRational operator/(const GmpRational& lhs, const GmpRational& rhs);
 inline GmpRational operator*(const GmpRational& lhs, const GmpRational& rhs);
-inline double to_double(const GmpRational& rhs);
 
 struct GmpRational {
     mpq_t v;
@@ -86,14 +84,28 @@ struct GmpRational {
     {
         return mpq_cmp(v, rhs.v) >= 0;
     }
+    inline GmpRational abs() const 
+    {
+        GmpRational tmp;
+        mpq_abs(tmp.v, v);
+        return tmp;
+    }
+    inline GmpRational sqrt() const 
+    {
+        GmpRational tmp;
+        mpq_set_d(tmp.v, std::sqrt(mpq_get_d(v)));
+        return tmp;
+    }
+    static GmpRational tolerance() {
+        return GmpRational(1e-11);
+    }
 };
 
-inline GmpRational sqrt(const GmpRational& val)
+inline GmpRational sqrt(GmpRational x)
 {
-    GmpRational tmp;
-    mpq_set_d(tmp.v, sqrt(mpq_get_d(val.v)));
-    return tmp;
+    return x.sqrt();
 }
+
 inline std::ostream& operator<< (std::ostream& stream, const GmpRational& val)
 {
     return stream << mpq_get_d(val.v);

@@ -71,9 +71,15 @@ namespace visilib
 
     template<> inline double MathArithmetic<double>::Tolerance() { return  1e-11; }
     template<> inline float MathArithmetic<float>::Tolerance() { return 1e-6f; }
+#ifdef EXACT_ARITHMETIC
+    template<> inline exact MathArithmetic<exact>::Tolerance() { return leda_real(1e-20); }
+#endif
 #ifdef ENABLE_GMP
-    template<> inline GmpFloat MathArithmetic<GmpFloat>::Tolerance() { return  GmpFloat(1e-6); }
-    template<> inline GmpRational MathArithmetic<GmpRational>::Tolerance() { return  GmpRational(1e-6); }
+    template<> inline GmpFloat MathArithmetic<GmpFloat>::Tolerance() { return  GmpFloat::tolerance();  }
+    template<> inline GmpRational MathArithmetic<GmpRational>::Tolerance() { return  GmpRational::tolerance(); }
+#endif
+#ifdef ENABLE_REALEXPR
+    template<> inline RealExpr MathArithmetic<RealExpr>::Tolerance() { return  RealExpr::tolerance(); }
 #endif
     template<> inline double MathArithmetic<double>::GuardBandClipping() { return 1e-12; };
     template<> inline float MathArithmetic<float>::GuardBandClipping() { return 1e-6f; };
@@ -88,6 +94,9 @@ namespace visilib
     template<> inline GmpFloat MathArithmetic<GmpFloat>::getAbs(GmpFloat  s);
     template<> inline GmpRational MathArithmetic<GmpRational>::getAbs(GmpRational  s);
 #endif
+#ifdef ENABLE_REALEXPR
+    template<> inline RealExpr MathArithmetic<RealExpr>::getAbs(RealExpr  s);
+#endif
 
     template<> inline double MathArithmetic<double>::getSqrt(double s);
     template<> inline float MathArithmetic<float>::getSqrt(float s);
@@ -98,6 +107,9 @@ namespace visilib
 #ifdef ENABLE_GMP
     template<> inline GmpFloat MathArithmetic<GmpFloat>::getSqrt(GmpFloat  s);
     template<> inline GmpRational MathArithmetic<GmpRational>::getSqrt(GmpRational  s);
+#endif
+#ifdef ENABLE_REALEXPR
+    template<> inline RealExpr MathArithmetic<RealExpr>::getSqrt(RealExpr  s);
 #endif
 
     template<> inline bool MathArithmetic<double>::isFinite(double s);
@@ -110,9 +122,8 @@ namespace visilib
     template<> inline bool MathArithmetic<GmpFloat>::isFinite(GmpFloat s);
     template<> inline bool MathArithmetic<GmpRational>::isFinite(GmpRational  s);
 #endif
-
-#ifdef EXACT_ARITHMETIC
-    template<> inline exact MathArithmetic<exact>::Tolerance() { return leda_real(1e-20); }
+#ifdef ENABLE_REALEXPR
+    template<> inline bool MathArithmetic<RealExpr>::isFinite(RealExpr  s);
 #endif
 
     template<>
@@ -138,17 +149,20 @@ namespace visilib
     template<>
     inline GmpFloat MathArithmetic<GmpFloat>::getAbs(GmpFloat  s)
     {
-        GmpFloat tmp;
-        mpf_abs(tmp.v, s.v);
-        return tmp;
+        return s.abs();
     }
 
     template<>
     inline GmpRational MathArithmetic<GmpRational>::getAbs(GmpRational s)
     {
-        GmpRational tmp;
-        mpq_abs(tmp.v, s.v);
-        return tmp;
+        return s.abs();
+    }
+#endif
+#ifdef ENABLE_REALEXPR
+    template<>
+    inline RealExpr MathArithmetic<RealExpr>::getAbs(RealExpr s)
+    {
+        return s.abs();
     }
 #endif
 
@@ -177,10 +191,17 @@ namespace visilib
     template<>
     inline GmpFloat MathArithmetic<GmpFloat>::getSqrt(GmpFloat s)
     {
-        return sqrt(s);
+        return s.sqrt();
     }
     template<>
     inline GmpRational MathArithmetic<GmpRational>::getSqrt(GmpRational  s)
+    {
+        return s.sqrt();
+    }
+#endif
+#ifdef ENABLE_REALEXPR
+    template<>
+    inline RealExpr MathArithmetic<RealExpr>::getSqrt(RealExpr s)
     {
         return sqrt(s);
     }
@@ -213,6 +234,13 @@ namespace visilib
     }
     template<>
     inline bool MathArithmetic<GmpRational>::isFinite(GmpRational s)
+    {
+        return true;
+    }
+#endif
+#ifdef ENABLE_REALEXPR
+    template<>
+    inline bool MathArithmetic<RealExpr>::isFinite(RealExpr s)
     {
         return true;
     }

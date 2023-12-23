@@ -304,6 +304,10 @@ const std::string DemoConfiguration::toStr(VisibilityExactQueryConfiguration::Pr
     case VisibilityExactQueryConfiguration::GMP_RATIONAL:
         return "GMP_RATIONAL";
 #endif
+#ifdef ENABLE_REALEXPR
+    case VisibilityExactQueryConfiguration::REAL_EXPR:
+        return "REAL_EXPR";
+#endif
     default:
         return "UNKNOWN";
     }

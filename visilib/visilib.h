@@ -45,6 +45,9 @@ namespace visilib
             , GMP_FLOAT     /**< @brief Extended precision arithmetic (based on GMP) */
             , GMP_RATIONAL  /**< @brief Rational arithmetic (based on GMP) */
 #endif
+#ifdef ENABLE_REALEXPR
+            , REAL_EXPR
+#endif
         };
 
         VisibilityExactQueryConfiguration()

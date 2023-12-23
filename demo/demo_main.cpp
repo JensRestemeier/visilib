@@ -56,6 +56,10 @@ namespace visilibDemo
         VisilibDemoMain()
         {
         }
+        ~VisilibDemoMain()
+        {
+            printf("done\n");
+        }
 
         bool init()
         {
@@ -266,22 +270,35 @@ namespace visilibDemo
                 case VisibilityExactQueryConfiguration::FLOAT:
                     mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::DOUBLE;
                     break;
+#define NEXT_ITEM VisibilityExactQueryConfiguration::DOUBLE
 #ifdef EXACT_ARITHMETIC
-                case VisibilityExactQueryConfiguration::DOUBLE:
+                case NEXT_ITEM:
                     mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::EXACT;
                     break;
-#elif ENABLE_GMP
-                case VisibilityExactQueryConfiguration::DOUBLE:
+#undef NEXT_ITEM
+#define NEXT_ITEM VisibilityExactQueryConfiguration::EXACT
+#endif
+#ifdef ENABLE_GMP
+                case NEXT_ITEM:
                     mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::GMP_FLOAT;
                     break;
                 case VisibilityExactQueryConfiguration::GMP_FLOAT:
                     mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::GMP_RATIONAL;
                     break;
+#undef NEXT_ITEM
+#define NEXT_ITEM VisibilityExactQueryConfiguration::GMP_RATIONAL
+#endif
+#ifdef ENABLE_REALEXPR
+                case NEXT_ITEM:
+                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::REAL_EXPR;
+                    break;
+#undef NEXT_ITEM
+#define NEXT_ITEM VisibilityExactQueryConfiguration::REAL_EXPR
 #endif
                 default:
                     mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::FLOAT;
                     break;
-
+#undef NEXT_ITEM
                 }
                 std::cout << "  [Arithmetic: " << DemoConfiguration::toStr(mDemoConfiguration.precisionType) << "]" << std::endl;
                 forceDisplay = true;

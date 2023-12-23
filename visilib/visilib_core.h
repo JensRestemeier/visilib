@@ -31,6 +31,10 @@ typedef CGAL::Lazy_exact_nt<leda_real> exact;
 #include "math_gmp_rational.h"
 #endif
 
+#ifdef ENABLE_REALEXPR
+#include "math_real_expr.h"
+#endif
+
 #include <iostream>
 #include <string>
 #include <assert.h>
