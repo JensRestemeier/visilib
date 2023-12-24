@@ -186,104 +186,118 @@ pos(double *px, double *py, double *pz, int x, int y, int *viewport)
 static void
 zprMouse(int button, int state, int x, int y)
 {
-    GLint viewport[4];
-
-    _mouseX = x;
-    _mouseY = y;
-
-    if (state == GLUT_UP)
-        switch (button)
+#if 1
+    ImGui_ImplGLUT_MouseFunc(button, state, x, y);
+    ImGuiIO& io = ImGui::GetIO();
+    if (!io.WantCaptureMouse)
+#endif
     {
-        case GLUT_LEFT_BUTTON:   _mouseLeft = false; break;
-        case GLUT_MIDDLE_BUTTON: _mouseMiddle = false; break;
-        case GLUT_RIGHT_BUTTON:  _mouseRight = false; break;
-    }
-    else
-        switch (button)
-    {
-        case GLUT_LEFT_BUTTON:   _mouseLeft = true; break;
-        case GLUT_MIDDLE_BUTTON: _mouseMiddle = true; break;
-        case GLUT_RIGHT_BUTTON:  _mouseRight = true; break;
-    }
+        GLint viewport[4];
 
-    glGetIntegerv(GL_VIEWPORT, viewport);
-    pos(&_dragPosX, &_dragPosY, &_dragPosZ, x, y, viewport);
-    glutPostRedisplay();
+        _mouseX = x;
+        _mouseY = y;
+
+        if (state == GLUT_UP)
+            switch (button)
+            {
+            case GLUT_LEFT_BUTTON:   _mouseLeft = false; break;
+            case GLUT_MIDDLE_BUTTON: _mouseMiddle = false; break;
+            case GLUT_RIGHT_BUTTON:  _mouseRight = false; break;
+            }
+        else
+            switch (button)
+            {
+            case GLUT_LEFT_BUTTON:   _mouseLeft = true; break;
+            case GLUT_MIDDLE_BUTTON: _mouseMiddle = true; break;
+            case GLUT_RIGHT_BUTTON:  _mouseRight = true; break;
+            }
+
+        glGetIntegerv(GL_VIEWPORT, viewport);
+        pos(&_dragPosX, &_dragPosY, &_dragPosZ, x, y, viewport);
+        glutPostRedisplay();
+    }
 }
 
 static void
 zprMotion(int x, int y)
 {
-    bool changed = false;
-
-    int dx = x - _mouseX;
-    int dy = y - _mouseY;
-
-    GLint viewport[4];
-    glGetIntegerv(GL_VIEWPORT, viewport);
-
-    if (dx == 0 && dy == 0)
-        return;
-
-    if (_mouseMiddle || (_mouseLeft && _mouseRight))
+#if 0
+    ImGui_ImplGLUT_MotionFunc(x, y);
+    ImGuiIO& io = ImGui::GetIO();
+    if (!io.WantCaptureMouse)
+#endif
     {
-        double s = exp((double)dy*0.01);
+        bool changed = false;
 
-        glTranslatef(zprReferencePoint[0], zprReferencePoint[1], zprReferencePoint[2]);
-        glScaled(s, s, s);
-        glTranslated(-zprReferencePoint[0], -zprReferencePoint[1], -zprReferencePoint[2]);
+        int dx = x - _mouseX;
+        int dy = y - _mouseY;
 
-        changed = true;
-    }
-    else
-        if (_mouseLeft)
+        GLint viewport[4];
+        glGetIntegerv(GL_VIEWPORT, viewport);
+
+        if (dx == 0 && dy == 0)
+            return;
+
+        if (_mouseMiddle || (_mouseLeft && _mouseRight))
         {
-            double ax, ay, az;
-            double bx, by, bz;
-            double angle;
-
-            ax = dy;
-            ay = dx;
-            az = 0.0;
-            angle = vlen(ax, ay, az) / (double)(viewport[2] + 1)*180.0;
-
-            /* Use inverse matrix to determine local axis of rotation */
-
-            bx = _matrixInverse[0] * ax + _matrixInverse[4] * ay + _matrixInverse[8] * az;
-            by = _matrixInverse[1] * ax + _matrixInverse[5] * ay + _matrixInverse[9] * az;
-            bz = _matrixInverse[2] * ax + _matrixInverse[6] * ay + _matrixInverse[10] * az;
+            double s = exp((double)dy * 0.01);
 
             glTranslatef(zprReferencePoint[0], zprReferencePoint[1], zprReferencePoint[2]);
-            glRotated(angle, bx, by, bz);
-            glTranslatef(-zprReferencePoint[0], -zprReferencePoint[1], -zprReferencePoint[2]);
+            glScaled(s, s, s);
+            glTranslated(-zprReferencePoint[0], -zprReferencePoint[1], -zprReferencePoint[2]);
 
             changed = true;
         }
         else
-            if (_mouseRight)
+            if (_mouseLeft)
             {
-                double px, py, pz;
+                double ax, ay, az;
+                double bx, by, bz;
+                double angle;
 
-                pos(&px, &py, &pz, x, y, viewport);
+                ax = dy;
+                ay = dx;
+                az = 0.0;
+                angle = vlen(ax, ay, az) / (double)(viewport[2] + 1) * 180.0;
 
-                glLoadIdentity();
-                glTranslated(px - _dragPosX, py - _dragPosY, pz - _dragPosZ);
-                glMultMatrixd(_matrix);
+                /* Use inverse matrix to determine local axis of rotation */
 
-                _dragPosX = px;
-                _dragPosY = py;
-                _dragPosZ = pz;
+                bx = _matrixInverse[0] * ax + _matrixInverse[4] * ay + _matrixInverse[8] * az;
+                by = _matrixInverse[1] * ax + _matrixInverse[5] * ay + _matrixInverse[9] * az;
+                bz = _matrixInverse[2] * ax + _matrixInverse[6] * ay + _matrixInverse[10] * az;
+
+                glTranslatef(zprReferencePoint[0], zprReferencePoint[1], zprReferencePoint[2]);
+                glRotated(angle, bx, by, bz);
+                glTranslatef(-zprReferencePoint[0], -zprReferencePoint[1], -zprReferencePoint[2]);
 
                 changed = true;
             }
+            else
+                if (_mouseRight)
+                {
+                    double px, py, pz;
 
-    _mouseX = x;
-    _mouseY = y;
+                    pos(&px, &py, &pz, x, y, viewport);
 
-    if (changed)
-    {
-        getMatrix();
-        glutPostRedisplay();
+                    glLoadIdentity();
+                    glTranslated(px - _dragPosX, py - _dragPosY, pz - _dragPosZ);
+                    glMultMatrixd(_matrix);
+
+                    _dragPosX = px;
+                    _dragPosY = py;
+                    _dragPosZ = pz;
+
+                    changed = true;
+                }
+
+        _mouseX = x;
+        _mouseY = y;
+
+        if (changed)
+        {
+            getMatrix();
+            glutPostRedisplay();
+        }
     }
 }
 
@@ -304,6 +318,9 @@ zprReshape(int w, int h)
     glOrtho(_left, _right, _bottom, _top, -100*_scaling, 100*_scaling);
 
     glMatrixMode(GL_MODELVIEW);
+#if 1
+    ImGui_ImplGLUT_ReshapeFunc(w,h);
+#endif
 }
 #endif
 

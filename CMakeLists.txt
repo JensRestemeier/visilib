@@ -50,10 +50,12 @@ include_directories("E:/External/gmp/dist/include")
 link_directories("E:/External/gmp/dist/lib")
 set(LIBS ${LIBS} libgmpd-13.lib libgmpxxd-9.lib)
 
-add_definitions(-DENABLE_REALEXPR)
-include_directories("E:/External/RealExpr.v1/exact/src")
-link_directories("E:/External/RealExpr.v1/lib/x64/Debug")
-set(LIBS ${LIBS} RealExpr.lib)
+if (0)
+	add_definitions(-DENABLE_REALEXPR)
+	include_directories("E:/External/RealExpr.v1/exact/src")
+	link_directories("E:/External/RealExpr.v1/lib/x64/Debug")
+	set(LIBS ${LIBS} RealExpr.lib)
+endif()
 
 #Comment the following line to disable the sanity integrity checks performed during computations in debug mode (default: checks are activated)
 add_definitions(-DINTEGRITY_CHECK)
@@ -132,6 +134,7 @@ endif(NOT WIN32)
 
 ENABLE_TESTING()
 
+add_subdirectory(DearIMGUI)
 
 add_subdirectory(visilib)
 add_subdirectory(demo)

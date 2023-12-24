@@ -25,6 +25,11 @@ along with Visilib. If not, see <http://www.gnu.org/licenses/>
 #include <GL/gl.h>
 #include <GL/glut.h>
 #endif
+
+#include <imgui.h>
+#include <examples/imgui_impl_glut.h>
+#include <examples/imgui_impl_opengl2.h>
+
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -52,9 +57,13 @@ namespace visilibDemo
 
     class VisilibDemoMain
     {
+        bool show_demo_window;
+        int wc = 10;
+        int rc = 0;
     public:
         VisilibDemoMain()
         {
+            show_demo_window = false;
         }
         ~VisilibDemoMain()
         {
@@ -106,11 +115,12 @@ namespace visilibDemo
 
         void animate()
         {
-            if (animated)
+            if (animated || step)
             {
                 mDemoConfiguration.phi += 0.005f;
                 mDemoConfiguration.eta += 0.001f;
                 forceDisplay = true;
+                step = false;
             }
 
             if (forceDisplay)
@@ -137,6 +147,151 @@ namespace visilibDemo
             mDemoConfiguration.readConfig(filename);
         }
 
+        void nextPrecisionType()
+        {
+            switch (mDemoConfiguration.precisionType)
+            {
+            case VisibilityExactQueryConfiguration::FLOAT:
+                mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::DOUBLE;
+                break;
+#define NEXT_ITEM VisibilityExactQueryConfiguration::DOUBLE
+#ifdef EXACT_ARITHMETIC
+            case NEXT_ITEM:
+                mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::EXACT;
+                break;
+#undef NEXT_ITEM
+#define NEXT_ITEM VisibilityExactQueryConfiguration::EXACT
+#endif
+#ifdef ENABLE_GMP
+            case NEXT_ITEM:
+                mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::GMP_FLOAT;
+                break;
+            case VisibilityExactQueryConfiguration::GMP_FLOAT:
+                mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::GMP_RATIONAL;
+                break;
+#undef NEXT_ITEM
+#define NEXT_ITEM VisibilityExactQueryConfiguration::GMP_RATIONAL
+#endif
+#ifdef ENABLE_REALEXPR
+            case NEXT_ITEM:
+                mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::REAL_EXPR;
+                break;
+#undef NEXT_ITEM
+#define NEXT_ITEM VisibilityExactQueryConfiguration::REAL_EXPR
+#endif
+            default:
+                mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::FLOAT;
+                break;
+#undef NEXT_ITEM
+            }
+            std::cout << "  [Arithmetic: " << DemoConfiguration::toStr(mDemoConfiguration.precisionType) << "]" << std::endl;
+
+        }
+
+#if 1
+        void showGUI()
+        {
+            if (ImGui::BeginMainMenuBar()) {
+                if (ImGui::BeginMenu("File")) {
+                    if (ImGui::MenuItem("Quit", NULL, false, true)) {
+                        exit(0);
+                    }
+                    ImGui::EndMenu();
+                }
+                ImGui::EndMainMenuBar();
+            }
+
+            if (show_demo_window)
+            {
+                ImGui::ShowDemoWindow(&show_demo_window);
+            }
+
+            {
+                ImGui::Begin("Visilib 1.0. Demo application");
+
+                forceDisplay |= ImGui::Checkbox("silhouette optimisation", &mDemoConfiguration.silhouetteOptimisation);
+                forceDisplay |= ImGui::Checkbox("nomalization", &mDemoConfiguration.normalization);
+                if (ImGui::Button("change precision type")) {
+                    nextPrecisionType();
+                    forceDisplay = true;
+                }
+                ImGui::SameLine();
+                ImGui::Text(DemoConfiguration::toStr(mDemoConfiguration.precisionType).c_str());
+#if EMBREE
+                if (ImGui::Checkbox("embree ray tracing", mDemoConfiguration.embree)) {
+                    initScene(mDemoConfiguration.sceneIndex);
+                    forceDisplay = true;
+                }
+#endif
+                forceDisplay |= ImGui::Checkbox("representative line sampling strategy", &mDemoConfiguration.representativeLineSampling);
+                forceDisplay |= ImGui::Checkbox("detect aperture only", &mDemoConfiguration.detectApertureOnly);
+
+                if (ImGui::Button("change scene ")) {
+                    mDemoConfiguration.sceneIndex++;
+                    if (mDemoConfiguration.sceneIndex > 9)
+                        mDemoConfiguration.sceneIndex = 0;
+                    initScene(mDemoConfiguration.sceneIndex);
+                    forceDisplay = true;
+                }
+                ImGui::SameLine();
+                ImGui::Text("%i", mDemoConfiguration.sceneIndex);
+
+                int tmp = mDemoConfiguration.vertexCount1;
+                forceDisplay |= ImGui::SliderInt("number of vertices of query polygon", &tmp, 1, 12);
+                mDemoConfiguration.vertexCount1 = tmp;
+
+                ImGui::Text("adjust global scaling"); ImGui::SameLine();
+                if (ImGui::Button("+")) {
+                    mDemoConfiguration.globalScaling *= 2;
+                    forceDisplay = true;
+                    setViewPortScaling(mDemoConfiguration.globalScaling);
+                    initScene(mDemoConfiguration.sceneIndex);
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("-")) {
+                    mDemoConfiguration.globalScaling /= 2;
+                    forceDisplay = true;
+                    setViewPortScaling(mDemoConfiguration.globalScaling);
+                    initScene(mDemoConfiguration.sceneIndex);
+                }
+
+                if (ImGui::Button("write config")) {
+                    std::stringstream ss;
+
+                    std::cout << "Save config.txt" << std::endl;
+                    ss << "config_" << wc++ << ".txt";
+                    writeConfig(ss.str());
+                }
+                if (ImGui::Button("open config")) {
+                    std::stringstream ss;
+
+                    std::cout << "Read config.txt" << std::endl;
+                    ss << "config_" << rc++ << ".txt";
+                    if (rc > wc)
+                        rc = 0;
+                    readConfig(ss.str());
+                    initScene(mDemoConfiguration.sceneIndex);
+                }
+
+                if (ImGui::Button("step"))  {
+                    step = true;
+                    forceDisplay = true;
+                }
+                ImGui::SameLine();
+                forceDisplay |= ImGui::Checkbox("animation", &animated);
+                if (ImGui::Button("change geometry mode")) {
+                    drawGeometryType++;
+                    drawGeometryType = drawGeometryType % 4;
+                    forceDisplay = true;
+                }
+                ImGui::SameLine();
+                ImGui::Text("%i", drawGeometryType);
+
+                ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+                ImGui::End();
+            }
+        }
+#endif
         void display()
         {
             DemoDebugVisualisationGl::display(debugger, *meshContainer, v0, v1, result, drawGeometryType);
@@ -160,7 +315,7 @@ namespace visilibDemo
             std::cout << "  r: enable/disable representative line sampling strategy" << std::endl;
             std::cout << "  f: enable/disable detect aperture only" << std::endl;
 
-            std::cout << "  n: enable/disable Plucker normalization" << std::endl;
+            // std::cout << "  n: enable/disable Plucker normalization" << std::endl;
             // std::cout << "  f: enable/disable fast silhouette rejection test" << std::endl;
 
             std::cout << "  x: change scene " << std::endl;
@@ -180,8 +335,6 @@ namespace visilibDemo
 
         void keyboard(unsigned char key, int, int)
         {
-            static int wc = 10;
-            static int rc = 0;
             std::stringstream ss;
 
             switch (key)
@@ -265,42 +418,7 @@ namespace visilibDemo
 
 
             case 'e':
-                switch (mDemoConfiguration.precisionType)
-                {
-                case VisibilityExactQueryConfiguration::FLOAT:
-                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::DOUBLE;
-                    break;
-#define NEXT_ITEM VisibilityExactQueryConfiguration::DOUBLE
-#ifdef EXACT_ARITHMETIC
-                case NEXT_ITEM:
-                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::EXACT;
-                    break;
-#undef NEXT_ITEM
-#define NEXT_ITEM VisibilityExactQueryConfiguration::EXACT
-#endif
-#ifdef ENABLE_GMP
-                case NEXT_ITEM:
-                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::GMP_FLOAT;
-                    break;
-                case VisibilityExactQueryConfiguration::GMP_FLOAT:
-                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::GMP_RATIONAL;
-                    break;
-#undef NEXT_ITEM
-#define NEXT_ITEM VisibilityExactQueryConfiguration::GMP_RATIONAL
-#endif
-#ifdef ENABLE_REALEXPR
-                case NEXT_ITEM:
-                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::REAL_EXPR;
-                    break;
-#undef NEXT_ITEM
-#define NEXT_ITEM VisibilityExactQueryConfiguration::REAL_EXPR
-#endif
-                default:
-                    mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::FLOAT;
-                    break;
-#undef NEXT_ITEM
-                }
-                std::cout << "  [Arithmetic: " << DemoConfiguration::toStr(mDemoConfiguration.precisionType) << "]" << std::endl;
+                nextPrecisionType();
                 forceDisplay = true;
 
                 break;
@@ -358,6 +476,7 @@ namespace visilibDemo
         DemoConfiguration mDemoConfiguration;
         bool forceDisplay = true;
         bool animated = false;
+        bool step = false;
         int drawGeometryType = 0;
     };
 }
@@ -366,7 +485,19 @@ static VisilibDemoMain* demo = nullptr;
 
 void display()
 {
+#if 1
+    ImGui_ImplOpenGL2_NewFrame();
+    ImGui_ImplGLUT_NewFrame();
+#endif
     demo->display();
+#if 1
+    demo->showGUI();
+
+    ImGui::Render();
+    ImGuiIO& io = ImGui::GetIO();
+    glViewport(0, 0, (GLsizei)io.DisplaySize.x, (GLsizei)io.DisplaySize.y);
+    ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+#endif
 #ifdef USE_GLUT
     glutSwapBuffers();
 #endif
@@ -374,7 +505,15 @@ void display()
 
 void keyboard(unsigned char key, int x, int y)
 {
-    demo->keyboard(key, x, y);
+#if 1
+    ImGui_ImplGLUT_KeyboardFunc(key, x, y);
+
+    ImGuiIO& io = ImGui::GetIO();
+    if (!io.WantCaptureKeyboard)
+#endif
+    {
+        demo->keyboard(key, x, y);
+    }
 }
 
 void animate()
@@ -386,7 +525,7 @@ int main(int argc, char** argv)
 {
     demo = new VisilibDemoMain();
 
-    demo->writeHelp();
+    //demo->writeHelp();
 
 #ifdef USE_GLUT
     glutInit(&argc, argv);
@@ -398,6 +537,22 @@ int main(int argc, char** argv)
     glutInitWindowPosition(100, 100);
 
     glutCreateWindow("Visilib demo");
+#if 1
+    // Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+    //ImGui::StyleColorsClassic();
+
+    // Setup Platform/Renderer bindings
+    ImGui_ImplGLUT_Init();
+    ImGui_ImplGLUT_InstallFuncs();
+    ImGui_ImplOpenGL2_Init();
+#endif
 
     glutDisplayFunc(display);
 
@@ -422,7 +577,11 @@ int main(int argc, char** argv)
     animate();
 #endif
     delete demo;
-
+#if 1
+    ImGui_ImplOpenGL2_Shutdown();
+    ImGui_ImplGLUT_Shutdown();
+    ImGui::DestroyContext();
+#endif
     return 0;
 }
 

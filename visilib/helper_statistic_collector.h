@@ -30,6 +30,8 @@ along with Visilib. If not, see <http://www.gnu.org/licenses/>
 #include <time.h>
 #endif
 
+#include <imgui.h>
+
 namespace visilib
 {
     enum TimerType
@@ -127,8 +129,9 @@ namespace visilib
         }
 
         
-        void display() 
+        void display()
         {
+#if 1
             std::cout << "Query : " << mTimers[VISIBILITY_QUERY] << "sec. (" << 1.0 / mTimers[VISIBILITY_QUERY] << " queries/sec.)" << std::endl;
             displayCounts();
             display("Ray tracing:    ", mTimers[RAY_INTERSECTION], mTimers[VISIBILITY_QUERY]); std::cout << std::endl;
@@ -140,7 +143,24 @@ namespace visilib
             display("Unknown:        ", getUnkownTime(), mTimers[VISIBILITY_QUERY]); std::cout << std::endl;
 
             std::cout << std::endl;
-          }
+#else
+            ImGui::Begin("Stats");
+
+            ImGui::Text("Query : %f sec (%f queries/sec)", mTimers[VISIBILITY_QUERY], 1.0 / mTimers[VISIBILITY_QUERY]);
+            ImGui::Text("  [Rays:           %i]", mCounts[RAY_COUNT]);
+            ImGui::Text("  [Splits:         %i]", mCounts[POLYTOPE_SPLIT_COUNT]);
+            ImGui::Text("  [Occluder:       %i]", mCounts[OCCLUDER_TRIANGLE_COUNT]);
+            ImGui::Text("Ray tracing:    %f %%", percent(mTimers[RAY_INTERSECTION], mTimers[VISIBILITY_QUERY]));
+            ImGui::Text("Silhouette:     %f %%", percent(mTimers[SILHOUETTE_PROCESSING], mTimers[VISIBILITY_QUERY]));
+            ImGui::Text("Build Polytope: %f %%", percent(mTimers[POLYTOPE_BUILD], mTimers[VISIBILITY_QUERY]));
+            ImGui::Text("Split Polytope: %f %%", percent(mTimers[POLYTOPE_SPLIT], mTimers[VISIBILITY_QUERY]));
+            ImGui::Text("Stabbing line:  %f %%", percent(mTimers[STABBING_LINE_EXTRACTION], mTimers[VISIBILITY_QUERY]));
+            ImGui::Text("Occluders:      %f %%", percent(mTimers[OCCLUDER_TREATMENT], mTimers[VISIBILITY_QUERY]));
+            ImGui::Text("Unknown:        %f %%", percent(getUnkownTime(), mTimers[VISIBILITY_QUERY]));
+
+            ImGui::End();
+#endif
+        }
 
         void displayCounts()
         {

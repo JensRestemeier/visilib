@@ -27,7 +27,8 @@ set(Src
 
 include_directories( external/freeglut/include/ )
 include_directories( ../visilib/ )
+include_directories( E:/External/imgui )
 
 add_executable( ${VISILIB_DEMO_NAME}  ${Src})
 
-target_link_libraries(${VISILIB_DEMO_NAME} ${LIBS} )
+target_link_libraries(${VISILIB_DEMO_NAME} ${LIBS} DearIMGUI )
