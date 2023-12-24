@@ -233,15 +233,34 @@ namespace visilibDemo
                 forceDisplay |= ImGui::Checkbox("representative line sampling strategy", &mDemoConfiguration.representativeLineSampling);
                 forceDisplay |= ImGui::Checkbox("detect aperture only", &mDemoConfiguration.detectApertureOnly);
 
-                if (ImGui::Button("change scene ")) {
-                    mDemoConfiguration.sceneIndex++;
-                    if (mDemoConfiguration.sceneIndex > 9)
-                        mDemoConfiguration.sceneIndex = 0;
+                ImGui::Text("select scene"); ImGui::SameLine();
+                if (ImGui::Button("prev ")) {
+                    if (mDemoConfiguration.sceneIndex > 0)
+                    {
+                        mDemoConfiguration.sceneIndex --;
+                    }
+                    else
+                    {
+                        mDemoConfiguration.sceneIndex = 9;
+                    }
                     initScene(mDemoConfiguration.sceneIndex);
                     forceDisplay = true;
                 }
                 ImGui::SameLine();
                 ImGui::Text("%i", mDemoConfiguration.sceneIndex);
+                ImGui::SameLine();
+                if (ImGui::Button("next ")) {
+                    if (mDemoConfiguration.sceneIndex < 9) 
+                    {
+                        mDemoConfiguration.sceneIndex ++;
+                    }
+                    else
+                    {
+                        mDemoConfiguration.sceneIndex = 0;
+                    }
+                    initScene(mDemoConfiguration.sceneIndex);
+                    forceDisplay = true;
+                }
 
                 int tmp = mDemoConfiguration.vertexCount1;
                 forceDisplay |= ImGui::SliderInt("number of vertices of query polygon", &tmp, 1, 12);
