@@ -221,7 +221,7 @@ zprMouse(int button, int state, int x, int y)
 static void
 zprMotion(int x, int y)
 {
-#if 0
+#if 1
     ImGui_ImplGLUT_MotionFunc(x, y);
     ImGuiIO& io = ImGui::GetIO();
     if (!io.WantCaptureMouse)

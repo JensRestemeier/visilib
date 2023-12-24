@@ -126,6 +126,12 @@ struct RealExpr {
     static RealExpr tolerance() {
         return RealExpr(1e-20);
     }
+    inline bool isInfinite() const {
+        return false;
+    }
+    inline bool isfinite() const {
+        return !isInfinite();
+    }
 };
 
 inline RealExpr sqrt(const RealExpr& x)

@@ -99,6 +99,12 @@ struct GmpRational {
     static GmpRational tolerance() {
         return GmpRational(1e-11);
     }
+    inline bool isInfinite() const {
+        return false;
+    }
+    inline bool isfinite() const {
+        return !isInfinite();
+    }
 };
 
 inline GmpRational sqrt(GmpRational x)

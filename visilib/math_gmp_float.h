@@ -99,6 +99,12 @@ struct GmpFloat {
     static GmpFloat tolerance() {
         return GmpFloat(1e-11);
     }
+    inline bool isInfinite() const {
+        return false;
+    }
+    inline bool isfinite() const {
+        return !isInfinite();
+    }
 };
 
 inline GmpFloat sqrt(GmpFloat x)

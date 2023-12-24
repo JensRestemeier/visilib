@@ -81,6 +81,9 @@ namespace visilib
 #ifdef ENABLE_REALEXPR
     template<> inline RealExpr MathArithmetic<RealExpr>::Tolerance() { return  RealExpr::tolerance(); }
 #endif
+#ifdef ENABLE_MPFR
+    template<> inline Mpfr MathArithmetic<Mpfr>::Tolerance() { return  Mpfr::tolerance(); }
+#endif
     template<> inline double MathArithmetic<double>::GuardBandClipping() { return 1e-12; };
     template<> inline float MathArithmetic<float>::GuardBandClipping() { return 1e-6f; };
 
@@ -97,6 +100,9 @@ namespace visilib
 #ifdef ENABLE_REALEXPR
     template<> inline RealExpr MathArithmetic<RealExpr>::getAbs(RealExpr  s);
 #endif
+#ifdef ENABLE_MPFR
+    template<> inline Mpfr MathArithmetic<Mpfr>::getAbs(Mpfr  s);
+#endif
 
     template<> inline double MathArithmetic<double>::getSqrt(double s);
     template<> inline float MathArithmetic<float>::getSqrt(float s);
@@ -111,6 +117,9 @@ namespace visilib
 #ifdef ENABLE_REALEXPR
     template<> inline RealExpr MathArithmetic<RealExpr>::getSqrt(RealExpr  s);
 #endif
+#ifdef ENABLE_MPFR
+    template<> inline Mpfr MathArithmetic<Mpfr>::getSqrt(Mpfr s);
+#endif
 
     template<> inline bool MathArithmetic<double>::isFinite(double s);
 
@@ -124,6 +133,9 @@ namespace visilib
 #endif
 #ifdef ENABLE_REALEXPR
     template<> inline bool MathArithmetic<RealExpr>::isFinite(RealExpr  s);
+#endif
+#ifdef ENABLE_MPFR
+    template<> inline bool MathArithmetic<Mpfr>::isFinite(Mpfr s);
 #endif
 
     template<>
@@ -161,6 +173,13 @@ namespace visilib
 #ifdef ENABLE_REALEXPR
     template<>
     inline RealExpr MathArithmetic<RealExpr>::getAbs(RealExpr s)
+    {
+        return s.abs();
+    }
+#endif
+#ifdef ENABLE_MPFR
+    template<>
+    inline Mpfr MathArithmetic<Mpfr>::getAbs(Mpfr s)
     {
         return s.abs();
     }
@@ -207,6 +226,14 @@ namespace visilib
     }
 #endif
 
+#ifdef ENABLE_MPFR
+    template<>
+    inline Mpfr MathArithmetic<Mpfr>::getSqrt(Mpfr s)
+    {
+        return sqrt(s);
+    }
+#endif
+
     template<>
     inline bool MathArithmetic<double>::isFinite(double s)
     {
@@ -230,19 +257,26 @@ namespace visilib
     template<>
     inline bool MathArithmetic<GmpFloat>::isFinite(GmpFloat s)
     {
-        return true;
+        return s.isfinite();
     }
     template<>
     inline bool MathArithmetic<GmpRational>::isFinite(GmpRational s)
     {
-        return true;
+        return s.isfinite();
     }
 #endif
 #ifdef ENABLE_REALEXPR
     template<>
     inline bool MathArithmetic<RealExpr>::isFinite(RealExpr s)
     {
-        return true;
+        return s.isfinite();
+    }
+#endif
+#ifdef ENABLE_MPFR
+    template<>
+    inline bool MathArithmetic<Mpfr>::isFinite(Mpfr s)
+    {
+        return s.isfinite();
     }
 #endif
 

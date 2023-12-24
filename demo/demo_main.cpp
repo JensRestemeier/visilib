@@ -179,6 +179,13 @@ namespace visilibDemo
 #undef NEXT_ITEM
 #define NEXT_ITEM VisibilityExactQueryConfiguration::REAL_EXPR
 #endif
+#ifdef ENABLE_MPFR
+            case NEXT_ITEM:
+                mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::MPFR;
+                break;
+#undef NEXT_ITEM
+#define NEXT_ITEM VisibilityExactQueryConfiguration::MPFR
+#endif
             default:
                 mDemoConfiguration.precisionType = VisibilityExactQueryConfiguration::FLOAT;
                 break;

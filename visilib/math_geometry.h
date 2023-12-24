@@ -398,6 +398,14 @@ namespace visilib
     }
 #endif
 
+#if ENABLE_MPFR
+    template<>
+    inline bool MathGeometry::findPluckerEdgeWithQuadricIntersection<MathPlucker6<Mpfr>, Mpfr>(const MathPlucker6<Mpfr>& v1, const MathPlucker6<Mpfr>& v2, GeometryPositionType p1, GeometryPositionType p2, std::vector<MathPlucker6<Mpfr>>& result, Mpfr tolerance)
+    {
+        return findPluckerEdgeWithQuadricIntersection<MathPlucker6<Mpfr>, Mpfr>(v1, v2, p1, p2, result, false, tolerance);
+    }
+#endif
+
     template<class P, class S>
     inline bool MathGeometry::findPluckerEdgeWithQuadricIntersection(const P & v1, const P & v2, GeometryPositionType p1, GeometryPositionType p2, std::vector<P> & result, bool newtonRaphson, S tolerance)
     {

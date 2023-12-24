@@ -57,6 +57,11 @@ if (0)
 	set(LIBS ${LIBS} RealExpr.lib)
 endif()
 
+add_definitions(-DENABLE_MPFR)
+include_directories("E:/External/vcpkg/packages/mpfr_x64-windows/include")
+link_directories("E:/External/vcpkg/packages/mpfr_x64-windows/lib")
+set(LIBS ${LIBS} MPFR.lib)
+
 #Comment the following line to disable the sanity integrity checks performed during computations in debug mode (default: checks are activated)
 add_definitions(-DINTEGRITY_CHECK)
 

@@ -49,6 +49,7 @@ set(MathSrc
 	math_gmp_float.h
 	math_gmp_rational.h
 	math_real_expr.h
+	math_mpfr.h
     )
 
 set(PluckerSrc

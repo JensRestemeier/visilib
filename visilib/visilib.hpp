@@ -73,6 +73,11 @@ inline VisibilityResult visilib::areVisible(GeometryOccluderSet* scene, const fl
         query = new VisibilityExactQuery_<MathPlucker6<RealExpr>, RealExpr>(scene, configuration, MathArithmetic<RealExpr>::Tolerance());
         break;
 #endif
+#ifdef ENABLE_MPFR
+    case VisibilityExactQueryConfiguration::MPFR:
+        query = new VisibilityExactQuery_<MathPlucker6<Mpfr>, Mpfr>(scene, configuration, MathArithmetic<Mpfr>::Tolerance());
+        break;
+#endif
     case VisibilityExactQueryConfiguration::DOUBLE:
         query = new VisibilityExactQuery_<MathPlucker6<double>, double>(scene, configuration, MathArithmetic<double>::Tolerance());
         break;

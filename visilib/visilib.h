@@ -48,6 +48,9 @@ namespace visilib
 #ifdef ENABLE_REALEXPR
             , REAL_EXPR
 #endif
+#ifdef ENABLE_MPFR
+            , MPFR
+#endif
         };
 
         VisibilityExactQueryConfiguration()

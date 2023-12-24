@@ -30,8 +30,6 @@ along with Visilib. If not, see <http://www.gnu.org/licenses/>
 #include <time.h>
 #endif
 
-#include <imgui.h>
-
 namespace visilib
 {
     enum TimerType

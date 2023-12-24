@@ -308,6 +308,10 @@ const std::string DemoConfiguration::toStr(VisibilityExactQueryConfiguration::Pr
     case VisibilityExactQueryConfiguration::REAL_EXPR:
         return "REAL_EXPR";
 #endif
+#ifdef ENABLE_MPFR
+    case VisibilityExactQueryConfiguration::MPFR:
+        return "MPFR";
+#endif
     default:
         return "UNKNOWN";
     }
