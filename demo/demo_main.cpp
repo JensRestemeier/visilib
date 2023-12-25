@@ -292,6 +292,7 @@ namespace visilibDemo
 
                 if (ImGui::Button("step")) {
                     step = true;
+                    animated = false;
                     forceDisplay = true;
                 }
                 ImGui::SameLine();
@@ -304,6 +305,7 @@ namespace visilibDemo
                     ss << "config_" << wc++ << ".txt";
                     writeConfig(ss.str());
                 }
+                ImGui::SameLine();
                 if (ImGui::Button("open config")) {
                     std::stringstream ss;
 
@@ -314,7 +316,6 @@ namespace visilibDemo
                     readConfig(ss.str());
                     initScene(mDemoConfiguration.sceneIndex);
                 }
-
 
                 ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
                 ImGui::End();
