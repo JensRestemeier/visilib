@@ -104,7 +104,7 @@ struct Mpfr {
         return mpfr_zero_p(v);
     }
     inline bool isInfinite() const {
-        mpfr_inf_p(v);
+        return mpfr_inf_p(v);
     }
     inline bool isfinite() const {
         return !isInfinite();

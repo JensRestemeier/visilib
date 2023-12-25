@@ -218,12 +218,6 @@ namespace visilibDemo
 
                 forceDisplay |= ImGui::Checkbox("silhouette optimisation", &mDemoConfiguration.silhouetteOptimisation);
                 forceDisplay |= ImGui::Checkbox("nomalization", &mDemoConfiguration.normalization);
-                if (ImGui::Button("change precision type")) {
-                    nextPrecisionType();
-                    forceDisplay = true;
-                }
-                ImGui::SameLine();
-                ImGui::Text(DemoConfiguration::toStr(mDemoConfiguration.precisionType).c_str());
 #if EMBREE
                 if (ImGui::Checkbox("embree ray tracing", mDemoConfiguration.embree)) {
                     initScene(mDemoConfiguration.sceneIndex);
@@ -232,6 +226,13 @@ namespace visilibDemo
 #endif
                 forceDisplay |= ImGui::Checkbox("representative line sampling strategy", &mDemoConfiguration.representativeLineSampling);
                 forceDisplay |= ImGui::Checkbox("detect aperture only", &mDemoConfiguration.detectApertureOnly);
+
+                if (ImGui::Button("change precision type")) {
+                    nextPrecisionType();
+                    forceDisplay = true;
+                }
+                ImGui::SameLine();
+                ImGui::Text(DemoConfiguration::toStr(mDemoConfiguration.precisionType).c_str());
 
                 ImGui::Text("select scene"); ImGui::SameLine();
                 if (ImGui::Button("prev ")) {
@@ -281,6 +282,21 @@ namespace visilibDemo
                     initScene(mDemoConfiguration.sceneIndex);
                 }
 
+                if (ImGui::Button("change geometry mode")) {
+                    drawGeometryType++;
+                    drawGeometryType = drawGeometryType % 4;
+                    forceDisplay = true;
+                }
+                ImGui::SameLine();
+                ImGui::Text("%i", drawGeometryType);
+
+                if (ImGui::Button("step")) {
+                    step = true;
+                    forceDisplay = true;
+                }
+                ImGui::SameLine();
+                forceDisplay |= ImGui::Checkbox("animation", &animated);
+
                 if (ImGui::Button("write config")) {
                     std::stringstream ss;
 
@@ -299,19 +315,6 @@ namespace visilibDemo
                     initScene(mDemoConfiguration.sceneIndex);
                 }
 
-                if (ImGui::Button("step"))  {
-                    step = true;
-                    forceDisplay = true;
-                }
-                ImGui::SameLine();
-                forceDisplay |= ImGui::Checkbox("animation", &animated);
-                if (ImGui::Button("change geometry mode")) {
-                    drawGeometryType++;
-                    drawGeometryType = drawGeometryType % 4;
-                    forceDisplay = true;
-                }
-                ImGui::SameLine();
-                ImGui::Text("%i", drawGeometryType);
 
                 ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
                 ImGui::End();
