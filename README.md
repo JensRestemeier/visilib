@@ -1,3 +1,6 @@
+## Please note:
+This is my WIP code to get visilib to work in my use case - if you want to do any work with visilib, please use https://github.com/dhaumont/visilib as a starting point until my code is stable enough to be merged back.
+
 ## Visilib Overview 
 
 The Visilib project aims to provide an efficient and robust library for **exact visibility computation** in 3D.
