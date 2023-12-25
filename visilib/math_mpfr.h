@@ -98,7 +98,7 @@ struct Mpfr {
         return tmp;
     }
     static Mpfr tolerance() {
-        return Mpfr(1e-11);
+        return Mpfr(1e-64);
     }
     inline bool isZero() const {
         return mpfr_zero_p(v);
