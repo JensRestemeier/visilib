@@ -266,7 +266,7 @@ namespace visilibDemo
                 forceDisplay |= ImGui::SliderInt("number of vertices of query polygon", &tmp, 1, 12);
                 mDemoConfiguration.vertexCount1 = tmp;
 
-                ImGui::Text("adjust global scaling"); ImGui::SameLine();
+                ImGui::Text("adjust global scaling %i%%", (int)round(mDemoConfiguration.globalScaling * 100.0f)); ImGui::SameLine();
                 if (ImGui::Button("+")) {
                     mDemoConfiguration.globalScaling *= 2;
                     forceDisplay = true;
