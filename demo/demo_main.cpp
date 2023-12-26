@@ -60,6 +60,7 @@ namespace visilibDemo
         bool show_demo_window;
         int wc = 10;
         int rc = 0;
+        std::string output;
     public:
         VisilibDemoMain()
         {
@@ -125,10 +126,22 @@ namespace visilibDemo
 
             if (forceDisplay)
             {
+#if 1
+                std::stringstream out;
+
+                std::streambuf* coutbuf = std::cout.rdbuf(); //save old buf
+                std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
+#endif
+
                 DemoHelper::generatePolygon(v0, mDemoConfiguration.vertexCount0, mDemoConfiguration.scaling, mDemoConfiguration.phi - (float)M_PI, mDemoConfiguration.globalScaling);
                 DemoHelper::generatePolygon(v1, mDemoConfiguration.vertexCount1, mDemoConfiguration.scaling, mDemoConfiguration.phi, mDemoConfiguration.globalScaling);
 
                 resolveVisibility();
+
+#if 1
+                std::cout.rdbuf(coutbuf);
+                output = out.str();
+#endif
 
                 forceDisplay = false;
             }
@@ -191,8 +204,6 @@ namespace visilibDemo
                 break;
 #undef NEXT_ITEM
             }
-            std::cout << "  [Arithmetic: " << DemoConfiguration::toStr(mDemoConfiguration.precisionType) << "]" << std::endl;
-
         }
 
 #if 1
@@ -318,6 +329,12 @@ namespace visilibDemo
                 }
 
                 ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+                ImGui::End();
+            }
+
+            {
+                ImGui::Begin("Output");
+                ImGui::Text(output.c_str());
                 ImGui::End();
             }
         }
@@ -449,6 +466,7 @@ namespace visilibDemo
 
             case 'e':
                 nextPrecisionType();
+                std::cout << "  [Arithmetic: " << DemoConfiguration::toStr(mDemoConfiguration.precisionType) << "]" << std::endl;
                 forceDisplay = true;
 
                 break;
