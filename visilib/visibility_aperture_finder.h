@@ -89,6 +89,20 @@ namespace visilib
         PluckerPolyhedron<P>* myPolyhedron = reinterpret_cast<PluckerPolyhedron<P>*> (VisibilitySolver<P, S>::mQuery->getComplex()->getPolyhedron());
         size_t myInitiaLineCount = myPolyhedron->getLinesCount();
 
+        struct RecursionTest {
+            RecursionTest() {
+                stats.recursionLevel++;
+            }
+            ~RecursionTest() {
+                stats.recursionLevel--;
+            }
+        } recursionTest;
+        if (stats.maxRecursionLevel < stats.recursionLevel)
+        {
+            stats.maxRecursionLevel = stats.recursionLevel;
+        }
+        stats.resolveInternal++;
+
 #ifdef OUTPUT_DEBUG_FILE
         std::ofstream& debugOutput = VisibilitySolver<P, S>::mDebugger->getDebugOutput();    
         V_LOG(debugOutput, "Resolve internal ", occlusionTreeNodeSymbol);
@@ -172,8 +186,9 @@ namespace visilib
         {
             SilhouetteEdge& myVisibilitySilhouetteEdge = mySilhouette->getEdge(mySilhouetteEdgeIndex);
             SilhouetteMeshFace* face = myVisibilitySilhouetteEdge.mFace;
-
+#ifndef ACTIVE_SET
             V_ASSERT(myVisibilitySilhouetteEdge.mIsActive);
+#endif
             // deactivate the candidate edge for further recursion
             mySilhouette->setEdgeActive(mySilhouetteEdgeIndex, false);
 
@@ -292,8 +307,9 @@ namespace visilib
                     {
                         result = resolveInternal(myPolytopes[i], ss.str(), std::vector<Silhouette*>(), std::vector<P>(), aDepth + 1);
                     }
-                    if (result == FAILURE)
+                    if (result == FAILURE) {
                         return result;
+                    }
 
                     if (result == VISIBLE)
                     {
@@ -362,8 +378,8 @@ namespace visilib
         {
        //     resize(myInitiaLineCount, myPolyhedron, aPolytope);
         }
-        return globalResult;
 
+        return globalResult;
     }
 
     template<class P, class S>

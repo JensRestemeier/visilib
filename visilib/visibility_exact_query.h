@@ -129,11 +129,9 @@ namespace visilib
         }
         */
        
-        
         /**@brief Find the next edge to be processed by the query
         */
         bool findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette, PluckerPolytope<P> * polytope, const std::string & occlusionTreeNodeSymbol);
-
 
         void setApproximateNormal(const MathVector3d & a)
         {
@@ -358,7 +356,9 @@ namespace visilib
     template<class P, class S>
     bool VisibilityExactQuery_<P, S>::findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette, PluckerPolytope<P> * aPolytope, const std::string & occlusionTreeNodeSymbol)
     {
-        HelperScopedTimer timer(getStatistic(), OCCLUDER_TREATMENT);
+        stats.findNextEdge++;
+
+        // HelperScopedTimer timer(getStatistic(), OCCLUDER_TREATMENT);
 #ifdef OUTPUT_DEBUG_FILE
         std::ofstream& debugOutput = mDebugger->getDebugOutput();
         V_LOG(debugOutput, "VisibilityExactQuery<P, S>::findTheBestValidEdge BEGIN", occlusionTreeNodeSymbol);
@@ -366,51 +366,54 @@ namespace visilib
 
         const std::unordered_set<Silhouette*>& mySilhouettes = mSilhouetteContainer->getSilhouettes();
 
-        double myScore = 1e32;
-        bool found = false;
+        //double myScore = 1e32;
         
         Silhouette* mySilhouette = nullptr;
 
-        MathPlane3d aPlane0 = getQueryPolygon(0)->getPlane();
+        GeometryConvexPolygon* polygon = getQueryPolygon(0);
+        //MathPlane3d aPlane0 = polygon->getPlane();
    
-        const MathPlane3d& myPlane = getQueryPolygon(0)->getPlane();
-        for (auto iter = mySilhouettes.begin(); iter != mySilhouettes.end(); iter++)
+        const MathPlane3d& myPlane = polygon->getPlane();
+        for (std::unordered_set<Silhouette*>::const_iterator silhouette_iter = mySilhouettes.begin(); mySilhouette == nullptr && silhouette_iter != mySilhouettes.end(); silhouette_iter++)
         {
-            Silhouette* s = (*iter);
-
-            auto& edges = s->getEdges();
-
-            for (size_t silhouetteEdgeIndex = 0; silhouetteEdgeIndex < edges.size(); silhouetteEdgeIndex++)
+            Silhouette* s = (*silhouette_iter);
+            if (s->hasAvailableEdge())
             {
-                SilhouetteEdge& edge = edges[silhouetteEdgeIndex];
-                if (edge.mIsActive)
+#ifdef ACTIVE_SET
+                size_t silhouetteEdgeIndex = s->getAvailableEdge();
+                aSilhouetteEdgeIndex = silhouetteEdgeIndex;
+                mySilhouette = s;
+#else
+                const std::vector<SilhouetteEdge>& findNextEdge = s->getEdges();
+
+                size_t silhouetteEdgeIndex = 0;
+                for (std::vector<SilhouetteEdge>::const_iterator edge_iterator = findNextEdge.begin(); mySilhouette == nullptr && edge_iterator != findNextEdge.end(); silhouetteEdgeIndex++, edge_iterator++)
                 {
-                    /*
-                    if (edge.mScore < 0.0)
+                    const SilhouetteEdge& edge = *edge_iterator;
+                    if (edge.mIsActive)
                     {
-                        ConnectedMeshElement* f = edge.mFace;
-                        size_t edgeIndex = edge.mEdgeIndex;
-                        MathVector2i ei = f->getEdge(edgeIndex);
-                        edge.mScore = aPlane0.dot(convert<MathVector3d>(f->getVertex(ei.x)));
-                    }
-                    if (edge.mScore < myScore)
-                    */
-                    {
-                        found = true;
-                        myScore = edge.mScore;
-                        aSilhouetteEdgeIndex = silhouetteEdgeIndex;
-                        mySilhouette = s;
+                        /*
+                        if (edge.mScore < 0.0)
+                        {
+                            ConnectedMeshElement* f = edge.mFace;
+                            size_t edgeIndex = edge.mEdgeIndex;
+                            MathVector2i ei = f->getEdge(edgeIndex);
+                            edge.mScore = aPlane0.dot(convert<MathVector3d>(f->getVertex(ei.x)));
+                        }
+                        if (edge.mScore < myScore)
+                        */
+                        {
+                            //myScore = edge.mScore;
+                            aSilhouetteEdgeIndex = silhouetteEdgeIndex;
+                            mySilhouette = s;
+                        }
                     }
                 }
-                if (found)
-                    break;
+#endif
             }
-
-            if (found)
-                break;
         }
 
-        if (found)
+        if (mySilhouette != nullptr)
         {
 #ifdef OUTPUT_DEBUG_FILE
             std::stringstream ss;
@@ -418,15 +421,15 @@ namespace visilib
             V_LOG(debugOutput, ss.str(), occlusionTreeNodeSymbol);
 #endif
             aSilhouette = mySilhouette;
-
+            return true;
         }
         else
         {
 #ifdef OUTPUT_DEBUG_FILE
             V_LOG(debugOutput, "VisibilityExactQuery<P, S>::findTheBestValidEdge END return False (No edge found)", occlusionTreeNodeSymbol);
 #endif  
+            return false;
         }
-        return found;
     }
 
     template<class P, class S>

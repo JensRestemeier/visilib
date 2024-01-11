@@ -179,6 +179,7 @@ namespace visilib
     
     The timer measurement is started at the creation of the timer and stopped at desctruction of the timer.
     */
+#if 1
     class HelperScopedTimer
     {
     public:
@@ -217,4 +218,14 @@ namespace visilib
         TimerType mTimer;
         HelperStatisticCollector* mCollector;
     };
+#else
+    // disable scoped timer to see how much impact the code has on performance/optimisation
+    class HelperScopedTimer
+    {
+    public:
+        HelperScopedTimer(HelperStatisticCollector* aCollector, TimerType aTimer)
+        {
+        }
+    };
+#endif
 }

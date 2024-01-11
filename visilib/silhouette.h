@@ -24,157 +24,205 @@ along with Visilib. If not, see <http://www.gnu.org/licenses/>
 #include <fstream>
 #include "math_plucker_6.h"
 
+// #define ACTIVE_SET 
+
 namespace visilib
 {
-    class HelperStatisticCollector;
-    template <class P, class S>
-    class VisibilityExactQuery_;
+	class HelperStatisticCollector;
+	template <class P, class S>
+	class VisibilityExactQuery_;
 
-    class GeometryConvexPolygon;
-    template <class S>
-    class PluckerPolytope;
-    class SilhouetteMeshFace;
+	class GeometryConvexPolygon;
+	template <class S>
+	class PluckerPolytope;
+	class SilhouetteMeshFace;
 
-    /** @brief
-   Store a silhouette edge, containing the mesh face and the support hyperplane 
+	/** @brief
+   Store a silhouette edge, containing the mesh face and the support hyperplane
    */
 
-    struct SilhouetteEdge
-    {
-        SilhouetteEdge(SilhouetteMeshFace* aFace, size_t anEdgeIndex, size_t anHyperplaneIndex)
-            : mEdgeIndex(anEdgeIndex),
-            mFace(aFace),
-            mHyperPlaneIndex(anHyperplaneIndex),
-            mScore(-1.0),
-            mIsActive(true)
-        {
-        }
+	struct SilhouetteEdge
+	{
+		SilhouetteEdge(SilhouetteMeshFace* aFace, size_t anEdgeIndex, size_t anHyperplaneIndex)
+			: mEdgeIndex(anEdgeIndex),
+			mFace(aFace),
+			mHyperPlaneIndex(anHyperplaneIndex)
+			//,mScore(-1.0)
+#ifndef ACTIVE_SET
+			, mIsActive(true)
+#endif
+		{
+		}
 
-        size_t mHyperPlaneIndex;
-        SilhouetteMeshFace* mFace;
-        size_t mEdgeIndex;
-        double mScore;
-        bool mIsActive;
-    };
+		size_t mHyperPlaneIndex;
+		SilhouetteMeshFace* mFace;
+		size_t mEdgeIndex;
+		//double mScore;
+#ifndef ACTIVE_SET
+		bool mIsActive;
+#endif
+	};
 
 
     /** @brief Store a silhouette, representing an occluder as seen from the sources. The silhouettes are stored under the form of a list of silhouette edges. A s
-    They are extracted by the silhouette processor class. Each face of the occluder mesh belongs to a single silhouette at any time. 
-    In turn, each face of the occluder mesh stores a reference to the silhouette it belongs to.
-    */
+	They are extracted by the silhouette processor class. Each face of the occluder mesh belongs to a single silhouette at any time.
+	In turn, each face of the occluder mesh stores a reference to the silhouette it belongs to.
+	*/
 
-    class Silhouette
-    {
-        /**@brief A hash associated to a silhouette edge for storage in the silhouette */
-        struct Hash
-        {
-        public:
+	class Silhouette
+	{
+		/**@brief A hash associated to a silhouette edge for storage in the silhouette */
+		struct Hash
+		{
+		public:
 
-            /**@brief Compute the haskey of a given silhouette edge*/
-            std::size_t operator()(std::pair<SilhouetteMeshFace*, size_t> pair) const
-            {
-                size_t edgeHash = std::hash<size_t>()((size_t)(pair.first));
-                size_t faceHash = std::hash<size_t>()(pair.second);
+			/**@brief Compute the haskey of a given silhouette edge*/
+			std::size_t operator()(std::pair<SilhouetteMeshFace*, size_t> pair) const
+			{
+				size_t edgeHash = std::hash<size_t>()((size_t)(pair.first));
+				size_t faceHash = std::hash<size_t>()(pair.second);
 
-                return faceHash ^ edgeHash;
-            }
-        };
+				return faceHash ^ edgeHash;
+			}
+		};
 
-    public:
+	public:
 
-        Silhouette(const std::vector<SilhouetteMeshFace>& aFaces, const size_t aGeometryId)
-            : mMeshFaces(aFaces),
-            mGeometryId(aGeometryId),
-            mAvailableEdgeCount(0)
-        {
-           
-        }
+		Silhouette(const std::vector<SilhouetteMeshFace>& aFaces, const size_t aGeometryId)
+			: mMeshFaces(aFaces),
+			mGeometryId(aGeometryId)
+#ifndef ACTIVE_SET
+			, mAvailableEdgeCount(0)
+#endif
+		{
 
-        ~Silhouette()
-        {
-        }
+		}
+
+		~Silhouette()
+		{
+		}
 
         /**@brief Return the number of edges of the silhouette*/
-        int getAvailableEdgeCount() const
-        {
-            return mAvailableEdgeCount;
-        }
+		int getAvailableEdgeCount() const
+		{
+#ifdef ACTIVE_SET
+			return mAvailableEdges.size();
+#else
+			return mAvailableEdgeCount;
+#endif
+		}
 
-        /**@brief Return if the given edge of a given faces belongs to the silhouette*/
+		/**@brief Return if the given edge of a given faces belongs to the silhouette*/
    //     bool hasEdge(ConnectedMeshElement* face, size_t edgeIndex) const;
 
         /**@brief Get the edges of the silhouette*/
-        const std::vector<SilhouetteEdge>& getEdges() const { return mEdges; }
+		const std::vector<SilhouetteEdge>& getEdges() const { return mEdges; }
 
-        std::vector<SilhouetteEdge>& getEdges() { return mEdges; }
+		std::vector<SilhouetteEdge>& getEdges() { return mEdges; }
 
-        /**@brief Add an edge to the silhouette*/
-        void addEdge(SilhouetteMeshFace* aFace, size_t anEdgeIndex, size_t anHyperplaneIndex);
+		/**@brief Add an edge to the silhouette*/
+		void addEdge(SilhouetteMeshFace* aFace, size_t anEdgeIndex, size_t anHyperplaneIndex);
 
-        void addFace(const SilhouetteMeshFace& face)
-        {
-            mSilhouetteFaces.push_back(face.getFaceIndex());
-        }
+		void addFace(const SilhouetteMeshFace& face)
+		{
+			mSilhouetteFaces.push_back(face.getFaceIndex());
+		}
 
-        SilhouetteEdge& getEdge(size_t edgeIndex)
-        {
-            return mEdges[edgeIndex];
-        }
-        
-        const std::vector<size_t>& getEdgesProcessed() { return mEdgesProcessed; }
+		SilhouetteEdge& getEdge(size_t edgeIndex)
+		{
+			return mEdges[edgeIndex];
+		}
 
-        void setEdgeActive(size_t edgeIndex, bool isActive)
-        {
-            SilhouetteEdge& edge = getEdge(edgeIndex);
-            V_ASSERT(edge.mIsActive != isActive);
+		const std::vector<size_t>& getEdgesProcessed() { return mEdgesProcessed; }
 
-            edge.mIsActive = isActive;
-            if (isActive)
-                mAvailableEdgeCount++;
-            else
-                mAvailableEdgeCount--;
-            V_ASSERT(mAvailableEdgeCount >= 0 && mAvailableEdgeCount <= mEdges.size());
-        }
-        void pushEdgeProcessed(size_t edgeIndex)
-        {
-            mEdgesProcessed.push_back(edgeIndex);
-        }
+		void setEdgeActive(size_t edgeIndex, bool isActive)
+		{
+#ifdef ACTIVE_SET
+			if (isActive)
+			{
+				mAvailableEdges.insert(edgeIndex);
+			}
+			else
+			{
+				mAvailableEdges.erase(edgeIndex);
+			}
+#else
+			SilhouetteEdge& edge = getEdge(edgeIndex);
+			V_ASSERT(edge.mIsActive != isActive);
 
-        void popEdgeProcessed(size_t edgeIndex)
-        {
-            V_ASSERT(mEdgesProcessed.back() == edgeIndex);
-            mEdgesProcessed.pop_back();
-        }
+			edge.mIsActive = isActive;
+			if (isActive)
+				mAvailableEdgeCount++;
+			else
+				mAvailableEdgeCount--;
+			V_ASSERT(mAvailableEdgeCount >= 0 && mAvailableEdgeCount <= mEdges.size());
+#endif
+		}
+#ifdef ACTIVE_SET
+		inline size_t getAvailableEdge() const {
+			std::set<size_t>::const_iterator it = mAvailableEdges.begin();
+			V_ASSERT(it != mAvailableEdges.end());
+			return *it;
+		}
+#endif
+		inline bool hasAvailableEdge() const {
+#ifdef ACTIVE_SET
+			return mAvailableEdges.begin() != mAvailableEdges.end();
+#else
+			return mAvailableEdgeCount > 0;
+#endif
+		}
+		void pushEdgeProcessed(size_t edgeIndex)
+		{
+			mEdgesProcessed.push_back(edgeIndex);
+		}
 
-        const std::vector<size_t>& getSilhouetteFaces() const
-        {
-            return mSilhouetteFaces;
-        }
+		void popEdgeProcessed(size_t edgeIndex)
+		{
+			V_ASSERT(mEdgesProcessed.back() == edgeIndex);
+			mEdgesProcessed.pop_back();
+		}
 
-        const std::vector<SilhouetteMeshFace>& getMeshFaces() const
-        {
-            return mMeshFaces;
-        }
+		const std::vector<size_t>& getSilhouetteFaces() const
+		{
+			return mSilhouetteFaces;
+		}
 
-        size_t getGeometryId() const
-        {
-            return mGeometryId;
-        }
-    private:
+		const std::vector<SilhouetteMeshFace>& getMeshFaces() const
+		{
+			return mMeshFaces;
+		}
+
+		size_t getGeometryId() const
+		{
+			return mGeometryId;
+		}
+	private:
         std::vector<SilhouetteEdge> mEdges;   /**<@brief The list of edges of the silhouette, encoded as pointer to a face and an edge index in the face*/
-        std::vector<size_t> mEdgesProcessed;
-        std::vector<size_t> mSilhouetteFaces;
-        const std::vector<SilhouetteMeshFace>& mMeshFaces;
-        const size_t mGeometryId;
-        int mAvailableEdgeCount;
-    };
+		std::vector<size_t> mEdgesProcessed;
+		std::vector<size_t> mSilhouetteFaces;
+#ifdef ACTIVE_SET
+		std::set<size_t> mAvailableEdges;
+#endif
+		const std::vector<SilhouetteMeshFace>& mMeshFaces;
+		const size_t mGeometryId;
+#ifndef ACTIVE_SET
+		int mAvailableEdgeCount;
+#endif
+	};
 
 
-    inline void Silhouette::addEdge(SilhouetteMeshFace* aFace, size_t anEdgeIndex, size_t anHyperplaneIndex)
-    {
-        mEdges.push_back(SilhouetteEdge(aFace, anEdgeIndex,anHyperplaneIndex));
-        mAvailableEdgeCount++;
-    }
+	inline void Silhouette::addEdge(SilhouetteMeshFace* aFace, size_t anEdgeIndex, size_t anHyperplaneIndex)
+	{
+#ifdef ACTIVE_SET
+		size_t edgeIndex = mEdges.size();
+		mEdges.push_back(SilhouetteEdge(aFace, anEdgeIndex, anHyperplaneIndex));
+		mAvailableEdges.insert(edgeIndex);
+#else
+		mEdges.push_back(SilhouetteEdge(aFace, anEdgeIndex, anHyperplaneIndex));
+		mAvailableEdgeCount++;
+#endif
+	}
 
 }
 

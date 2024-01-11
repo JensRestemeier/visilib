@@ -29,6 +29,25 @@ along with Visilib. If not, see <http://www.gnu.org/licenses/>
 
 namespace visilib
 {  
+    struct SimpleStats {
+        int findNextEdge;
+        int resolveInternal;
+        int recursionLevel;
+        int maxRecursionLevel;
+
+        SimpleStats() {
+            Reset();
+        }
+
+        void Reset() {
+            findNextEdge = 0;
+            resolveInternal = 0;
+            recursionLevel = 0;
+            maxRecursionLevel = 0;
+        }
+    };
+    extern SimpleStats stats;
+
     /** @brief Configuration of a visibility query.*/
 
     struct VisibilityExactQueryConfiguration

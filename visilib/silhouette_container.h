@@ -88,7 +88,7 @@ public:
             Silhouette* s = (*iter);
             const auto& edgesProcessed = s->getEdgesProcessed();
 
-            if (s->getAvailableEdgeCount() == 0)
+            if (!s->hasAvailableEdge())
             {
                 bool allAreBlocked = true;
 

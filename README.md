@@ -124,6 +124,8 @@ It allows to test the different library options interactively, by pressing the *
 | - | decrease source size | Decrease the size of the source polygons |
 | 1 | decrease source vertex count | Decrease the number of vertices of the first source polygon |
 | 2 | increase source vertex count | Increase the number of vertices of the first source polygon |
+| * | increase global scale | Double the world scale |
+| / | decrease global scale | Halve the world scale |
 | w | write config|
 | o | open config|
 |space| start/pause sources animation | When animation is started, the source polygons will perform a rotation around the scene |

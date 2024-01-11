@@ -51,6 +51,8 @@ using namespace visilib;
 using namespace std;
 using namespace visilibDemo;
 
+visilib::SimpleStats visilib::stats;
+
 namespace visilibDemo
 {
     class VisilibDemoMain;
@@ -126,6 +128,7 @@ namespace visilibDemo
 
             if (forceDisplay)
             {
+                stats.Reset();
 #if 1
                 std::stringstream out;
 
@@ -335,6 +338,14 @@ namespace visilibDemo
             {
                 ImGui::Begin("Output");
                 ImGui::Text(output.c_str());
+                ImGui::End();
+            }
+
+            { 
+                ImGui::Begin("Stats");
+                ImGui::Text("resolveInternal %i", stats.resolveInternal);
+                ImGui::Text("findNextEdge %i", stats.findNextEdge);
+                ImGui::Text("maxRecursionLevel %i", stats.maxRecursionLevel);
                 ImGui::End();
             }
         }
@@ -569,8 +580,40 @@ void animate()
     demo->animate();
 }
 
+#if 1
+const DWORD MS_VC_EXCEPTION = 0x406D1388;
+#pragma pack(push,8)
+typedef struct tagTHREADNAME_INFO
+{
+    DWORD dwType; // Must be 0x1000.
+    LPCSTR szName; // Pointer to name (in user addr space).
+    DWORD dwThreadID; // Thread ID (-1=caller thread).
+    DWORD dwFlags; // Reserved for future use, must be zero.
+} THREADNAME_INFO;
+#pragma pack(pop)
+void SetThreadName(DWORD dwThreadID, const char* threadName) {
+    THREADNAME_INFO info;
+    info.dwType = 0x1000;
+    info.szName = threadName;
+    info.dwThreadID = dwThreadID;
+    info.dwFlags = 0;
+#pragma warning(push)
+#pragma warning(disable: 6320 6322)
+    __try {
+        RaiseException(MS_VC_EXCEPTION, 0, sizeof(info) / sizeof(ULONG_PTR), (ULONG_PTR*)&info);
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+    }
+#pragma warning(pop)
+}
+#endif
+
 int main(int argc, char** argv)
 {
+#ifdef WIN32
+    HRESULT r = SetThreadDescription( GetCurrentThread(), L"Main Thread" );
+#endif
+
     demo = new VisilibDemoMain();
 
     //demo->writeHelp();
@@ -633,3 +676,10 @@ int main(int argc, char** argv)
     return 0;
 }
 
+#ifdef _WIN32
+// WinMain declaration to run without console subsystem on Windows
+int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int nShowCmd)
+{
+    return main(__argc, __argv);
+}
+#endif
