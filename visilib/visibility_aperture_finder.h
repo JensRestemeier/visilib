@@ -98,9 +98,6 @@ namespace visilib
 #endif
         )
     {
-        PluckerPolyhedron<P>* myPolyhedron = reinterpret_cast<PluckerPolyhedron<P>*> (VisibilitySolver<P, S>::mQuery->getComplex()->getPolyhedron());
-        size_t myInitiaLineCount = myPolyhedron->getLinesCount();
-
         struct RecursionTest {
             RecursionTest() {
                 stats.recursionLevel++;
@@ -114,6 +111,9 @@ namespace visilib
             stats.maxRecursionLevel = stats.recursionLevel;
         }
         stats.resolveInternal++;
+
+        PluckerPolyhedron<P>* myPolyhedron = reinterpret_cast<PluckerPolyhedron<P>*> (VisibilitySolver<P, S>::mQuery->getComplex()->getPolyhedron());
+        size_t myInitiaLineCount = myPolyhedron->getLinesCount();
 
 #ifdef OUTPUT_DEBUG_FILE
         std::ofstream& debugOutput = VisibilitySolver<P, S>::mDebugger->getDebugOutput();    
@@ -192,7 +192,9 @@ namespace visilib
 
         bool hasEdge = false;
         bool isVisible = false;
-        hasEdge = VisibilitySolver<P, S>::mQuery->findNextEdge(mySilhouetteEdgeIndex, mySilhouette, aPolytope
+
+        hasEdge = VisibilitySolver<P, S>::mQuery->findNextEdge(mySilhouetteEdgeIndex, mySilhouette
+            // , aPolytope
 #ifdef OUTPUT_DEBUG_FILE
             , occlusionTreeNodeSymbol
 #endif
@@ -256,16 +258,19 @@ namespace visilib
                     V_LOG(debugOutput, "PERFORM THE SPLIT", occlusionTreeNodeSymbol);
 #endif
                     myResult = PluckerPolytopeSplitter<P, S>::split(myPolyhedron, myHyperplane, aPolytope, myPolytopeLeft, myPolytopeRight, myPolyhedronFace, mNormalization, mTolerance);
-
+#if 0
                     if (VisibilitySolver<P, S>::mQuery->getStatistic()->get(POLYTOPE_SPLIT_COUNT) % 10000 == 0)
                     {
                         VisibilitySolver<P, S>::mQuery->getStatistic()->displayCounts();
                         std::cout << std::endl;
                     }
+#endif
                 }
 
                 std::vector <PluckerPolytope<P>*> myPolytopes;
+#ifdef OUTPUT_DEBUG_FILE
                 std::vector <std::string> postFix;
+#endif
                 std::vector<bool> reuseOccluders;
 
                 if (myResult == ON_BOUNDARY)
@@ -279,12 +284,16 @@ namespace visilib
                     // left split
                     reuseOccluders.push_back(position != ON_POSITIVE_SIDE);
                     myPolytopes.push_back(myPolytopeLeft);
+#ifdef OUTPUT_DEBUG_FILE
                     postFix.push_back("L");
+#endif
 
                     // right split
                     reuseOccluders.push_back(position != ON_NEGATIVE_SIDE);
                     myPolytopes.push_back(myPolytopeRight);
+#ifdef OUTPUT_DEBUG_FILE
                     postFix.push_back("R");
+#endif
                 }
                 else
                 {
@@ -293,7 +302,9 @@ namespace visilib
 #endif
                     reuseOccluders.push_back(true);
                     myPolytopes.push_back(aPolytope);
+#ifdef OUTPUT_DEBUG_FILE
                     postFix.push_back("*");
+#endif
                     delete myPolytopeLeft;  myPolytopeLeft = nullptr;
                     delete myPolytopeRight; myPolytopeRight = nullptr;
                 }
@@ -401,11 +412,12 @@ namespace visilib
                 globalResult = VISIBLE;
             }
         }
-
+#if 0
         if (myPolyhedron->getLinesCount() != myInitiaLineCount)
         {
        //     resize(myInitiaLineCount, myPolyhedron, aPolytope);
         }
+#endif
 
         return globalResult;
     }
@@ -453,8 +465,5 @@ namespace visilib
                 VisibilitySolver<P, S>::mDebugger->addExtremalStabbingLine(convert<MathVector3f>(line.first), convert<MathVector3f>(line.second));
             }
         }
-
     }
-
-
 }

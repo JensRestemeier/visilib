@@ -24,7 +24,7 @@ along with Visilib. If not, see <http://www.gnu.org/licenses/>
 #include <fstream>
 #include "math_plucker_6.h"
 
-// #define ACTIVE_SET 
+#define ACTIVE_SET 
 
 namespace visilib
 {
@@ -160,7 +160,7 @@ namespace visilib
 		}
 #ifdef ACTIVE_SET
 		inline size_t getAvailableEdge() const {
-			std::set<size_t>::const_iterator it = mAvailableEdges.begin();
+			std::unordered_set<size_t>::const_iterator it = mAvailableEdges.begin();
 			V_ASSERT(it != mAvailableEdges.end());
 			return *it;
 		}
@@ -202,7 +202,7 @@ namespace visilib
 		std::vector<size_t> mEdgesProcessed;
 		std::vector<size_t> mSilhouetteFaces;
 #ifdef ACTIVE_SET
-		std::set<size_t> mAvailableEdges;
+		std::unordered_set<size_t> mAvailableEdges;
 #endif
 		const std::vector<SilhouetteMeshFace>& mMeshFaces;
 		const size_t mGeometryId;

@@ -131,7 +131,8 @@ namespace visilib
        
         /**@brief Find the next edge to be processed by the query
         */
-        bool findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette, PluckerPolytope<P> * polytope
+        bool findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette
+            // , PluckerPolytope<P> * polytope
 #ifdef OUTPUT_DEBUG_FILE
             , const std::string & occlusionTreeNodeSymbol
 #endif
@@ -181,6 +182,7 @@ namespace visilib
         /** @brief The links between the polytopes and the silhouettes*/
  //      std::unordered_map<VisibilitySilhouette*, std::unordered_set<PluckerPolytope<P>*>> mSilhouetteToPolytopeDictionary;
 
+        Silhouette * curSilhouette;
         SilhouetteContainer* mSilhouetteContainer;
         /** @brief The links between the silhouettes and the polytopes*/
     //    std::unordered_map<PluckerPolytope<P>*, std::unordered_set<VisibilitySilhouette*>> mPolytopeToSilhouetteDictionary;
@@ -212,6 +214,8 @@ namespace visilib
         {
             mSilhouetteContainer = new SilhouetteContainer();
         }
+
+        curSilhouette = nullptr;
     }
 
     template<class P, class S>
@@ -358,7 +362,8 @@ namespace visilib
     }
 
     template<class P, class S>
-    inline bool VisibilityExactQuery_<P, S>::findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette, PluckerPolytope<P> * aPolytope
+    inline bool VisibilityExactQuery_<P, S>::findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette
+        // , PluckerPolytope<P> * aPolytope
 #ifdef OUTPUT_DEBUG_FILE
         , const std::string & occlusionTreeNodeSymbol
 #endif
@@ -371,6 +376,13 @@ namespace visilib
         std::ofstream& debugOutput = mDebugger->getDebugOutput();
         V_LOG(debugOutput, "VisibilityExactQuery<P, S>::findTheBestValidEdge BEGIN", occlusionTreeNodeSymbol);
 #endif
+
+        if (curSilhouette != nullptr && curSilhouette->hasAvailableEdge())
+        {
+            aSilhouetteEdgeIndex = curSilhouette->getAvailableEdge();
+            aSilhouette = curSilhouette;
+            return true;
+        }
 
         const std::unordered_set<Silhouette*>& mySilhouettes = mSilhouetteContainer->getSilhouettes();
 
@@ -429,6 +441,7 @@ namespace visilib
             V_LOG(debugOutput, ss.str(), occlusionTreeNodeSymbol);
 #endif
             aSilhouette = mySilhouette;
+            curSilhouette = mySilhouette;
             return true;
         }
         else
