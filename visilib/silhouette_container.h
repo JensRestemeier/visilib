@@ -100,8 +100,10 @@ public:
 
                     const P& myHyperplane = polyhedron->get(hyperplaneIndex);
 
-                    for (auto line : polytopeLines)
+                    // for (auto line : polytopeLines)
+                    for (size_t lineIndex=0; lineIndex < polytopeLines.size(); lineIndex++)
                     {
+                        const P& line = polytopeLines[lineIndex];
                         GeometryPositionType position = MathPredicates::getVertexPlaneRelativePosition(myHyperplane, line, myTolerance);
                         if (position != ON_NEGATIVE_SIDE)
                         {
