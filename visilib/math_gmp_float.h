@@ -34,6 +34,10 @@ struct GmpFloat {
         init();
         copy(rhs);
     }
+    ~GmpFloat()
+    {
+        mpf_clear(v);
+    }
     const GmpFloat& operator=(const GmpFloat& rhs)
     {
         if (this != &rhs)

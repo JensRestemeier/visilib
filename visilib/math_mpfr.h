@@ -35,6 +35,10 @@ struct Mpfr {
         init();
         copy(rhs);
     }
+    ~Mpfr()
+    {
+        mpfr_clear(v);
+    }
     const Mpfr& operator=(const Mpfr& rhs)
     {
         if (this != &rhs)

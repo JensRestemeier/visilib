@@ -34,6 +34,10 @@ struct GmpRational {
         init();
         copy(rhs);
     }
+    ~GmpRational()
+    {
+        mpq_clear(v);
+    }
     const GmpRational& operator=(const GmpRational& rhs)
     {
         if (this != &rhs)
