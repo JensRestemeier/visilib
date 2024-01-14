@@ -58,7 +58,11 @@ namespace visilib
 
         VisibilityResult resolve();
     private:
-        VisibilityResult resolveInternal(PluckerPolytope<P>* aPolytope, const std::string& occlusionTreeNodeSymbol, const std::vector<Silhouette*>& anOccluders, const std::vector<P>& aPolytopeLines, int depth);
+        VisibilityResult resolveInternal(PluckerPolytope<P>* aPolytope, const std::vector<Silhouette*>& anOccluders, const std::vector<P>& aPolytopeLines, int depth
+#ifdef OUTPUT_DEBUG_FILE
+            , const std::string& occlusionTreeNodeSymbol
+#endif
+        );
         void resize(size_t myInitiaLineCount, PluckerPolyhedron<P>* myPolyhedron, PluckerPolytope<P>* aPolytope);
         void extractStabbingLines(PluckerPolyhedron<P>* myPolyhedron, PluckerPolytope<P>* aPolytope);
             
@@ -80,11 +84,19 @@ namespace visilib
     template <class P, class S>
     VisibilityResult VisibilityApertureFinder<P, S>::resolve()
     {
-        return resolveInternal(reinterpret_cast<PluckerPolytope<P>*>(VisibilitySolver<P, S>::mQuery->getComplex()->getRoot()), "*", std::vector<Silhouette*>(), std::vector<P>(), 0);
+        return resolveInternal(reinterpret_cast<PluckerPolytope<P>*>(VisibilitySolver<P, S>::mQuery->getComplex()->getRoot()), std::vector<Silhouette*>(), std::vector<P>(), 0
+#ifdef OUTPUT_DEBUG_FILE
+            , "*"
+#endif
+        );
     }
 
     template<class P, class S>
-    VisibilityResult VisibilityApertureFinder<P, S>::resolveInternal(PluckerPolytope<P>* aPolytope, const std::string& occlusionTreeNodeSymbol, const std::vector<Silhouette*>& anOccluders, const std::vector<P>& aPolytopeLines, int aDepth)
+    VisibilityResult VisibilityApertureFinder<P, S>::resolveInternal(PluckerPolytope<P>* aPolytope, const std::vector<Silhouette*>& anOccluders, const std::vector<P>& aPolytopeLines, int aDepth
+#ifdef OUTPUT_DEBUG_FILE
+        , const std::string& occlusionTreeNodeSymbol
+#endif
+        )
     {
         PluckerPolyhedron<P>* myPolyhedron = reinterpret_cast<PluckerPolyhedron<P>*> (VisibilitySolver<P, S>::mQuery->getComplex()->getPolyhedron());
         size_t myInitiaLineCount = myPolyhedron->getLinesCount();
@@ -180,7 +192,11 @@ namespace visilib
 
         bool hasEdge = false;
         bool isVisible = false;
-        hasEdge = VisibilitySolver<P, S>::mQuery->findNextEdge(mySilhouetteEdgeIndex, mySilhouette, aPolytope, occlusionTreeNodeSymbol);
+        hasEdge = VisibilitySolver<P, S>::mQuery->findNextEdge(mySilhouetteEdgeIndex, mySilhouette, aPolytope
+#ifdef OUTPUT_DEBUG_FILE
+            , occlusionTreeNodeSymbol
+#endif
+        );
 
         if (hasEdge) // a candidate edge has been found. we will split the polytope with the hyperplane of this edge.
         {
@@ -293,19 +309,27 @@ namespace visilib
                     }
 
 
-                    std::stringstream ss;
 #ifdef OUTPUT_DEBUG_FILE
+                    std::stringstream ss;
                     ss << occlusionTreeNodeSymbol << "|" << face->getFaceIndex() << "-" << myVisibilitySilhouetteEdge.mEdgeIndex << postFix[i];
 #endif
                     VisibilityResult result;
 
                     if (reuseOccluders[i])
                     {
-                        result = resolveInternal(myPolytopes[i], ss.str(), myOccluders, polytopeLines, aDepth + 1);
+                        result = resolveInternal(myPolytopes[i], myOccluders, polytopeLines, aDepth + 1
+#ifdef OUTPUT_DEBUG_FILE
+                        , ss.str()
+#endif
+                        );
                     }
                     else
                     {
-                        result = resolveInternal(myPolytopes[i], ss.str(), std::vector<Silhouette*>(), std::vector<P>(), aDepth + 1);
+                        result = resolveInternal(myPolytopes[i], std::vector<Silhouette*>(), std::vector<P>(), aDepth + 1
+#ifdef OUTPUT_DEBUG_FILE
+                        , ss.str()
+#endif
+                        );
                     }
                     if (result == FAILURE) {
                         return result;
@@ -336,11 +360,15 @@ namespace visilib
             else
             {
 
-                std::stringstream ss;
 #ifdef OUTPUT_DEBUG_FILE              
+                std::stringstream ss;
                 ss << occlusionTreeNodeSymbol << "|" << face->getFaceIndex() << "-" << myVisibilitySilhouetteEdge.mEdgeIndex << "*";
 #endif
-                VisibilityResult result = resolveInternal(aPolytope, ss.str(), anOccluders, aPolytopeLines, aDepth + 1);
+                VisibilityResult result = resolveInternal(aPolytope, anOccluders, aPolytopeLines, aDepth + 1
+#ifdef OUTPUT_DEBUG_FILE              
+                    , ss.str()
+#endif
+                );
                 if (result == FAILURE)
                     return result;
 
@@ -418,8 +446,10 @@ namespace visilib
         {  
             std::vector<std::pair<MathVector3d, MathVector3d>> lines;
             aPolytope->getExtremalStabbingLinesBackTo3D(lines, aPlane0, aPlane1);
-            for (auto line : lines)
+            //for (auto line : lines)
+            for (size_t lineIndex = 0; lineIndex < lines.size(); lineIndex++)
             {
+                const std::pair<MathVector3d, MathVector3d>& line = lines[lineIndex];
                 VisibilitySolver<P, S>::mDebugger->addExtremalStabbingLine(convert<MathVector3f>(line.first), convert<MathVector3f>(line.second));
             }
         }

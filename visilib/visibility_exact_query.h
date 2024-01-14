@@ -131,7 +131,11 @@ namespace visilib
        
         /**@brief Find the next edge to be processed by the query
         */
-        bool findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette, PluckerPolytope<P> * polytope, const std::string & occlusionTreeNodeSymbol);
+        bool findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette, PluckerPolytope<P> * polytope
+#ifdef OUTPUT_DEBUG_FILE
+            , const std::string & occlusionTreeNodeSymbol
+#endif
+        );
 
         void setApproximateNormal(const MathVector3d & a)
         {
@@ -354,7 +358,11 @@ namespace visilib
     }
 
     template<class P, class S>
-    bool VisibilityExactQuery_<P, S>::findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette, PluckerPolytope<P> * aPolytope, const std::string & occlusionTreeNodeSymbol)
+    inline bool VisibilityExactQuery_<P, S>::findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette, PluckerPolytope<P> * aPolytope
+#ifdef OUTPUT_DEBUG_FILE
+        , const std::string & occlusionTreeNodeSymbol
+#endif
+    )
     {
         stats.findNextEdge++;
 
