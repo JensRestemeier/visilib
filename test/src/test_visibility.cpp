@@ -27,6 +27,7 @@ along with Visilib. If not, see <http://www.gnu.org/licenses/>
 using namespace visilib;
 using namespace visilibDemo;
 
+visilib::SimpleStats visilib::stats;
 
 bool testConfiguration(const DemoConfiguration& configuration, VisibilityResult expected
     )

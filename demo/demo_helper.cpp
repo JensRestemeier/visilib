@@ -252,6 +252,7 @@ void DemoConfiguration::writeConfig(const std::string& filename)
     output << "sceneIndex = " << sceneIndex << std::endl;
     output << "globalScaling = " << globalScaling << std::endl;
     output << "precisionType = " << precisionType << std::endl;
+    output << "nonRecursiveResolve  = " << nonRecursiveResolve << std::endl;
 
     output.close();
 }
@@ -281,6 +282,7 @@ void DemoConfiguration::readConfig(const std::string& filename)
         else if (tokens[0] == "sceneIndex") { sceneIndex = atoi(tokens[2].c_str()); }
         else if (tokens[0] == "globalScaling") { globalScaling = (float)atof(tokens[2].c_str()); }
         else if (tokens[0] == "precisionType") { precisionType = (VisibilityExactQueryConfiguration::PrecisionType)atoi(tokens[2].c_str()); }
+        else if (tokens[0] == "nonRecursiveResolve") { nonRecursiveResolve = atoi(tokens[2].c_str()); }
 
         else { V_ASSERT(0); }
     }

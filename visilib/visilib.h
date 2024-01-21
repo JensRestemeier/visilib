@@ -32,8 +32,8 @@ namespace visilib
     struct SimpleStats {
         int findNextEdge;
         int resolveInternal;
-        int recursionLevel;
         int maxRecursionLevel;
+        int indexCount;
 
         SimpleStats() {
             Reset();
@@ -42,8 +42,8 @@ namespace visilib
         void Reset() {
             findNextEdge = 0;
             resolveInternal = 0;
-            recursionLevel = 0;
             maxRecursionLevel = 0;
+            indexCount = 0;
         }
     };
     extern SimpleStats stats;
@@ -80,6 +80,7 @@ namespace visilib
             precision = DOUBLE;
             detectApertureOnly = true;
             useEmbree = false;
+            nonRecursiveResolve = false;
         };
 
         VisibilityExactQueryConfiguration(const VisibilityExactQueryConfiguration& other)
@@ -90,6 +91,7 @@ namespace visilib
             representativeLineSampling = other.representativeLineSampling;
             detectApertureOnly = other.detectApertureOnly;
             useEmbree = other.useEmbree;
+            nonRecursiveResolve = other.nonRecursiveResolve;
         };
 
         bool silhouetteOptimization;                  /**< @brief Use silhouette optimization*/
@@ -98,6 +100,7 @@ namespace visilib
         PrecisionType precision;                      /**< @brief Arithmetic model presicion t*/  
         bool detectApertureOnly;                      /**< @brief Stop the query as soon as a visible line has been found*/  
         bool useEmbree;
+        bool nonRecursiveResolve;                     /**< @brief Alternative resolve that doesn't recurse, hopefully preventing stack-overflows */
     };
 
 

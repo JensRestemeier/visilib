@@ -53,14 +53,14 @@ namespace visilib
         @param i: index of the ESL
         @return: the ESL equation
         */
-        const P getExtremalStabbingLine(size_t i)
+        inline const P getExtremalStabbingLine(size_t i)
         {
             return mExtremalStabbingLines[i];
         }
 
 
         /** @brief Return the number of extremal stabbing lines */
-        size_t getExtremalStabbingLinesCount() const
+        inline size_t getExtremalStabbingLinesCount() const
         {
             return mExtremalStabbingLines.size();
         }
@@ -68,7 +68,7 @@ namespace visilib
 
         /** @brief Return the number of edges of the polytope */
 
-        size_t getEdgeCount() const
+        inline size_t getEdgeCount() const
         {
             return mEdges.size();
         }
@@ -76,14 +76,14 @@ namespace visilib
         /** @brief Return the edges of the polytope, wich are hyperlines joining two vertices
         @return: a set containing all the edges <i,j> joining the vertices i and j
         */
-        const std::set<std::pair<size_t, size_t>>& getEdges()
+        inline const std::set<std::pair<size_t, size_t>>& getEdges()
         {
             return mEdges;
         }
 
 
         /** @brief Return the number of vertices of the polytope */
-        const std::unordered_set<size_t>& getVertices()
+        inline const std::unordered_set<size_t>& getVertices()
         {
             return mVertices;
         }
@@ -92,7 +92,7 @@ namespace visilib
        @return: a set containing all the edges <i,j> joining the vertices i and j with an intersection with the Plucker Quadric
        */
 
-        const std::set<std::pair<size_t, size_t>>& getEdgesIntersectingQuadric()
+        inline const std::set<std::pair<size_t, size_t>>& getEdgesIntersectingQuadric()
         {
             return mEdgesIntersectingQuadric;
         }
@@ -109,7 +109,7 @@ namespace visilib
 
         A polytope is containsRealLines if it has edges, if the number of edges is not too high and if at least one edge crosses the Plucker Quadric
         */
-        bool containsRealLines() const;
+        inline bool containsRealLines() const;
 
         /** @brief Test if the polytope is degenerated (the length of all edges are below the given tolerance).
         
@@ -185,7 +185,7 @@ namespace visilib
     private:
         
         std::set<std::pair<size_t, size_t>> mEdges;                      /** < @brief The edges of the polytope, each edge is defined by the indices of the two vertices supporting it*/
-        std::set<std::pair<size_t, size_t>> mEdgesProcessed;
+        // std::set<std::pair<size_t, size_t>> mEdgesProcessed;
         std::vector<P> mExtremalStabbingLines;                           /** < @brief The ESL of the polytope, at the intersection of an edge and the Plucker Quadric*/
         std::set<std::pair<size_t, size_t>> mEdgesIntersectingQuadric;   /** < @brief The edges containing an intersection with the Plucker Quadric.*/
         std::unordered_set<Silhouette*> mSilhouettes;          /** < @brief The set of silhouettes associated to the polytope*/

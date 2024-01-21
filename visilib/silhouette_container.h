@@ -63,8 +63,11 @@ public:
         for (auto s : mSilhouettes)
         {
             const auto& myMeshFaces = s->getMeshFaces();
-            for (auto faceIndex : s->getSilhouetteFaces())
+            const std::vector<size_t>& silhouetteFaces = s->getSilhouetteFaces();
+            //for (auto faceIndex : s->getSilhouetteFaces())
+            for (size_t i = 0; i<silhouetteFaces.size(); i++)
             {
+                size_t faceIndex = silhouetteFaces[i];
                 const SilhouetteMeshFace& face = myMeshFaces[faceIndex];
 
                 if (MathGeometry::hitsTriangle<float>(myGeometryRay, face.getVertex(0), face.getVertex(1), face.getVertex(2)))

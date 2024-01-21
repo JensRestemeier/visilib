@@ -36,7 +36,7 @@ namespace visilib
         GeometryConvexPolygon(const std::vector<MathVector3d>& aList);
         GeometryConvexPolygon(const std::vector<MathVector3f>& aList);
         GeometryConvexPolygon(const GeometryConvexPolygon& aPoly);
-        GeometryConvexPolygon(MathVector3d* anArray, size_t aNumber);
+        //GeometryConvexPolygon(MathVector3d* anArray, size_t aNumber);
         GeometryConvexPolygon(const float* anArray, size_t numVertices);
 
         MathVector2i getEdge(size_t i) const

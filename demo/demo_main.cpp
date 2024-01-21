@@ -110,6 +110,7 @@ namespace visilibDemo
             config.precision = mDemoConfiguration.precisionType;
             config.representativeLineSampling = mDemoConfiguration.representativeLineSampling;
             config.detectApertureOnly = mDemoConfiguration.detectApertureOnly;
+            config.nonRecursiveResolve = mDemoConfiguration.nonRecursiveResolve;
 #if EMBREE 
             config.useEmbree = mDemoConfiguration.embree;
 #endif
@@ -232,6 +233,7 @@ namespace visilibDemo
 
                 forceDisplay |= ImGui::Checkbox("silhouette optimisation", &mDemoConfiguration.silhouetteOptimisation);
                 forceDisplay |= ImGui::Checkbox("nomalization", &mDemoConfiguration.normalization);
+                forceDisplay |= ImGui::Checkbox("nonRecursiveResolve", &mDemoConfiguration.nonRecursiveResolve);
 #if EMBREE
                 if (ImGui::Checkbox("embree ray tracing", mDemoConfiguration.embree)) {
                     initScene(mDemoConfiguration.sceneIndex);
@@ -346,12 +348,14 @@ namespace visilibDemo
                 ImGui::Text("resolveInternal %i", stats.resolveInternal);
                 ImGui::Text("findNextEdge %i", stats.findNextEdge);
                 ImGui::Text("maxRecursionLevel %i", stats.maxRecursionLevel);
+                ImGui::Text("indexCount %i", stats.indexCount);
                 ImGui::End();
             }
         }
 #endif
         void display()
         {
+            stats.indexCount = 0;
             DemoDebugVisualisationGl::display(debugger, *meshContainer, v0, v1, result, drawGeometryType);
         }
 
@@ -678,7 +682,7 @@ int main(int argc, char** argv)
 
 #ifdef _WIN32
 // WinMain declaration to run without console subsystem on Windows
-int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int nShowCmd)
+static int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, char*, int nShowCmd)
 {
     return main(__argc, __argv);
 }

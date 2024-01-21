@@ -42,6 +42,7 @@ namespace visilib
         }
 
         virtual VisibilityResult resolve() = 0;
+        virtual VisibilityResult resolveNonRecursive() = 0;
 
         void attachVisualisationDebugger(HelperVisualDebugger* aDebugger) { mDebugger = aDebugger; }
     protected:

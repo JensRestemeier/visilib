@@ -128,7 +128,7 @@ namespace visilib
             return mPolytopeToSilhouetteDictionary.find(polytope) != mPolytopeToSilhouetteDictionary.end();
         }
         */
-       
+
         /**@brief Find the next edge to be processed by the query
         */
         bool findNextEdge(size_t& aSilhouetteEdgeIndex, Silhouette * &aSilhouette
@@ -196,7 +196,7 @@ namespace visilib
     {
         mComplex = new PluckerPolytopeComplex<P>();
 
-        {       
+        {
             HelperScopedTimer timer(getStatistic(), SILHOUETTE_PROCESSING);
             mSilhouetteProcessor = new SilhouetteProcessor(&mStatistic);
         }
@@ -204,7 +204,7 @@ namespace visilib
         mQueryPolygon[1] = nullptr;
 
         mTolerance = aTolerance;
- #if EMBREE       
+ #if EMBREE
         if (aConfiguration.useEmbree)
         {
             mSilhouetteContainer = new SilhouetteContainerEmbree();
@@ -319,7 +319,7 @@ namespace visilib
             result = findSceneIntersection(mQueryPolygon[0]->getVertex(0), mQueryPolygon[1]->getVertex(0), intersectedFaces) ? HIDDEN : VISIBLE;
         }
         else
-        {   
+        {
             {
                 HelperScopedTimer timer(getStatistic(), SILHOUETTE_PROCESSING);
                 //mScene->get()->restoreFacesGeometry(mScene);
@@ -347,7 +347,14 @@ namespace visilib
             {
                 solver->attachVisualisationDebugger(mDebugger);
             }
-            result = solver->resolve();
+            if (mConfiguration.nonRecursiveResolve)
+            {
+                result = solver->resolveNonRecursive();
+            }
+            else
+            {
+                result = solver->resolve();
+            }
 
             delete solver;
         }
@@ -387,12 +394,12 @@ namespace visilib
         const std::unordered_set<Silhouette*>& mySilhouettes = mSilhouetteContainer->getSilhouettes();
 
         //double myScore = 1e32;
-        
+
         Silhouette* mySilhouette = nullptr;
 
         GeometryConvexPolygon* polygon = getQueryPolygon(0);
         //MathPlane3d aPlane0 = polygon->getPlane();
-   
+
         const MathPlane3d& myPlane = polygon->getPlane();
         for (std::unordered_set<Silhouette*>::const_iterator silhouette_iter = mySilhouettes.begin(); mySilhouette == nullptr && silhouette_iter != mySilhouettes.end(); silhouette_iter++)
         {
@@ -448,14 +455,14 @@ namespace visilib
         {
 #ifdef OUTPUT_DEBUG_FILE
             V_LOG(debugOutput, "VisibilityExactQuery<P, S>::findTheBestValidEdge END return False (No edge found)", occlusionTreeNodeSymbol);
-#endif  
+#endif
             return false;
         }
     }
 
     template<class P, class S>
     bool VisibilityExactQuery_<P, S>::isOccluded(PluckerPolytope<P>* polytope, PluckerPolyhedron<P>* polyhedron, const std::vector <Silhouette*> & aSilhouettes, const std::vector<P> & polytopeLines)
-    {   
+    {
         return SilhouetteContainer::isOccluded(polytope, polyhedron, aSilhouettes,polytopeLines,mTolerance);
     }
 
@@ -486,7 +493,7 @@ namespace visilib
         {
             HelperScopedTimer timer(getStatistic(), RAY_INTERSECTION);
             getStatistic()->inc(RAY_COUNT);
-            
+
             intersect = mSilhouetteContainer->intersect(&myRay);
         }
 
@@ -522,19 +529,18 @@ namespace visilib
             std::vector<SilhouetteMeshFace>* myFaces = mScene->getOccluderConnectedFaces(geometryId);
 
             mSilhouetteProcessor->extractSilhouette(geometryId, *myFaces, mConfiguration.silhouetteOptimization, silhouettes);
-            
+
             for (auto s:silhouettes)
             {
                 mSilhouetteContainer->addSilhouette(s);
             }
-            
         }
     }
 
     template<class P, class S>
     bool VisibilityExactQuery_<P, S>::collectAllOccluders(PluckerPolytope<P> * aPolytope, PluckerPolyhedron<P> * polyhedron, std::vector<Silhouette*> & occluders, std::vector<P> & polytopeLines)
     {
-        {   
+        {
             if (mConfiguration.representativeLineSampling)
             {
                 HelperScopedTimer timer(getStatistic(), STABBING_LINE_EXTRACTION);
@@ -573,7 +579,7 @@ namespace visilib
             bool hit = findSceneIntersection(line.first, line.second, intersectedFaces, aPolytope);
        //     if (mConfiguration.useEmbree )
          //        hit = hit || findSceneIntersection(line.second, line.first, intersectedFaces, aPolytope);
-         
+
             if (!hit)
             {
                 return false;

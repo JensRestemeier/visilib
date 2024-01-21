@@ -35,13 +35,16 @@ namespace visilibDemo
         size_t vertexCount1 = 3;
         bool silhouetteOptimisation = true;
         bool representativeLineSampling = true;
-        VisibilityExactQueryConfiguration::PrecisionType precisionType = VisibilityExactQueryConfiguration::DOUBLE;
+        // VisibilityExactQueryConfiguration::PrecisionType precisionType = VisibilityExactQueryConfiguration::DOUBLE;
+        VisibilityExactQueryConfiguration::PrecisionType precisionType = VisibilityExactQueryConfiguration::MPFR;
         bool detectApertureOnly = false;
         bool normalization = true;
+        bool nonRecursiveResolve = false;
         float scaling = 0.1f;
         float phi = 0;
         float eta = 0;
-        int   sceneIndex = 2;
+        //int   sceneIndex = 2;
+        int   sceneIndex = 3;
         float globalScaling = 1;
 #if EMBREE
         bool embree = false;

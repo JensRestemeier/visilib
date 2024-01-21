@@ -57,6 +57,7 @@ namespace visilib
             bool detectApertureOnly);
 
         VisibilityResult resolve();
+        VisibilityResult resolveNonRecursive();
     private:
         VisibilityResult resolveInternal(PluckerPolytope<P>* aPolytope, const std::vector<Silhouette*>& anOccluders, const std::vector<P>& aPolytopeLines, int depth
 #ifdef OUTPUT_DEBUG_FILE
@@ -65,7 +66,7 @@ namespace visilib
         );
         void resize(size_t myInitiaLineCount, PluckerPolyhedron<P>* myPolyhedron, PluckerPolytope<P>* aPolytope);
         void extractStabbingLines(PluckerPolyhedron<P>* myPolyhedron, PluckerPolytope<P>* aPolytope);
-            
+
 
         bool mNormalization;
         bool mDetectApertureOnly;
@@ -98,32 +99,21 @@ namespace visilib
 #endif
         )
     {
-        struct RecursionTest {
-            RecursionTest() {
-                stats.recursionLevel++;
-            }
-            ~RecursionTest() {
-                stats.recursionLevel--;
-            }
-        } recursionTest;
-        if (stats.maxRecursionLevel < stats.recursionLevel)
-        {
-            stats.maxRecursionLevel = stats.recursionLevel;
-        }
+        stats.maxRecursionLevel = max(aDepth, stats.maxRecursionLevel);
         stats.resolveInternal++;
 
         PluckerPolyhedron<P>* myPolyhedron = reinterpret_cast<PluckerPolyhedron<P>*> (VisibilitySolver<P, S>::mQuery->getComplex()->getPolyhedron());
         size_t myInitiaLineCount = myPolyhedron->getLinesCount();
 
 #ifdef OUTPUT_DEBUG_FILE
-        std::ofstream& debugOutput = VisibilitySolver<P, S>::mDebugger->getDebugOutput();    
+        std::ofstream& debugOutput = VisibilitySolver<P, S>::mDebugger->getDebugOutput();
         V_LOG(debugOutput, "Resolve internal ", occlusionTreeNodeSymbol);
         aPolytope->outputProperties(debugOutput, myPolyhedron);
 #endif
         VisibilityResult globalResult = HIDDEN;
         if (aDepth > 2000)
         {
-            std::cerr << "Overflow detected: more than 200 recursive calls...." << std::endl;
+            std::cerr << "Overflow detected: more than 2000 recursive calls...." << std::endl;
 #ifdef OUTPUT_DEBUG_FILE
             V_LOG(debugOutput, "RESULT FAILURE: Overflow detected : more than 2000 recursive calls....", occlusionTreeNodeSymbol);
 #endif
@@ -184,7 +174,6 @@ namespace visilib
 #ifdef OUTPUT_DEBUG_FILE
                 V_LOG(debugOutput, "COUNT: maybe VISIBLE", occlusionTreeNodeSymbol);
 #endif
-
             }
         }
         Silhouette* mySilhouette = nullptr;
@@ -244,7 +233,7 @@ namespace visilib
                 }
 
                 P myHyperplane = myPolyhedron->get(myPolyhedronFace);
-                
+
                 GeometryPositionType myResult = ON_NEGATIVE_SIDE;
 
                 PluckerPolytope<P>* myPolytopeLeft = new PluckerPolytope<P>();
@@ -371,12 +360,12 @@ namespace visilib
             else
             {
 
-#ifdef OUTPUT_DEBUG_FILE              
+#ifdef OUTPUT_DEBUG_FILE
                 std::stringstream ss;
                 ss << occlusionTreeNodeSymbol << "|" << face->getFaceIndex() << "-" << myVisibilitySilhouetteEdge.mEdgeIndex << "*";
 #endif
                 VisibilityResult result = resolveInternal(aPolytope, anOccluders, aPolytopeLines, aDepth + 1
-#ifdef OUTPUT_DEBUG_FILE              
+#ifdef OUTPUT_DEBUG_FILE
                     , ss.str()
 #endif
                 );
@@ -401,7 +390,7 @@ namespace visilib
         // When it is the case for all the sub-polytopes created during the recursive traversal, the two polygons are mutually hidden.
 
         if (!mDetectApertureOnly)
-        { 
+        {
             if (!hasEdge)
             {
                 //We found a final polytope visible
@@ -420,6 +409,12 @@ namespace visilib
 #endif
 
         return globalResult;
+    }
+
+    template <class P, class S>
+    VisibilityResult VisibilityApertureFinder<P, S>::resolveNonRecursive()
+    {
+        return VisibilityResult::HIDDEN;
     }
 
     template<class P, class S>
@@ -455,7 +450,7 @@ namespace visilib
         }
 
         if (VisibilitySolver<P, S>::mDebugger != nullptr)
-        {  
+        {
             std::vector<std::pair<MathVector3d, MathVector3d>> lines;
             aPolytope->getExtremalStabbingLinesBackTo3D(lines, aPlane0, aPlane1);
             //for (auto line : lines)
