@@ -71,6 +71,11 @@ namespace visilib
             , MPFR
 #endif
         };
+        enum ResolveMode {
+            ResolveMode_Recursive,
+            ResolveMode_NonRecursive,
+            ResolveMode_Compare
+        };
 
         VisibilityExactQueryConfiguration()
         {
@@ -80,7 +85,7 @@ namespace visilib
             precision = DOUBLE;
             detectApertureOnly = true;
             useEmbree = false;
-            nonRecursiveResolve = false;
+            resolveMode = ResolveMode_Recursive;
         };
 
         VisibilityExactQueryConfiguration(const VisibilityExactQueryConfiguration& other)
@@ -91,7 +96,7 @@ namespace visilib
             representativeLineSampling = other.representativeLineSampling;
             detectApertureOnly = other.detectApertureOnly;
             useEmbree = other.useEmbree;
-            nonRecursiveResolve = other.nonRecursiveResolve;
+            resolveMode = other.resolveMode;
         };
 
         bool silhouetteOptimization;                  /**< @brief Use silhouette optimization*/
@@ -100,7 +105,7 @@ namespace visilib
         PrecisionType precision;                      /**< @brief Arithmetic model presicion t*/  
         bool detectApertureOnly;                      /**< @brief Stop the query as soon as a visible line has been found*/  
         bool useEmbree;
-        bool nonRecursiveResolve;                     /**< @brief Alternative resolve that doesn't recurse, hopefully preventing stack-overflows */
+        ResolveMode resolveMode;                        /**< @brief: Select the resolve function. */
     };
 
 

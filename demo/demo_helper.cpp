@@ -230,7 +230,7 @@ void DemoConfiguration::displaySettings()
     std::cout << "[Normalization: " << getStatusString(normalization) << "]" << std::endl;
 
     std::cout << "  [Arithmetic: " << toStr(precisionType) << "]";
-#if EMBREE           
+#if EMBREE
     std::cout << "[Embree:" << getStatusString(embree) << "]" << std::endl;
 #endif
 
@@ -252,7 +252,7 @@ void DemoConfiguration::writeConfig(const std::string& filename)
     output << "sceneIndex = " << sceneIndex << std::endl;
     output << "globalScaling = " << globalScaling << std::endl;
     output << "precisionType = " << precisionType << std::endl;
-    output << "nonRecursiveResolve  = " << nonRecursiveResolve << std::endl;
+    output << "resolveMode = " << resolveMode << std::endl;
 
     output.close();
 }
@@ -282,7 +282,7 @@ void DemoConfiguration::readConfig(const std::string& filename)
         else if (tokens[0] == "sceneIndex") { sceneIndex = atoi(tokens[2].c_str()); }
         else if (tokens[0] == "globalScaling") { globalScaling = (float)atof(tokens[2].c_str()); }
         else if (tokens[0] == "precisionType") { precisionType = (VisibilityExactQueryConfiguration::PrecisionType)atoi(tokens[2].c_str()); }
-        else if (tokens[0] == "nonRecursiveResolve") { nonRecursiveResolve = atoi(tokens[2].c_str()); }
+        else if (tokens[0] == "resolveMode") { resolveMode = (VisibilityExactQueryConfiguration::ResolveMode)atoi(tokens[2].c_str()); }
 
         else { V_ASSERT(0); }
     }
@@ -296,7 +296,7 @@ const std::string DemoConfiguration::toStr(VisibilityExactQueryConfiguration::Pr
         return "FLOAT";
     case VisibilityExactQueryConfiguration::DOUBLE:
         return "DOUBLE";
-#if EXACT_ARITHMETIC            
+#if EXACT_ARITHMETIC
     case VisibilityExactQueryConfiguration::EXACT:
         return "EXACT";
 #endif
@@ -318,7 +318,6 @@ const std::string DemoConfiguration::toStr(VisibilityExactQueryConfiguration::Pr
         return "UNKNOWN";
     }
 }
-
 
 void DemoConfiguration::displaySummary()
 {

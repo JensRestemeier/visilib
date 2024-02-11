@@ -110,7 +110,7 @@ namespace visilibDemo
             config.precision = mDemoConfiguration.precisionType;
             config.representativeLineSampling = mDemoConfiguration.representativeLineSampling;
             config.detectApertureOnly = mDemoConfiguration.detectApertureOnly;
-            config.nonRecursiveResolve = mDemoConfiguration.nonRecursiveResolve;
+            config.resolveMode = mDemoConfiguration.resolveMode;
 #if EMBREE 
             config.useEmbree = mDemoConfiguration.embree;
 #endif
@@ -232,8 +232,13 @@ namespace visilibDemo
                 ImGui::Begin("Visilib 1.0. Demo application");
 
                 forceDisplay |= ImGui::Checkbox("silhouette optimisation", &mDemoConfiguration.silhouetteOptimisation);
-                forceDisplay |= ImGui::Checkbox("nomalization", &mDemoConfiguration.normalization);
-                forceDisplay |= ImGui::Checkbox("nonRecursiveResolve", &mDemoConfiguration.nonRecursiveResolve);
+                forceDisplay |= ImGui::Checkbox("normalization", &mDemoConfiguration.normalization);
+
+                const char* resolve_mode_items[] = { "Recursive", "NonRecursive", "Compare" };
+                int resolveMode = mDemoConfiguration.resolveMode;
+                forceDisplay |= ImGui::Combo("Resolve", &resolveMode, resolve_mode_items, IM_ARRAYSIZE(resolve_mode_items));
+                mDemoConfiguration.resolveMode = (VisibilityExactQueryConfiguration::ResolveMode)resolveMode;
+
 #if EMBREE
                 if (ImGui::Checkbox("embree ray tracing", mDemoConfiguration.embree)) {
                     initScene(mDemoConfiguration.sceneIndex);
@@ -243,12 +248,29 @@ namespace visilibDemo
                 forceDisplay |= ImGui::Checkbox("representative line sampling strategy", &mDemoConfiguration.representativeLineSampling);
                 forceDisplay |= ImGui::Checkbox("detect aperture only", &mDemoConfiguration.detectApertureOnly);
 
-                if (ImGui::Button("change precision type")) {
-                    nextPrecisionType();
-                    forceDisplay = true;
-                }
+                const char* precision_items[] = { 
+                    "FLOAT"
+                    , "DOUBLE"
+#ifdef EXACT_ARITHMETIC  
+                    , "EXACT"
+#endif
+#ifdef ENABLE_GMP
+                    , "GMP_FLOAT"
+                    , "GMP_RATIONAL"
+#endif
+#ifdef ENABLE_REALEXPR
+                    , "REAL_EXPR"
+#endif
+#ifdef ENABLE_MPFR
+                    , "MPFR"
+#endif
+                };
+                int precisionType = mDemoConfiguration.precisionType;
+                forceDisplay |= ImGui::Combo("Precision", &precisionType, precision_items, IM_ARRAYSIZE(precision_items));
+                mDemoConfiguration.precisionType = (VisibilityExactQueryConfiguration::PrecisionType)precisionType;
+
                 ImGui::SameLine();
-                ImGui::Text(DemoConfiguration::toStr(mDemoConfiguration.precisionType).c_str());
+                ImGui::Text(DemoConfiguration::toStr(mDemoConfiguration.precisionType).c_str()); // validate that the enum and the string list match up...
 
                 ImGui::Text("select scene"); ImGui::SameLine();
                 if (ImGui::Button("prev ")) {

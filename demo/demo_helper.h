@@ -39,12 +39,12 @@ namespace visilibDemo
         VisibilityExactQueryConfiguration::PrecisionType precisionType = VisibilityExactQueryConfiguration::MPFR;
         bool detectApertureOnly = false;
         bool normalization = true;
-        bool nonRecursiveResolve = false;
+        VisibilityExactQueryConfiguration::ResolveMode resolveMode = VisibilityExactQueryConfiguration::ResolveMode_NonRecursive;
         float scaling = 0.1f;
         float phi = 0;
         float eta = 0;
         //int   sceneIndex = 2;
-        int   sceneIndex = 3;
+        int   sceneIndex = 9;
         float globalScaling = 1;
 #if EMBREE
         bool embree = false;

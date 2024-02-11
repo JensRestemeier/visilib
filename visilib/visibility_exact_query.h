@@ -186,6 +186,9 @@ namespace visilib
         SilhouetteContainer* mSilhouetteContainer;
         /** @brief The links between the silhouettes and the polytopes*/
     //    std::unordered_map<PluckerPolytope<P>*, std::unordered_set<VisibilitySilhouette*>> mPolytopeToSilhouetteDictionary;
+
+        const std::string toStr(VisibilityResult result);
+
     };
 
     template<class P, class S>
@@ -292,9 +295,21 @@ namespace visilib
     }
 
     template<class P, class S>
+    const std::string VisibilityExactQuery_<P, S>::toStr(VisibilityResult result)
+    {
+        switch (result) {
+        case VISIBLE: return "VISIBLE";
+        case HIDDEN: return "HIDDEN";
+        case UNKNOWN: return "UNKNOWN";
+        case FAILURE: return "FAILURE";
+        }
+        return "ERROR";
+    }
+
+    template<class P, class S>
     VisibilityResult VisibilityExactQuery_<P, S>::arePolygonsVisible(const float* vertices0, size_t numVertices0, const float* vertices1, size_t numVertices1)
     {
-        VisibilityResult result;
+        VisibilityResult result = UNKNOWN;
 
         HelperScopedTimer timer(&mStatistic, VISIBILITY_QUERY);
 
@@ -347,13 +362,24 @@ namespace visilib
             {
                 solver->attachVisualisationDebugger(mDebugger);
             }
-            if (mConfiguration.nonRecursiveResolve)
+            switch (mConfiguration.resolveMode)
             {
+            case VisibilityExactQueryConfiguration::ResolveMode_NonRecursive:
                 result = solver->resolveNonRecursive();
-            }
-            else
-            {
+                break;
+            case VisibilityExactQueryConfiguration::ResolveMode_Recursive:
                 result = solver->resolve();
+                break;
+            case VisibilityExactQueryConfiguration::ResolveMode_Compare: {
+                VisibilityResult recursiveResult = solver->resolve();
+                VisibilityResult nonResursiveResult = solver->resolveNonRecursive();
+                if (recursiveResult != nonResursiveResult)
+                {
+                    std::cout << "Resolve mismatch: recursive " << toStr(recursiveResult) << " != non recursive " << toStr(nonResursiveResult) << std::endl;
+                }
+                result = recursiveResult; // < because that'll most likely be the correct result
+                break;
+            }
             }
 
             delete solver;
