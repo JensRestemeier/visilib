@@ -45,17 +45,17 @@ namespace visilib
         @param aPlaneId: the hyperplane facet number (index of the hyperplane in the polyhedron)
         @param aNormalization: boolean to perform a normalization or not
         @param tolerance: a tolerance to determine  wheter a point lies on the splitting hyperplane or not
-        @param aLeft: the resulting splitted polytope at the negative side of the hyperplane (must be instanciated before calling the function)
-        @param aRight: the resulting splitted polytope at the positive side of the hyperplane  (must be instanciated before calling the function)
+        @param aNegative: the resulting splitted polytope at the negative side of the hyperplane (must be instanciated before calling the function)
+        @param aPositive: the resulting splitted polytope at the positive side of the hyperplane  (must be instanciated before calling the function)
        */
         static GeometryPositionType split(PluckerPolyhedron<P>* polyhedron, const P& aPlane, PluckerPolytope<P>* aPolytope, PluckerPolytope<P>* aLeft, PluckerPolytope<P>* aRight, size_t aPlaneId, bool anormalization, S tolerance);
     };
 
     template<class P, class S>
-    inline GeometryPositionType PluckerPolytopeSplitter<P, S>::split(PluckerPolyhedron<P>* aPolyhedron, const P& aPlane, PluckerPolytope<P>* aPolytope, PluckerPolytope<P>* aLeft, PluckerPolytope<P>* aRight, size_t aPlaneID, bool normalization, S tolerance)
+    inline GeometryPositionType PluckerPolytopeSplitter<P, S>::split(PluckerPolyhedron<P>* aPolyhedron, const P& aPlane, PluckerPolytope<P>* aPolytope, PluckerPolytope<P>* aNegative, PluckerPolytope<P>* aPositive, size_t aPlaneID, bool normalization, S tolerance)
     {
-        bool hasPointOnTheLeft = false;
-        bool hasPointOnTheRight = false;
+        bool hasPointOnNegativeSide = false;
+        bool hasPointOnPositiveSide = false;
 
         std::vector<size_t> myWait;
         std::unordered_set<size_t> myVertices;
@@ -94,12 +94,12 @@ namespace visilib
                     if (position == ON_NEGATIVE_SIDE)
                     {
                         myStatus.insert(std::pair<size_t, int>(a, -1));
-                        hasPointOnTheLeft = true;
+                        hasPointOnNegativeSide = true;
                     }
                     else if (position == ON_POSITIVE_SIDE)
                     {
                         myStatus.insert(std::pair<size_t, int>(a, 1));
-                        hasPointOnTheRight = true;
+                        hasPointOnPositiveSide = true;
                     }
                     else
                     {
@@ -114,7 +114,7 @@ namespace visilib
 
         // Step 2 - Treat the special cases, when the hyperplane does not split with the polytope
 
-        if (!hasPointOnTheLeft && !hasPointOnTheRight)
+        if (!hasPointOnNegativeSide && !hasPointOnPositiveSide)
         {
             // Step 2 - Case 1 - the hyperplanes contains all the myVertices of the polytope
             //			   	   - no split is required, the hyperplane is added to the facets description of the myVertices contained in the hyperplane.
@@ -123,11 +123,11 @@ namespace visilib
             {
                 size_t myI1 = iter->first;
                 size_t myI2 = iter->second;
-                aLeft->addEdge(myI1, myI2, aPolyhedron);
-                aRight->addEdge(myI1, myI2, aPolyhedron);
+                aNegative->addEdge(myI1, myI2, aPolyhedron);
+                aPositive->addEdge(myI1, myI2, aPolyhedron);
             }
-            V_ASSERT(aLeft->getEdgeCount() > 0);
-            V_ASSERT(aRight->getEdgeCount() > 0);
+            V_ASSERT(aNegative->getEdgeCount() > 0);
+            V_ASSERT(aPositive->getEdgeCount() > 0);
             for (size_t index = 0; index < myWait.size(); index++)
             {
                 if (!MathCombinatorial::hasFacet(aPolyhedron->getFacetsDescription(myWait[index]), aPlaneID))
@@ -137,12 +137,12 @@ namespace visilib
             }
             return ON_BOUNDARY;
         }
-        if (!hasPointOnTheLeft)
+        if (!hasPointOnNegativeSide)
         {
             // Step 2 - Case 2  - the polytope is entierly on the positive side. Nothing to do.
             return ON_POSITIVE_SIDE;
         }
-        else if (!hasPointOnTheRight)
+        else if (!hasPointOnPositiveSide)
         {
             // Step 2 - Case 3  - the polytope is on entierly the negative side. Nothing to do.
             return ON_NEGATIVE_SIDE;
@@ -181,11 +181,11 @@ namespace visilib
 
             if (sum < 0) // add edge to left polytope
             {
-                aLeft->addEdge(myI1, myI2, aPolyhedron);
+                aNegative->addEdge(myI1, myI2, aPolyhedron);
             }
             else if (sum > 0)// add edge to right polytope
             {
-                aRight->addEdge(myI1, myI2, aPolyhedron);
+                aPositive->addEdge(myI1, myI2, aPolyhedron);
             }
             else // split edge
             {
@@ -234,16 +234,16 @@ namespace visilib
 
                     V_ASSERT(aPolyhedron->checkFacetsDescription(vertexIndex, myI1, myI2, aPlaneID));
 
-                    // Add the edges to the left and to the right
-                    aLeft->addEdge(myI1, vertexIndex, aPolyhedron);
-                    aRight->addEdge(vertexIndex, myI2, aPolyhedron);
+                    // Add the edges to the positive and to the negative polytope
+                    aNegative->addEdge(myI1, vertexIndex, aPolyhedron);
+                    aPositive->addEdge(vertexIndex, myI2, aPolyhedron);
                 }
                 else
                 {
                     // the myVertices are on the hyperplane, we do not have to split the edge
 
-                    aLeft->addEdge(myI1, myI2, aPolyhedron);
-                    aRight->addEdge(myI1, myI2, aPolyhedron);
+                    aNegative->addEdge(myI1, myI2, aPolyhedron);
+                    aPositive->addEdge(myI1, myI2, aPolyhedron);
                 }
             }
         }
@@ -270,17 +270,17 @@ namespace visilib
                     {
                         V_ASSERT(facetsQm.size() != facetsQn.size() || !std::equal(facetsQm.begin(), facetsQm.end(), facetsQn.begin()));
 
-                        aLeft->addEdge(Qm, Qn, aPolyhedron);
-                        aRight->addEdge(Qm, Qn, aPolyhedron);
+                        aNegative->addEdge(Qm, Qn, aPolyhedron);
+                        aPositive->addEdge(Qm, Qn, aPolyhedron);
                     }
                 }
             }
         }
 
-        V_ASSERT(aLeft->getEdgeCount() > 0);
-        V_ASSERT(aRight->getEdgeCount() > 0);
-        //	aLeft->V_ASSERTIsValid(aPolyhedron, normalization);
-        //	aRight->V_ASSERTIsValid(aPolyhedron, normalization);
+        V_ASSERT(aNegative->getEdgeCount() > 0);
+        V_ASSERT(aPositive->getEdgeCount() > 0);
+        //	aNegative->V_ASSERTIsValid(aPolyhedron, normalization);
+        //	aPositive->V_ASSERTIsValid(aPolyhedron, normalization);
         return ON_BOUNDARY;
     }
 }

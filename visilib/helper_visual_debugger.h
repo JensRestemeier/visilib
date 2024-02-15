@@ -146,6 +146,7 @@ namespace visilib
         mExtremalStabbingLineInformation.vertexCount = mExtremalStabbingLineArray.size();
         mExtremalStabbingLineInformation.vertexArray = &mExtremalStabbingLineArray[0];
     }
+
     inline void  HelperVisualDebugger::addRemovedTriangle(const MathVector3f& a1, const MathVector3f& a2, const MathVector3f& a3)
     {
         mRemovedTriangleArray.push_back(a1);

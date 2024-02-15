@@ -34,6 +34,7 @@ namespace visilib
         int resolveInternal;
         int maxRecursionLevel;
         int indexCount;
+        int polytopes;
 
         SimpleStats() {
             Reset();
@@ -44,6 +45,7 @@ namespace visilib
             resolveInternal = 0;
             maxRecursionLevel = 0;
             indexCount = 0;
+            polytopes = 0;
         }
     };
     extern SimpleStats stats;

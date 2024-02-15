@@ -66,7 +66,7 @@ namespace visilib
         );
         void resize(size_t myInitiaLineCount, PluckerPolyhedron<P>* myPolyhedron, PluckerPolytope<P>* aPolytope);
         void extractStabbingLines(PluckerPolyhedron<P>* myPolyhedron, PluckerPolytope<P>* aPolytope);
-
+        void releasePolytope(PluckerPolytope<P>*& polytope);
 
         bool mNormalization;
         bool mDetectApertureOnly;
@@ -108,7 +108,7 @@ namespace visilib
 #ifdef OUTPUT_DEBUG_FILE
         std::ofstream& debugOutput = VisibilitySolver<P, S>::mDebugger->getDebugOutput();
         V_LOG(debugOutput, "Resolve internal ", occlusionTreeNodeSymbol);
-        aPolytope->outputProperties(debugOutput, myPolyhedron);
+        aPolytope->outputProperties(debugOutput, polyhedron);
 #endif
         VisibilityResult globalResult = HIDDEN;
         if (aDepth > 2000)
@@ -236,8 +236,8 @@ namespace visilib
 
                 GeometryPositionType myResult = ON_NEGATIVE_SIDE;
 
-                PluckerPolytope<P>* myPolytopeLeft = new PluckerPolytope<P>();
-                PluckerPolytope<P>* myPolytopeRight = new PluckerPolytope<P>();
+                PluckerPolytope<P>* myPolytopeNegative = new PluckerPolytope<P>();
+                PluckerPolytope<P>* myPolytopePositive = new PluckerPolytope<P>();
 
                 {
                     HelperScopedTimer timer(VisibilitySolver<P, S>::mQuery->getStatistic(), POLYTOPE_SPLIT);
@@ -246,7 +246,7 @@ namespace visilib
 #ifdef OUTPUT_DEBUG_FILE
                     V_LOG(debugOutput, "PERFORM THE SPLIT", occlusionTreeNodeSymbol);
 #endif
-                    myResult = PluckerPolytopeSplitter<P, S>::split(myPolyhedron, myHyperplane, aPolytope, myPolytopeLeft, myPolytopeRight, myPolyhedronFace, mNormalization, mTolerance);
+                    myResult = PluckerPolytopeSplitter<P, S>::split(myPolyhedron, myHyperplane, aPolytope, myPolytopeNegative, myPolytopePositive, myPolyhedronFace, mNormalization, mTolerance);
 #if 0
                     if (VisibilitySolver<P, S>::mQuery->getStatistic()->get(POLYTOPE_SPLIT_COUNT) % 10000 == 0)
                     {
@@ -264,7 +264,7 @@ namespace visilib
 
                 if (myResult == ON_BOUNDARY)
                 {
-                    V_ASSERT(myPolytopeLeft && myPolytopeRight);
+                    V_ASSERT(myPolytopeNegative && myPolytopePositive);
 #ifdef OUTPUT_DEBUG_FILE
                     V_LOG(debugOutput, "SPLIT SUCCESS ->recurse on Left and right childs", occlusionTreeNodeSymbol);
 #endif
@@ -272,14 +272,14 @@ namespace visilib
 
                     // left split
                     reuseOccluders.push_back(position != ON_POSITIVE_SIDE);
-                    myPolytopes.push_back(myPolytopeLeft);
+                    myPolytopes.push_back(myPolytopeNegative);
 #ifdef OUTPUT_DEBUG_FILE
                     postFix.push_back("L");
 #endif
 
                     // right split
                     reuseOccluders.push_back(position != ON_NEGATIVE_SIDE);
-                    myPolytopes.push_back(myPolytopeRight);
+                    myPolytopes.push_back(myPolytopePositive);
 #ifdef OUTPUT_DEBUG_FILE
                     postFix.push_back("R");
 #endif
@@ -294,8 +294,8 @@ namespace visilib
 #ifdef OUTPUT_DEBUG_FILE
                     postFix.push_back("*");
 #endif
-                    delete myPolytopeLeft;  myPolytopeLeft = nullptr;
-                    delete myPolytopeRight; myPolytopeRight = nullptr;
+                    delete myPolytopeNegative;  myPolytopeNegative = nullptr;
+                    delete myPolytopePositive; myPolytopePositive = nullptr;
                 }
 
                 for (size_t i = 0; i < myPolytopes.size(); i++)
@@ -319,7 +319,7 @@ namespace visilib
                     {
                         result = resolveInternal(myPolytopes[i], myOccluders, polytopeLines, aDepth + 1
 #ifdef OUTPUT_DEBUG_FILE
-                        , ss.str()
+                            , ss.str()
 #endif
                         );
                     }
@@ -327,7 +327,7 @@ namespace visilib
                     {
                         result = resolveInternal(myPolytopes[i], std::vector<Silhouette*>(), std::vector<P>(), aDepth + 1
 #ifdef OUTPUT_DEBUG_FILE
-                        , ss.str()
+                            , ss.str()
 #endif
                         );
                     }
@@ -343,8 +343,8 @@ namespace visilib
 #ifdef OUTPUT_DEBUG_FILE
                             V_LOG(debugOutput, "EARLY STOP - aperture found");
 #endif
-                            delete myPolytopeLeft;  myPolytopeLeft = nullptr;
-                            delete myPolytopeRight; myPolytopeRight = nullptr;
+                            delete myPolytopeNegative;  myPolytopeNegative = nullptr;
+                            delete myPolytopePositive; myPolytopePositive = nullptr;
 
                             return result;
                         }
@@ -353,8 +353,8 @@ namespace visilib
                         mySilhouette->popEdgeProcessed(mySilhouetteEdgeIndex);
 
                 }
-                delete myPolytopeLeft;  myPolytopeLeft = nullptr;
-                delete myPolytopeRight; myPolytopeRight = nullptr;
+                delete myPolytopeNegative;  myPolytopeNegative = nullptr;
+                delete myPolytopePositive; myPolytopePositive = nullptr;
 
             }
             else
@@ -402,9 +402,9 @@ namespace visilib
             }
         }
 #if 0
-        if (myPolyhedron->getLinesCount() != myInitiaLineCount)
+        if (polyhedron->getLinesCount() != initiaLineCount)
         {
-       //     resize(myInitiaLineCount, myPolyhedron, aPolytope);
+            //     resize(initiaLineCount, polyhedron, aPolytope);
         }
 #endif
 
@@ -412,9 +412,220 @@ namespace visilib
     }
 
     template <class P, class S>
+    void VisibilityApertureFinder<P, S>::releasePolytope(PluckerPolytope<P>*& polytope)
+    {
+        if (polytope != VisibilitySolver<P, S>::mQuery->getComplex()->getRoot())
+        {
+            delete polytope;
+            polytope = NULL;
+        }
+    }
+
+    template <class P, class S>
     VisibilityResult VisibilityApertureFinder<P, S>::resolveNonRecursive()
     {
-        return VisibilityResult::HIDDEN;
+        VisibilityResult globalResult = VisibilityResult::HIDDEN;
+
+        PluckerPolytopeComplex<P>* complex = mQuery->getComplex();
+
+        // get occluders
+        PluckerPolyhedron<P>* polyhedron = reinterpret_cast<PluckerPolyhedron<P>*> (complex->getPolyhedron());
+        size_t initiaLineCount = polyhedron->getLinesCount();
+
+        std::vector <PluckerPolytope<P>*> polytopes;
+        polytopes.push_back(reinterpret_cast<PluckerPolytope<P>*>(complex->getRoot()));
+
+        while (!polytopes.empty())
+        {
+            PluckerPolytope<P>* polytope = polytopes.back();
+            polytopes.pop_back();
+
+            {
+                HelperScopedTimer timer(VisibilitySolver<P, S>::mQuery->getStatistic(), STABBING_LINE_EXTRACTION);
+                polytope->computeEdgesIntersectingQuadric(polyhedron, mTolerance);
+            }
+            if (polytope->containsRealLines())
+            {
+                V_ASSERT(polytope->isValid(polyhedron, mNormalization, mTolerance));
+
+                std::vector<Silhouette*> occluders;
+                std::vector<P> polytopeLines;
+
+                bool hasRay = false;
+                if (!VisibilitySolver<P, S>::mQuery->collectAllOccluders(polytope, polyhedron, occluders, polytopeLines))
+                {
+                    // Early stop - an aperture has been found: the source polygons are mutually visible
+                    hasRay = true;
+                    globalResult = VISIBLE;
+                    if (mDetectApertureOnly)
+                    {
+                        releasePolytope(polytope);
+                        // trivially accept polytope
+                        return VISIBLE;
+                    }
+                }
+#if true
+                {
+                    HelperScopedTimer timer(VisibilitySolver<P, S>::mQuery->getStatistic(), OCCLUDER_TREATMENT);
+                    if (VisibilitySolver<P, S>::mQuery->isOccluded(polytope, polyhedron, occluders, polytopeLines))
+                    {
+                        // early out, no vertices outside of any edge of the occluder, so no subdivision required
+                        releasePolytope( polytope);
+                        // trivially discard polytope
+                        continue;
+                    }
+                }
+#endif
+
+                bool visible = false;
+                // iterate over all silhouettes and edges, push the unoccluded polytops onto a stack, discard the final fully occluded polytopes
+                for (std::vector<Silhouette*>::const_iterator it = occluders.begin(); it != occluders.end() && polytope != nullptr; it++)
+                {
+                    Silhouette* mySilhouette = *it;
+                    std::vector<SilhouetteEdge>& edges = mySilhouette->getEdges();
+                    bool nextSilhouette = false;
+                    for (size_t mySilhouetteEdgeIndex = 0; mySilhouetteEdgeIndex < edges.size() && !nextSilhouette && polytope != nullptr; mySilhouetteEdgeIndex++)
+                    {
+#if true
+                        {
+                            HelperScopedTimer timer(VisibilitySolver<P, S>::mQuery->getStatistic(), OCCLUDER_TREATMENT);
+                            if (VisibilitySolver<P, S>::mQuery->isOccluded(polytope, polyhedron, occluders, polytopeLines))
+                            {
+                                // early out, no vertices outside of any edge of the occluder, so no subdivision required
+                                releasePolytope(polytope);
+                                // trivially discard polytope
+                                continue;
+                            }
+                        }
+#endif
+
+                        SilhouetteEdge& myVisibilitySilhouetteEdge = edges[mySilhouetteEdgeIndex];
+                        SilhouetteMeshFace* face = myVisibilitySilhouetteEdge.mFace;
+
+                        MathVector2i edge = face->getEdge(myVisibilitySilhouetteEdge.mEdgeIndex);
+
+                        // Create the Plucker representation of the edge and add hyperplane of the edge and add it to the polyhedron
+
+                        MathVector3d a = convert<MathVector3d>(face->getVertex(edge.x));
+                        MathVector3d b = convert<MathVector3d>(face->getVertex(edge.y));
+
+                        bool intersect = false;
+#if true
+                        {
+                            HelperScopedTimer timer(VisibilitySolver<P, S>::mQuery->getStatistic(), OCCLUDER_TREATMENT);
+                            intersect = MathGeometry::isEdgeInsidePolytope(a, b, polytope, VisibilitySolver<P, S>::mQuery->getApproximateNormal(), polyhedron, mTolerance);
+                        }
+#else
+                        intersect = true;
+#endif
+                        if (intersect)
+                        {
+                            if (VisibilitySolver<P, S>::mDebugger != nullptr)
+                            {
+                                VisibilitySolver<P, S>::mDebugger->addRemovedEdge(face->getVertex(edge.x), face->getVertex(edge.y));
+                            }
+
+                            size_t myPolyhedronFace = myVisibilitySilhouetteEdge.mHyperPlaneIndex;
+
+                            if (myPolyhedronFace == 0)
+                            {
+                                P myHyperplane(a, b);
+                                if (mNormalization)
+                                {
+                                    myHyperplane = myHyperplane.getNormalized();
+                                }
+                                myPolyhedronFace = polyhedron->add(myHyperplane, ON_BOUNDARY, mNormalization, mTolerance);
+                                myVisibilitySilhouetteEdge.mHyperPlaneIndex = myPolyhedronFace;
+                            }
+
+                            P myHyperplane = polyhedron->get(myPolyhedronFace);
+
+                            GeometryPositionType myResult = ON_NEGATIVE_SIDE;
+
+                            PluckerPolytope<P>* myPolytopeNegative = new PluckerPolytope<P>();
+                            PluckerPolytope<P>* myPolytopePositive = new PluckerPolytope<P>();
+
+                            {
+                                HelperScopedTimer timer(VisibilitySolver<P, S>::mQuery->getStatistic(), POLYTOPE_SPLIT);
+                                VisibilitySolver<P, S>::mQuery->getStatistic()->inc(POLYTOPE_SPLIT_COUNT);
+
+                                myResult = PluckerPolytopeSplitter<P, S>::split(polyhedron, myHyperplane, polytope, myPolytopeNegative, myPolytopePositive, myPolyhedronFace, mNormalization, mTolerance);
+                            }
+
+                            GeometryPositionType position = MathPredicates::getVertexPlaneRelativePosition(myHyperplane, polytopeLines[0], mTolerance);
+
+                            switch (myResult)
+                            {
+                            case ON_BOUNDARY: {
+                                V_ASSERT(myPolytopeNegative && myPolytopePositive);
+                                if (position != ON_POSITIVE_SIDE)
+                                {
+                                    // we push the positive polytope into a list to process later
+                                    polytopes.push_back(myPolytopePositive);
+                                    stats.polytopes++;
+
+                                    // we process the negative polytope further
+                                    releasePolytope(polytope);
+                                    polytope = myPolytopeNegative;
+                                }
+                                else
+                                {
+                                    // we push the positive polytope into a list to process later
+                                    polytopes.push_back(myPolytopeNegative);
+                                    stats.polytopes++;
+
+                                    // we process the negative polytope further
+                                    releasePolytope(polytope);
+                                    polytope = myPolytopePositive;
+                                }
+                                break;
+                            }
+#if 0
+                            case ON_POSITIVE_SIDE: {
+                                // is on the positive side, so no point looking at the rest of the silhouetter
+                                delete myPolytopeNegative; myPolytopeNegative = nullptr;
+                                delete myPolytopePositive; myPolytopePositive = nullptr;
+                                if (position != ON_NEGATIVE_SIDE)
+                                {
+                                    nextSilhouette = true;
+                                    visible = true;
+                                }
+                                break;
+                            }
+                            case ON_NEGATIVE_SIDE: {
+                                // is fully on the negative side of an edge, so we continue chopping bits of the existing polytope
+                                delete myPolytopeNegative; myPolytopeNegative = nullptr;
+                                delete myPolytopePositive; myPolytopePositive = nullptr;
+                                if (position != ON_POSITIVE_SIDE)
+                                {
+                                    nextSilhouette = true;
+                                    visible = true;
+                                }
+                                break;
+                            }
+#else
+                            default: {
+                                delete myPolytopeNegative; myPolytopeNegative = nullptr;
+                                delete myPolytopePositive; myPolytopePositive = nullptr;
+                                break;
+                            }
+#endif
+                            }
+                        }
+                    }
+                }
+                if (!mDetectApertureOnly && visible)
+                {
+                    // this produces the green lines:
+                    polytope->computeEdgesIntersectingQuadric(polyhedron, mTolerance);
+                    extractStabbingLines(polyhedron, polytope);
+                }
+            }
+
+            releasePolytope(polytope);
+            polytope = nullptr;
+        }
+        return globalResult;
     }
 
     template<class P, class S>
