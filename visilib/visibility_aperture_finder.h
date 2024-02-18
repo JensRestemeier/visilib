@@ -417,7 +417,7 @@ namespace visilib
         if (polytope != VisibilitySolver<P, S>::mQuery->getComplex()->getRoot())
         {
             delete polytope;
-            polytope = NULL;
+            polytope = nullptr;
         }
     }
 
@@ -477,7 +477,6 @@ namespace visilib
                 }
 #endif
 
-                bool visible = false;
                 // iterate over all silhouettes and edges, push the unoccluded polytops onto a stack, discard the final fully occluded polytopes
                 for (std::vector<Silhouette*>::const_iterator it = occluders.begin(); it != occluders.end() && polytope != nullptr; it++)
                 {
@@ -486,7 +485,7 @@ namespace visilib
                     bool nextSilhouette = false;
                     for (size_t mySilhouetteEdgeIndex = 0; mySilhouetteEdgeIndex < edges.size() && !nextSilhouette && polytope != nullptr; mySilhouetteEdgeIndex++)
                     {
-#if true
+#if false
                         {
                             HelperScopedTimer timer(VisibilitySolver<P, S>::mQuery->getStatistic(), OCCLUDER_TREATMENT);
                             if (VisibilitySolver<P, S>::mQuery->isOccluded(polytope, polyhedron, occluders, polytopeLines))
@@ -557,26 +556,50 @@ namespace visilib
                             switch (myResult)
                             {
                             case ON_BOUNDARY: {
-                                V_ASSERT(myPolytopeNegative && myPolytopePositive);
-                                if (position != ON_POSITIVE_SIDE)
+                                // test if all vertices of left/right are identical. Which means they lie on the boundary of the hyperplane? Which is a result we don't want in the first place?
+                                bool identical = false;
+#if true
+                                std::vector<size_t> positiveVertices(myPolytopePositive->getVertices().begin(), myPolytopePositive->getVertices().end());
+                                std::vector<size_t> negativeVertices(myPolytopeNegative->getVertices().begin(), myPolytopeNegative->getVertices().end());
+                                if (positiveVertices.size() == negativeVertices.size())
                                 {
-                                    // we push the positive polytope into a list to process later
-                                    polytopes.push_back(myPolytopePositive);
-                                    stats.polytopes++;
-
-                                    // we process the negative polytope further
-                                    releasePolytope(polytope);
-                                    polytope = myPolytopeNegative;
+                                    std::sort(positiveVertices.begin(), positiveVertices.end());
+                                    std::sort(negativeVertices.begin(), negativeVertices.end());
+                                    identical = true;
+                                    for (int i = 0; i < positiveVertices.size() && identical; i++) {
+                                        identical = positiveVertices[i] == negativeVertices[i];
+                                    }
                                 }
-                                else
+#endif
+                                if (identical) 
                                 {
-                                    // we push the positive polytope into a list to process later
-                                    polytopes.push_back(myPolytopeNegative);
-                                    stats.polytopes++;
-
-                                    // we process the negative polytope further
+                                    delete myPolytopeNegative; myPolytopeNegative = nullptr;
+                                    delete myPolytopePositive; myPolytopePositive = nullptr;
                                     releasePolytope(polytope);
-                                    polytope = myPolytopePositive;
+                                }
+                                else 
+                                {
+                                    V_ASSERT(myPolytopeNegative && myPolytopePositive);
+                                    if (position != ON_POSITIVE_SIDE)
+                                    {
+                                        // we push the positive polytope into a list to process later
+                                        polytopes.push_back(myPolytopePositive);
+                                        stats.polytopes++;
+
+                                        // we process the negative polytope further
+                                        releasePolytope(polytope);
+                                        polytope = myPolytopeNegative;
+                                    }
+                                    else
+                                    {
+                                        // we push the positive polytope into a list to process later
+                                        polytopes.push_back(myPolytopeNegative);
+                                        stats.polytopes++;
+
+                                        // we process the negative polytope further
+                                        releasePolytope(polytope);
+                                        polytope = myPolytopePositive;
+                                    }
                                 }
                                 break;
                             }
@@ -614,12 +637,15 @@ namespace visilib
                         }
                     }
                 }
-                if (!mDetectApertureOnly && visible)
+#if false
+                // any polytope reaching this point is fully occluded:
+                if (polytope != nullptr)
                 {
                     // this produces the green lines:
                     polytope->computeEdgesIntersectingQuadric(polyhedron, mTolerance);
                     extractStabbingLines(polyhedron, polytope);
                 }
+#endif
             }
 
             releasePolytope(polytope);

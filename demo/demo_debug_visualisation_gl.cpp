@@ -141,6 +141,7 @@ size_t DemoDebugVisualisationGl::drawMesh(const GeometryTriangleMeshDescription 
 
     glVertexPointer(3, GL_FLOAT, 0, &aMesh.vertexArray[0]);
 
+    stats.indexCount += aMesh.getIndexCount();
     glDrawElements(GL_TRIANGLES, (int)aMesh.getIndexCount(), GL_UNSIGNED_INT, &aMesh.indexArray[0]);
 
     glDisableClientState(GL_VERTEX_ARRAY);
@@ -182,6 +183,7 @@ size_t DemoDebugVisualisationGl::display(HelperVisualDebugger * debugger, const 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     glColor3f(0.9f, 0.9f, 0.9f);
+    // glColor3f(0.9f, 0.0f, 0.0f);
 
     DemoDebugVisualisationGl::drawTriangles(debugger->getRemovedTriangles());
 

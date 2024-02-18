@@ -76,14 +76,14 @@ namespace visilib
         /** @brief Return the edges of the polytope, wich are hyperlines joining two vertices
         @return: a set containing all the edges <i,j> joining the vertices i and j
         */
-        inline const std::set<std::pair<size_t, size_t>>& getEdges()
+        inline const std::set<std::pair<size_t, size_t>>& getEdges() const
         {
             return mEdges;
         }
 
 
         /** @brief Return the number of vertices of the polytope */
-        inline const std::unordered_set<size_t>& getVertices()
+        inline const std::unordered_set<size_t>& getVertices() const
         {
             return mVertices;
         }

@@ -48,11 +48,11 @@ namespace visilib
         @param aNegative: the resulting splitted polytope at the negative side of the hyperplane (must be instanciated before calling the function)
         @param aPositive: the resulting splitted polytope at the positive side of the hyperplane  (must be instanciated before calling the function)
        */
-        static GeometryPositionType split(PluckerPolyhedron<P>* polyhedron, const P& aPlane, PluckerPolytope<P>* aPolytope, PluckerPolytope<P>* aLeft, PluckerPolytope<P>* aRight, size_t aPlaneId, bool anormalization, S tolerance);
+        static GeometryPositionType split(PluckerPolyhedron<P>* polyhedron, const P& aPlane, PluckerPolytope<P>* aPolytope, PluckerPolytope<P>* aLeft, PluckerPolytope<P>* aRight, size_t aPlaneId, bool anormalization, const S & tolerance);
     };
 
     template<class P, class S>
-    inline GeometryPositionType PluckerPolytopeSplitter<P, S>::split(PluckerPolyhedron<P>* aPolyhedron, const P& aPlane, PluckerPolytope<P>* aPolytope, PluckerPolytope<P>* aNegative, PluckerPolytope<P>* aPositive, size_t aPlaneID, bool normalization, S tolerance)
+    inline GeometryPositionType PluckerPolytopeSplitter<P, S>::split(PluckerPolyhedron<P>* aPolyhedron, const P& aPlane, PluckerPolytope<P>* aPolytope, PluckerPolytope<P>* aNegative, PluckerPolytope<P>* aPositive, size_t aPlaneID, bool normalization, const S & tolerance)
     {
         bool hasPointOnNegativeSide = false;
         bool hasPointOnPositiveSide = false;

@@ -371,6 +371,7 @@ namespace visilibDemo
                 ImGui::Text("findNextEdge %i", stats.findNextEdge);
                 ImGui::Text("maxRecursionLevel %i", stats.maxRecursionLevel);
                 ImGui::Text("indexCount %i", stats.indexCount);
+                ImGui::Text("polytopes %i", stats.polytopes);
                 ImGui::End();
             }
         }
