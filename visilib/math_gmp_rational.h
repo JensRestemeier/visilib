@@ -111,7 +111,7 @@ struct GmpRational {
     }
 };
 
-inline GmpRational sqrt(GmpRational x)
+inline GmpRational sqrt(const GmpRational & x)
 {
     return x.sqrt();
 }

@@ -115,7 +115,7 @@ struct Mpfr {
     }
 };
 
-inline Mpfr sqrt(Mpfr x)
+inline Mpfr sqrt(const Mpfr & x)
 {
     return x.sqrt();
 }

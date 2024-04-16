@@ -111,7 +111,7 @@ struct GmpFloat {
     }
 };
 
-inline GmpFloat sqrt(GmpFloat x)
+inline GmpFloat sqrt(const GmpFloat & x)
 {
     return x.sqrt();
 }
